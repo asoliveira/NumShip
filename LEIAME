@@ -1,0 +1,30 @@
+NumShip
+
+Programa para estudo da dissertação de mestrado na UFRJ/PENO
+de Alex S. Oliveira <asoliveira85@gmail.com>
+
+O programa é feito em python e precisa das bibliotecas NumPy e SciPy.
+Para você rodar instale no seu computador o Python, NumPy e SciPy.
+Ele foi pensado para rodar em linux em não foi testado se ele funciona em
+outros sistemas operacionais, mas pela característica do Python nada impede
+que isto aconteça, talvez precisando de alguns ajustes.
+
+Atualmente o script principal é o simula.py logo na raiz
+
+
+
+-----------------------------------------------------------
+
+
+Como rodar o NumShip.
+
+  Modo 1
+    Abra um idle python e digite 'import simula'. 
+    
+
+  Modo 2
+    tornar o arquivo main executável....  e digitar ./main em um terminal
+
+  Modo 3
+    Abrir um terminal e digitar python simula.py.
+    

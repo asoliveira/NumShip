@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+
+print '------------------'
+
+import os
+import sys
+
+os.chdir(sys.path[0])
+os.chdir('..')
+
+execfile('./script/simulaCurvaGiro.py')
+
+#execfile('./script/simulaZigZag.py')
+
+#execfile('./script/simulaTeste.py')
