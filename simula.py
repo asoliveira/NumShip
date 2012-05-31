@@ -1,15 +1,47 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+#This file is part of a program called NumShip
+
+#Copyright (C) 2011,2012  Alex Sandro Oliveira
+
+#NumShip is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 
 print '------------------'
+print"NumShip  Copyright (C) 2011, 2012  Alex Sandro Oliveira\n\
+This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.\n\
+This is free software, and you are welcome to redistribute it\n\
+under certain conditions.\n"
 
+#Imports
 import os
 import sys
 
 
+r1=raw_input("aperte ENTER para continuar\n")
+
+if r1 == "show w":
+  arq=open("COPYING", "r")
+  sys.stdout.write(arq.read())
+  r1=raw_input("aperte ENTER para continuar\n")
+  del arq, r1
+ 
+
 #Coloque aqui todos os diretórios em os módulos estam.
 sys.path.insert(0, os.path.abspath('source'))
-sys.path.insert(0, os.path.abspath('script'))
+sys.path.insert(0, os.path.abspath('scripts'))
 
 #Constantes que serão enviadas para o arquivo padrão
 DIRETORIO=()
