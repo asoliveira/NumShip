@@ -22,13 +22,15 @@
 Algumas palavras teste 
 """
 
-
+#imports
 import os
-from Casco import  *
-from Leme import  *
 import scipy as sp
 from scipy import linalg
 from scipy import stats
+
+#Módulos criados
+from Casco import  *
+from Leme import  *
 from Prop import *
 
 
@@ -36,7 +38,7 @@ class inte(object):
   """
   Classe que realiza a integração no tempo
   
-  :version:191010
+  :version:0.0
   :author: Alex
   
   """
@@ -850,8 +852,10 @@ propHis,
       EtaHis = sp.zeros((nlin, 2)) #histórico Eta
       betaHis =  sp.zeros((nlin, 2)) #histórico beta
     elif saida == 'txt':
-      os.makedirs('./saida/CurvaGiro')
-      os.chdir('./saida/CurvaGiro')
+      if os.path.exists(scgarq):
+        os.rename(scgarq, scgarq + '2')
+      os.makedirs(scgarq)
+      os.chdir(scgarq)
       lemeHis = open('leme.dat', 'w')#historico do leme
       lemeHis.write('#Navio ' + self.nome + '\n' +  
             '#Manobra de Curva de Giro\n#\n') 

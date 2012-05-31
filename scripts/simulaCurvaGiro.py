@@ -1,37 +1,22 @@
 # -*- coding: utf-8 -*-
    
+
+#Módulos que vem com python
 import sys
-
-sys.path.append('./source/')
-#sys.path.append('/home/alex/.MySys/lib/python')
-
+#Módulos de terceiros
 import scipy as sp
+import datetime
+#Módulos criados para o NumShip
 from Es import *
 from Leme import  *
 from Prop import *
 from Casco import *
 from Navio import *
+from config import * #parâmetros para configurar a simulação
 
-
-nome = 'B MarAd'
-save = True
-formato = 'eps'
-passo = 0.7
-tmax = 3000
-tini =  0
-metodo = 'rk4'
-TipoModelo = 'MARAD'
-GrausDeLib = 3
-LemeCom= sp.array(35.)
-ForEs = 1e0#Multiplicador da força
-Overshoot = 35
-escala = '0.7'
-Rot = sp.array(0.62)
-tipoc = 'starboard'
-saida = 'txt'
-adi = False
-
-
+#Formato do arquivo de saída
+data=datetime.datetime.now()
+scgarq='./saida_' + data.strftime(fdata) + '/CurvaGiro'
 
 Multbeta = 1.*sp.array([1., 1.,1.]) 
 Multr =  1.*sp.array([1., 1.,1. ])

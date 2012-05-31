@@ -1,0 +1,54 @@
+Analisa Navio
+
+Programa para estudo da dissertação de mestrado de Alex Sandro Oliveira
+
+Atualmente o script principal é o simula.py na pasta script
+
+
+
+-----------------------------------------------------------
+
+Como rodar um script no python.
+
+  Modo 1
+    Abra um idle python e digite 'import meu-arquivo'. 
+    'meu-arquivo' é o nome do script que deverá ser da seguinte forma 'meu-arquivo.py'
+
+  Modo 2
+    tornar o arquivo executável....
+
+  Modo 3
+    Abrir um terminal e digitar python meu-arquivo.py.
+    'meu-arquivo' é o nome do script que deverá ser da seguinte forma 'meu-arquivo.py'
+-----------------------------------------------------------
+
+Atividades por realizar na tese
+
+No texto da tese verificar a eq. 6.10 a possibilidade de mover o termo "y_r ur" de y(r) para y(res).
+-----------------------------------------------------------
+
+Caminho da simulação usando o script "curvas.py":
+
+  A classe "es" de entrada e saída lê o arquivo de entrada contendo as derivadas hidrodinâmicas;
+  
+  Ainda a classe "es" chama a classe "Navio" para realizar a integração no tempo;
+
+  Chama as/a função plotcg e/ou plotzz;
+
+  As funções plot anteriores chamam a função "simula" da classe "navio";
+
+  A função "navio" faz a integração no tempo.
+
+  
+
+  Compreender a função "simlação" da classe navio.
+Na função "def simula" da classe navio.
+#	observar que ele foi feito para um número fixo de graus de liberdade, no caso 4. Ou seja, 
+#	existe a necessidade de reprogramar o esta parte
+        veloInerHis = sp.zeros((nlin, 4))#histórico da velocidade no sistema inercial Verificar depois a necessidade
+        
+	Tornar um programa executável: usar o programa cx_freeze ou o py2exe.   
+        
+
+	
+

@@ -42,6 +42,7 @@ if r1 == "show w":
 #Coloque aqui todos os diretórios em os módulos estam.
 sys.path.insert(0, os.path.abspath('source'))
 sys.path.insert(0, os.path.abspath('scripts'))
+sys.path.insert(0, os.path.abspath('dados'))
 
 #Constantes que serão enviadas para o arquivo padrão
 DIRETORIO=()
@@ -84,7 +85,7 @@ deste script.'
 #Sobre as simulações que serão rodadas
 r=raw_input('Quais são as simulações que devem ser rodadas?\n\
 [1] Curva de Giro, [2] Curva de ZigZag\n\
-Coloque a sua resposta separada por virgulas. Exemplo:\n\
+Coloque a sua resposta separada por vírgulas. Exemplo:\n\
 1,2,3\n')
 
 #Esta variável somente será verdadeira quando a resposta estiver

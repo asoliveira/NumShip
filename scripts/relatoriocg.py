@@ -5,8 +5,12 @@
 ##   Relatório
 ##
 ################################################
-
-f = open('./saida/relcg.tex', 'w')
+try:
+  temp = scgarq + '/relcg.tex' 
+  f = open(temp, 'w')
+except NameError:
+  print 'houve algum problema na criação do diretório' + temp
+del temp
 
 f.write('\chapter{Relatório da Curva Giro Navio '+ nome +' }\n\n\t')
 

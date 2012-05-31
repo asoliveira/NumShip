@@ -25,7 +25,7 @@ b = navio1.getCurvaGiro(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
 
 
 if  saida == 'txt':
-    os.chdir('./saida/CurvaGiro')
+    os.chdir(scgarq)
     lemeHis = np.genfromtxt('leme.dat')
     propHis = np.genfromtxt('propulsor.dat')
     velHis = np.genfromtxt('velo.dat')
@@ -42,18 +42,11 @@ if  saida == 'txt':
 else:
     velHis, posHis,  acelHis, forHis,  velinHis,  lemeHis,  propHis,  EtaHis,  listacg,  betaHis = b
     del b
-dircg = './figuras/Curva_de_Giro/' 
-os.makedirs(dircg)
-
-
-
-
-
-
-
-
-
-
+try:
+  dircg = scgarq + '/figuras/Curva_de_Giro/' 
+  os.makedirs(dircg)
+except NameError:
+  print 'houve algum problema na criação do diretório' + dircg
 
 
 if adi :
