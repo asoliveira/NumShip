@@ -10,10 +10,4 @@ import Es
 entrada = ('NavioTeste', '../dados/bemformatado.dat', 'inputtab.dat')
 en = Es.es(entrada)
 
-a = en.fydertotab()
-print a
-
-plt.clf()
-plt.plot(a[:,0], a[:,1])
-#plt.show()
-plt.savefig('teste.eps', format='eps')
+en.plotfxb()

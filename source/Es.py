@@ -182,6 +182,7 @@ class es (object) :
             line = line.replace(' ','')
             line = line.replace('\n','')
             line = line.replace('\t','')
+            line = line.lower()
             output.extend(line.split(separator))
 
         while '' in  output:
@@ -279,7 +280,7 @@ class es (object) :
         output = {}
         
         for i in range (len(temp)):
-          output[temp[i][0].lower()] = sp.array(float(temp[i][1]))
+          output[temp[i][0]] = sp.array(float(temp[i][1]))
             
         return output
     
@@ -299,14 +300,15 @@ class es (object) :
         """
         pass
     
-    def fxdertotab (self, intervalo=5, Tipo = 'MARAD', rot=sp.array(1.23), 
+    def fxdertotab (self, passo=5, Tipo = 'MARAD', rot=sp.array(1.23), 
                     vel=12.7):
         """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma matriz tabelada de forças em surge do tipo `sp.array`. 
+        para uma matriz forças em surge para cada ângulo de ataque do tipo
+        `sp.array`.
         
         É necessário carregar um arquivo de derivadas em entrada [1].
          
-        :param intervalo: Intervalo do ângulo beta em graus(default = 5);
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
         :param Tipo: Tipo de modelo matemático a ser 
                      utilizado(‘MARAD’, ‘TP’);
         :param rot: Número de rotações por do propulsor;
@@ -317,7 +319,7 @@ class es (object) :
                  * Beta -- Ângulo de ataque;
                  * Fx -- Forças em Surge.
                 
-        :type intervalo: int
+        :type passo: int
         :type Tipo: str
         :type rot: sp.array
         :type vel: float
@@ -331,7 +333,7 @@ class es (object) :
             >>> en = Es.es(entrada)
             >>> print en.fxdertotab()[:2,]
             [[  0.00000000e+00  -7.74662690e+06]
-             [  5.29411765e+00  -7.47437622e+06]]
+             [  5.00000000e+00  -7.50372181e+06]]
         
         """
         DicionarioDerivadas = self.lerarqder()
@@ -340,7 +342,8 @@ class es (object) :
         navio1.MudaRotCom(rot)
         
         
-        saida = sp.zeros([sp.size(sp.linspace(0. , sp.pi/2, 90/intervalo)), 2])
+        saida = sp.zeros([sp.size(sp.linspace(0. , sp.pi / 2, 90 / passo,
+                          endpoint = False)), 2])
         
         posicao = sp.zeros((6, 1))
         velocidade = sp.zeros((6, 1))
@@ -351,91 +354,127 @@ class es (object) :
         navio1.MudaPos(posicao)
         navio1.MudaLemeCom(leme)
         
-        
-        a = []
         contlinha = 0
-        for beta in sp.linspace(0. , sp.pi/2, 90/intervalo):
+        for beta in sp.linspace(0. , sp.pi / 2, 90 / passo, endpoint=False):
             velocidade[0] = sp.array([vel])*sp.cos(beta)
-            velocidade[1] = -sp.array([vel])*sp.sin(beta)
+            velocidade[1] = sp.array([vel])*sp.sin(beta)
             navio1.MudaVel(velocidade)
-            a.append(navio1.CalcFx())
             saida[contlinha] = sp.array([beta * 180. / sp.pi, 
                                         navio1.CalcFx()])
             contlinha += 1
             
         return saida
         
-    def fydertotab (self, intervalo = 5., Tipo = 'MARAD', Rot=sp.array(1.23)):
-        """Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de forças em sway do tipo sp.array. 
+    def fydertotab (self, passo = 5., Tipo = 'MARAD', rot=sp.array(1.23),
+                    vel=12.7):
+        """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+        para uma matriz forças em sway para cada ângulo de ataque do tipo
+        `sp.array`.
         
         É necessário carregar um arquivo de derivadas em entrada [1].
        
-        Variáveis de entrada
-       
-        Intervalo = intervalo do ângulo beta em graus (default = 5).
-       
-        Saída
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param Tipo: Tipo de modelo matemático a ser 
+                     utilizado(‘MARAD’, ‘TP’);
+        :param rot: Número de rotações por do propulsor;
+        :param vel: Velocidade "u"  inicial. Não coloque "0.0"(zero), pois
+                    retornará um array com coluna de valor "nan"(infinito);
+        :return: Um sp.array do tipo; sp.array[beta, Fy]), onde:
+
+                 * Beta -- Ângulo de ataque;
+                 * Fy -- Forças em Sway.
+                
+        :type passo: int
+        :type Tipo: str
+        :type rot: sp.array
+        :type vel: float
+        :rtype: sp.array
         
-        Saida é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        Fy = Forças em Sway.
+        :Example:
+
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> print en.fydertotab()[:2,]
+            [[  0.00000000e+00   1.84832512e+05]
+             [  5.00000000e+00  -1.10394083e+07]]
+             
+        """
+        
+        DicionarioDerivadas = self.lerarqder()
+        
+        navio1 = navio(DicionarioDerivadas, Nome='Teste', Tipo=Tipo)
+        navio1.MudaRotCom(rot)
+       
+        
+        saida = sp.zeros([sp.size(sp.linspace(0. , sp.pi / 2, 90 / passo,
+                          endpoint = False)), 2])
+        
+        Posicao = sp.zeros((6, 1))
+        Velocidade = sp.zeros((6, 1))
+        Leme= sp.array(0.)
+        
+        navio1.MudaVel(Velocidade)
+        navio1.MudaPos(Posicao)
+        navio1.MudaLemeCom(Leme)
+        
+        contlinha = 0
+        for beta in sp.linspace(0. , sp.pi/2, 90/passo, endpoint=False):
+            Velocidade[0] = sp.array([vel]) * sp.cos(beta)
+            Velocidade[1] = sp.array([vel]) * sp.sin(beta)
+            navio1.MudaVel(Velocidade)
+            saida[contlinha] = sp.array([beta * 180. / sp.pi,
+                                        navio1.CalcFy()])
+            contlinha += 1
+            
+        return saida
+    
+    def kdertotab (self, passo = 5, Tipo = 'MARAD', rot=sp.array(1.23),
+                   vel=12.7):    
+        """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+        para uma matriz com o momento de roll para cada ângulo de ataque do
+        tipo `sp.array`.
+        
+        É necessário carregar um arquivo de derivadas em entrada [1].
+       
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param Tipo: Tipo de modelo matemático a ser 
+                     utilizado(‘MARAD’, ‘TP’);
+        :param rot: Número de rotações por do propulsor;
+        :param vel: Velocidade "u"  inicial. Não coloque "0.0"(zero), pois
+                    retornará um array com coluna de valor "nan"(infinito);
+        :return: Um sp.array do tipo; sp.array[beta, K]), onde:
+
+                 * Beta -- Ângulo de ataque;
+                 * K -- Forças em Sway.
+                
+        :type passo: int
+        :type Tipo: str
+        :type rot: sp.array
+        :type vel: float
+        :rtype: sp.array
+        
+        :Example:
+
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> print en.kdertotab()[:2,]
+            [[ 0.  0.]
+             [ 5.  0.]]
         
         """
         
         DicionarioDerivadas = self.lerarqder()
         
         navio1 = navio(DicionarioDerivadas, Nome='Teste', Tipo=Tipo)
-        navio1.MudaRotCom(Rot)
-       
-        
-        saida = sp.zeros([len(sp.arange(0., sp.pi, intervalo * sp.pi/180)),
-        2])
-        
-        Posicao = sp.zeros((6, 1))
-        Velocidade = sp.zeros((6, 1))
-        Leme= sp.array(0.)
-        
-        navio1.MudaVel(Velocidade)
-        navio1.MudaPos(Posicao)
-        navio1.MudaLeme(Leme)
-        
-        contlinha = 0
-        for beta in sp.arange(0., sp.pi, intervalo * sp.pi / 180):
-            Velocidade[0] = sp.array([12.7]) * sp.cos(beta)
-            Velocidade[1] = -sp.array([12.7]) * sp.sin(beta)
-            navio1.MudaVel(Velocidade)
-            saida[contlinha] = sp.array([beta * 180/sp.pi, navio1.CalcFy()])
-            contlinha += 1
-            
-        return saida
-    
-    def kdertotab (self, intervalo = 5, Tipo = 'MARAD', Rot=sp.array(1.23)):
-        """Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de Momento de roll do tipo sp.array. 
-        
-        Variáveis de entrada
-        
-        Intervalo = intervalo do ângulo beta em graus
-        Default = 5.
-        
-        É necessário carregar um arquivo de derivadas em entrada [1].
-        
-        Saída
-        
-        Saida é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        K = Momento de roll.
-        
-        """    
-        DicionarioDerivadas = self.lerarqder()
-        
-        navio1 = navio(DicionarioDerivadas, Nome='Teste', Tipo=Tipo)
-        navio1.MudaRotCom(Rot)
+        navio1.MudaRotCom(rot)
         
         
-        saida = sp.zeros([len(sp.arange(0., sp.pi, intervalo * sp.pi / 180)),
-        2])
+        saida = sp.zeros([sp.size(sp.linspace(0. , sp.pi / 2, 
+                         90 / passo, endpoint = False)), 2])
         
         Posicao = sp.zeros((6, 1))
         Velocidade = sp.zeros((6, 1))
@@ -443,44 +482,63 @@ class es (object) :
         
         navio1.MudaVel(Velocidade)
         navio1.MudaPos(Posicao)
-        navio1.MudaLeme(Leme)
+        navio1.MudaLemeCom(Leme)
         
         contlinha = 0
-        for beta in sp.arange(0. , sp.pi, intervalo* sp.pi/180):
-            Velocidade[0] = sp.array([12.7])*sp.cos(beta)
-            Velocidade[1] = -sp.array([12.7])*sp.sin(beta)
+        for beta in sp.linspace(0. , sp.pi / 2, 90. / passo, endpoint=False):
+            Velocidade[0] = sp.array([vel]) * sp.cos(beta)
+            Velocidade[1] = sp.array([vel]) * sp.sin(beta)
             navio1.MudaVel(Velocidade)
-            saida[contlinha] = sp.array([beta*180/sp.pi, navio1.CalcK()])
+            saida[contlinha] = sp.array([beta*180 / sp.pi, navio1.CalcK()])
             contlinha += 1
             
         return saida
   
-    def ndertotab (self, intervalo=5, Tipo='MARAD', Rot=sp.array(1.23)):
-        """Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de Momento de yaw do tipo sp.array. 
+    def ndertotab (self, passo=5, Tipo='MARAD', rot=sp.array(1.23),
+                   vel=12.7):    
+        """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+        para uma matriz com o momento de sway para cada ângulo de ataque do
+        tipo `sp.array`.
         
         É necessário carregar um arquivo de derivadas em entrada [1].
+       
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param Tipo: Tipo de modelo matemático a ser 
+                     utilizado(‘MARAD’, ‘TP’);
+        :param rot: Número de rotações por do propulsor;
+        :param vel: Velocidade "u"  inicial. Não coloque "0.0"(zero), pois
+                    retornará um array com coluna de valor "nan"(infinito);
+        :return: Um sp.array do tipo; sp.array[beta, N]), onde:
+
+                 * Beta -- Ângulo de ataque;
+                 * N -- Forças em Sway.
+                
+        :type passo: int
+        :type Tipo: str
+        :type rot: sp.array
+        :type vel: float
+        :rtype: sp.array
         
-        Variáveis de entrada
+        :Example:
+
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> print en.ndertotab()[:2,]
+            [[  0.00000000e+00  -3.39924593e+07]
+             [  5.00000000e+00  -2.59715542e+09]]
         
-        Intervalo = intervalo do ângulo beta em graus
-        Default = 5.
+        """  
         
-        Saída
-        
-        Saida é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        N = Momento de yaw.
-        
-        """     
         DicionarioDerivadas = self.lerarqder()
         
-        navio1 = navio(DicionarioDerivadas, Nome='Teste', Tipo='TP')
-        navio1.MudaRotCom(Rot)
+        navio1 = navio(DicionarioDerivadas, Nome='Teste', Tipo= Tipo)
+        navio1.MudaRotCom(rot)
         
         
-        saida = sp.zeros([len(sp.arange(0., sp.pi, intervalo * sp.pi / 180)),
-        2])
+        saida = sp.zeros([sp.size(sp.linspace(0. , sp.pi / 2, 
+                         90 / passo, endpoint = False)), 2])
         
         Posicao = sp.zeros((6, 1))
         Velocidade = sp.zeros((6, 1))
@@ -488,63 +546,86 @@ class es (object) :
         
         navio1.MudaVel(Velocidade)
         navio1.MudaPos(Posicao)
-        navio1.MudaLeme(Leme)
+        navio1.MudaLemeCom(Leme)
         
         contlinha = 0
-        for beta in sp.arange(0. , sp.pi, intervalo* sp.pi/180):
-            Velocidade[0] = sp.array([12.7])*sp.cos(beta)
-            Velocidade[1] = -sp.array([12.7])*sp.sin(beta)
+        for beta in sp.linspace(0. , sp.pi / 2, 90. / passo, endpoint=False):
+            Velocidade[0] = sp.array([vel]) * sp.cos(beta)
+            Velocidade[1] = sp.array([vel]) * sp.sin(beta)
             navio1.MudaVel(Velocidade)
             saida[contlinha] = sp.array([beta*180/sp.pi, navio1.CalcN()])
             contlinha += 1
             
         return saida
-    def plotfxb (self, intervalo = 5., save= True , formato = 'eps', Tipo
-= 'MARAD'):
         
-        """
-        Plota o gráfico de forças em surge contra beta
-        
-        Variáveis de entrada:
-        
-        Intervalo (Float)-- intervalo do ângulo beta em graus. Default = 5.;
-        save (True/False) -- Opção para salvar as figuras ou somente mostrar 
-        os gráficos, utilizar somente True até o momento;
-        formato ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída da figura; 
+    def plotfxb (self, passo=5., save=True , formato='eps',  
+                 Tipo='MARAD'):
+        """Plota o gráfico de forças em surge contra beta
         
         É necessário carregar um arquivo de derivadas em entrada [1];
-        Salva as figuras  no diretório './figuras/tab/
+        Salva as figuras  no diretório './figuras/tab/'.
+        
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param save: Opção para salvar as figuras ou somente mostrar como um
+                     popup(default = True);
+        :param formato: ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída 
+                        da figura.
+        :type passo: int
+        :type save: bool
+        :type formato: str
+        :type Tipo: str
+        
+         :Exemple:
+         
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.plotfxb()
         
         """
-        temp = self.fxdertotab(intervalo = intervalo, Tipo= Tipo)
-        plt.plot(temp[0:,0] * (180/sp.pi), temp[0:,1], 'r--')
+        temp = self.fxdertotab(passo = passo, Tipo= Tipo)
+        plt.plot(temp[:,0], temp[:,1], 'r--')
         
         plt.ylabel(r'$F_x$')
         plt.xlabel(r'$\beta$')
         plt.title (r'$F_x \quad X \quad \beta$')
         
         if save:
-            plt.savefig('./figuras/tab/pltfxb', format=formato)
-            plt.clf()
+            nomearq = 'pltfxb.'+formato
+            plt.savefig(nomearq, format=formato)
         else:
             plt.show()
-            plt.clf()
+            
         
 
-    def plotfyb (self, intervalo=5., save=True, formato='eps', Tipo='MARAD'):
+    def plotfyb (self, passo=5., save=True, formato='eps', Tipo='MARAD'):
         """Plota o gráfico de forças em sway contra beta
+      
+        É necessário carregar um arquivo de derivadas em entrada [1]
+        Salva as figuras  no diretório corrente.
         
-        Variáveis de entrada:
-        
-        Intervalo (Float)-- intervalo do ângulo beta em graus. Default = 5.;
-        save (True/False) -- Opção para salvar as figuras ou somente mostrar 
-        os gráficos, utilizar somente True até o momento;
-        formato ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída da figura; 
-        
-        É necessário carregar um arquivo de derivadas em entrada [1];
-        Salva as figuras  no diretório './figuras/tab/
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param save: Opção para salvar as figuras ou somente mostrar como um
+                     popup(default = True);
+        :param formato: ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída 
+                        da figura.
+        :type passo: int
+        :type save: bool
+        :type formato: str
+        :type Tipo: str
+                        
+        :Exemple:
+         
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.plotfyb(); 
+
         """
-        temp = self.fydertotab(intervalo = intervalo, Tipo= Tipo)
+        
+        temp = self.fydertotab(passo = passo, Tipo= Tipo)
         plt.plot(temp[0:,0] * (180/sp.pi), temp[0:,1], 'r--')
 
         plt.ylabel(r'$F_y$')
@@ -552,27 +633,41 @@ class es (object) :
         plt.title (r'$F_y$ x $\beta$')
         
         if save:
-            plt.savefig('./figuras/tab/pltfyb', format=formato)
+            namearq = 'pltfyb.' + formato
+            plt.savefig(namearq, format=formato)
             plt.clf()
         else:
             plt.show()
             plt.clf()
       
 
-    def plotkb (self, intervalo=5., save= True, formato='eps', Tipo='MARAD'):
+    def plotkb (self, passo=5., save=True, formato='eps', Tipo='MARAD'):
         """Plota o gráfico de momento  de roll em surge contra beta
         
-        Variáveis de entrada:
+        É necessário carregar um arquivo de derivadas em entrada [1]
+        Salva as figuras  no diretório corrente.
         
-        Intervalo (Float)-- intervalo do ângulo beta em graus. Default = 5.;
-        save (True/False) -- Opção para salvar as figuras ou somente mostrar 
-        os gráficos, utilizar somente True até o momento;
-        formato ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída da figura; 
-        
-        É necessário carregar um arquivo de derivadas em entrada [1];
-        Salva as figuras  no diretório './figuras/tab/
-        """
-        temp = self.kdertotab(intervalo = intervalo, Tipo= Tipo)
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param save: Opção para salvar as figuras ou somente mostrar como um
+                     popup(default = True);
+        :param formato: ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída 
+                        da figura.
+        :type passo: int
+        :type save: bool
+        :type formato: str
+        :type Tipo: str
+                        
+        :Exemple:
+         
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.plotkb();
+            
+            """
+            
+        temp = self.kdertotab(passo = passo, Tipo= Tipo)
         plt.plot(temp[0:,0] * (180/sp.pi), temp[0:,1], 'r--')
         
         
@@ -581,34 +676,49 @@ class es (object) :
         plt.title (r'$M_{\phi}$ x $\beta$')
         
         if save:
-            plt.savefig('./figuras/tab/pltkb', format=formato)
+            namearq = 'pltkb.' + formato
+            plt.savefig(namearq, format=formato)
             plt.clf()
         else:
             plt.show()
             plt.clf()
         
-    def plotnb (self, intervalo=5., save= True, formato='eps', Tipo='MARAD'):
+    def plotnb (self, passo=5., save=True, formato='eps', Tipo='MARAD'):
         """Plota o gráfico de momento de yaw em surge contra beta
         
-        Variáveis de entrada:
+        É necessário carregar um arquivo de derivadas em entrada [1]
+        Salva as figuras  no diretório corrente.
         
-        Intervalo (Float)-- intervalo do ângulo beta em graus. Default = 5.;
-        save (True/False) -- Opção para salvar as figuras ou somente mostrar 
-        os gráficos, utilizar somente True até o momento;
-        formato ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída da figura; 
+        :param passo: Intervalo do ângulo beta em graus(default = 5);
+        :param save: Opção para salvar as figuras ou somente mostrar como um
+                     popup(default = True);
+        :param formato: ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída 
+                        da figura.
+        :type passo: int
+        :type save: bool
+        :type formato: str
+        :type Tipo: str
+                        
+        :Exemple:
+         
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.plotnb(); 
         
-        É necessário carregar um arquivo de derivadas em entrada [1];
-        Salva as figuras  no diretório './figuras/tab/
         """
-        temp = self.ndertotab(intervalo = intervalo, Tipo= Tipo)
-        plt.plot(temp[0:,0] * (180/sp.pi), temp( intervalo)[0:,1], 'r--')
+        
+        temp = self.ndertotab(passo = passo, Tipo= Tipo)
+        plt.plot(temp[0:,0] * (180/sp.pi), temp[0:,1], 'r--')
 
         plt.ylabel(r'$M_{\psi}$')
         plt.xlabel(r'$\beta$')
         plt.title (r'$M_{\psi}$ x $\beta$')
         
         if save:
-            plt.savefig('./figuras/tab/pltnb', format=formato)
+            namearq = 'pltnb.' + formato
+            plt.savefig(namearq, format=formato)
             plt.clf()
         else:
             plt.show()
