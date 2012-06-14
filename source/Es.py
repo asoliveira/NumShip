@@ -34,13 +34,14 @@ import scipy as sp
 #Bibliotecas do NumShip
 from Navio import *
 
-def gerartemplate(nome='inputder.dat', valor = ' <valor>,'):
-    """Gera um template para o arquivo de derivadas hidrodinâmicas.
+def gerartemplate(nome = 'inputder.dat', valor = ' <valor>,'):
+    """Gera um `template` para o arquivo de derivadas hidrodinâmicas.
             
-    nome -- Nome do arquivo de saída. Tipo string.
-    (default 'inputder.dat');
-    valor -- preenchimento do campo para ser substituído pelo valor das
-    derivadas.(default ' <valor>'
+    :param nome: Nome do arquivo de saída. (default 'inputder.dat');
+    :param valor: Preenchimento do campo para ser substituído pelo valor das
+                  derivadas.default ' <valor>'
+    :type nome: str
+    :type valor: str
     
     """
     listafx = ('xdotu', 'xu', 'xuu', 'xuuu', 'xvr', 'xrr', 'xv', 'xvv',
@@ -122,19 +123,20 @@ class es (object) :
     """Classe para auxiliar na entrada e saída de dados."""
     
     def __init__(self, entrada):
-        """Argumentos da classe Entrada      
+        """
+        :param entrada: Tupla com 3 argumentos:
+            
+            * entrada[0] -- Nome do navio. *Tipo string*\;        
+            * entrada[1] -- Caminho do arquivo de entrada contendo o valor 
+              das derivadas hidrodinâmicas. *Tipo string*\;
+            * entrada[2] -- Caminho do arquivo de entrada contendo o valor    
+              das forças tabeladas. *Tipo string*\;
+                            
+        :type entrada: tuple
         
-        **entrada** -- Tupla com 3 argumentos:
-              
-        * entrada[0] -- Nome do navio. *Tipo string*\;        
-        * entrada[1] -- Caminho do arquivo de entrada contendo o valor das
-          derivadas hidrodinâmicas. *Tipo string*\;
-        * entrada[2] -- Caminho do arquivo de entrada contendo o valor das
-          forças tabeladas. *Tipo string*\;
-        
-        .. seealso:: **Dica** Caso queira saber como é a forma do arquivo
-                    entrada[1] utilize a função *gerartempder([nome,valor])* 
-                    \. Esta função gera um template para entrada dos valores.
+        .. seealso:: Caso queira saber como é a forma do arquivo entrada[1]
+                     utilize a função `gerartempder([nome,valor])` \. Esta
+                     função gera um template para entrada dos valores.
         
         """
         
@@ -152,23 +154,21 @@ class es (object) :
         minúsculas sem "enter" e sem espaço separada pela marcação do
         separador.
         
-        * *separator* -- Separa um valor do outro. default(',');
-        * *comment* -- O indicador do comentário.
+        :param separator: Separa um valor do outro. default(',');
+        :param comment: O indicador do comentário. default('#');
+        :return: Retorna uma lista com os valores do arquivo de entrada;
+        :type separator: str
+        :type comment: str
+        :rtype: list
         
-        Retorna uma lista.
+        :Example:
         
-        A intenção é receber um arquivo assim:
-        self.file:
-        xu = 10, Xv = 13, yv = 14,
-        ydelta=2.0, k=40
-
-        Após o seguinte comando:
-        
-        In [3]: cd ../source
-        In [4]: import Es
-        In [5]: en=Es.es(('NavioTeste', '../dados/MarAdinputder.dat',
-        'inputtab.dat'))
-        In [6]: en.listararq()
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.listararq()[:3]
+            ['xdotu=-8.59e-4', 'xvr=1.095e-2', 'xvv=2.87e-3']
         
         """
         
@@ -193,16 +193,24 @@ class es (object) :
     def checkformat(self):
         """Verifica se os dados do arquivo de entrada estão corretos.
         
-        Retorna uma lista dos valores formatados errados no arquivo de
-        entrada do tipo 
+        Os erros de formatação mais de comuns que são verificados por esta
+        função são mais de um ‘.’ ou ‘-‘ ou valores alfanuméricos (exceto
+        obviamente os    números em notação científica como 10e5). Exemplo: 
+        xu = 10–e3, yv = 23ee4.
         
-        erro = ['xu', 'yv',...].
+        :return: Retorna uma lista dos valores formatados errados no arquivo 
+                 de entrada (entrada[1]).
         
-        Neste caso 'xu', 'yv' de um dos erros de formatação mais de 1
-        '.' ou '-' ou valores alfanuméricos (exceto obviamente os
-        números em notação científica como 10e5). Exemplo:
-        xu = 10--e3
-        yv = 23ee4
+        :Exemple:
+
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/mauformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.checkformat()
+            ['ndotv']
+            >>> #Neste caso 'xdotv' foi escrito assim:
+            >>> #'ndotv = --5.0e-5,', ou seja, possui mais de um sinal '-'
         
         """
         
@@ -235,16 +243,27 @@ class es (object) :
     def lerarqder(self, separator=',', comment='#'):
         """Processa a entrada das derivadas hidrodinâmicas.
 
-        Devolve um dicionário de sp.array com os valores possuindo como 
+        Devolve um dicionário de `sp.array` com os valores possuindo como 
         chaves o nome das variáveis em letra minúscula.
+                
+        :param separator: Separador de uma variável da outra. (default ',');
+        :param comment: Indicativo de linha para comentário. (default '#');
+        :return: Devolve um dicionário de sp.array com os valores possuindo
+                 como chaves o nome das derivadas hidrodinâmicas em letra
+                 minúscula;
+        :type separator: str
+        :type comment: str
+        :rtype: dict
         
-        Variáveis de entrada:
+        :Exemple:
         
-        * separator -- Separador de uma variável da outra. Tipo string.
-          (default ',');
-        * comment -- Indicativo de linha para comentário. Tipo string.
-          (default '#').
-        
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> en.lerarqder()['rotnom']
+            array(0.62)
+
         """
                   
         temp = []
@@ -260,7 +279,7 @@ class es (object) :
         output = {}
         
         for i in range (len(temp)):
-          output[temp[i][0]] = sp.array(float(temp[i][1]))
+          output[temp[i][0].lower()] = sp.array(float(temp[i][1]))
             
         return output
     
@@ -282,19 +301,23 @@ class es (object) :
     
     def fxdertotab (self, intervalo = 5, Tipo = 'MARAD', Rot=sp.array(1.23)):
         """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de forças em surge do tipo sp.array. 
+        para uma tabela de forças em surge do tipo `sp.array`. 
         
         É necessário carregar um arquivo de derivadas em entrada [1].
-        
-        Variáveis de entrada:
- 
-        Intervalo -- intervalo do ângulo beta em graus(default = 5).
+         
+        :param intervalo: Intervalo do ângulo beta em graus(default = 5);
+        :param Tipo: Tipo de modelo matemático a ser 
+                     utilizado(‘MARAD’, ‘TP’);
+        :param Rot: Número de rotações por do propulsor;
+        :return: Um sp.array do tipo; sp.array[beta, Fx]), onde:
 
-         Saída
-        
-        Saída é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        Fx = Forças em Surge 
+                 * Beta -- Ângulo de ataque;
+                 * Fx -- Forças em Surge.
+                
+        :type intervalo: int
+        :type Tipo: str
+        :type Rot: sp.array
+        :rtype: sp.array
         
         """
         DicionarioDerivadas = self.lerarqder()
@@ -1723,3 +1746,7 @@ temp.replace('$ ', coef + '$'))
                 nomedoarq = './figuras/TabelaDmi/'+f +coef
                 plt.savefig( nomedoarq , format=formato)
                 plt.clf()
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()                
