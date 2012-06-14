@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>PropMarAd &mdash; NumShip 1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="NumShip 1 documentation" href="../index.html" />
+    <link rel="up" title="Código do módulo" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice Geral"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li><a href="../index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Código do módulo</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Código fonte de PropMarAd</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="c">#</span>
+<span class="c">#This file is part of a program called NumShip</span>
+
+<span class="c">#Copyright (C) 2011,2012  Alex Sandro Oliveira</span>
+
+<span class="c">#NumShip is free software: you can redistribute it and/or modify</span>
+<span class="c">#it under the terms of the GNU General Public License as published by</span>
+<span class="c">#the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c">#(at your option) any later version.</span>
+
+<span class="c">#This program is distributed in the hope that it will be useful,</span>
+<span class="c">#but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c">#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c">#GNU General Public License for more details.</span>
+
+<span class="c">#You should have received a copy of the GNU General Public License</span>
+<span class="c">#along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">from</span> <span class="nn">PropGen</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="propMarAd"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd">[documentos]</a><span class="k">class</span> <span class="nc">propMarAd</span><span class="p">(</span><span class="n">prop</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">DicionarioDerivadas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Construtor do cacso</span>
+<span class="sd">        __________________________</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dic</span> <span class="o">=</span> <span class="n">DicionarioDerivadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vel</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Rot</span> <span class="o">=</span>  <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rotnom&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RotCom</span> <span class="o">=</span>  <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rotnom&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;unom&#39;</span><span class="p">]</span>
+        
+<div class="viewcode-block" id="propMarAd.MudaRot"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.MudaRot">[documentos]</a>    <span class="k">def</span> <span class="nf">MudaRot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Muda a rotação da máquina caminhando um passo &#39;dt&#39; no tempo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Rot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rot</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RotCom</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rot</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">sp</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lambdaprop&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+<span class="c">#        Eta = self.MostraVelCom()/self.MostraVel()[0]</span>
+<span class="c">#        self.Rot = self.RotCom/Eta</span></div>
+<div class="viewcode-block" id="propMarAd.MudaRotCom"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.MudaRotCom">[documentos]</a>    <span class="k">def</span> <span class="nf">MudaRotCom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">Rot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Muda a rotação comandada</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">RotCom</span> <span class="o">=</span> <span class="n">Rot</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        </div>
+<div class="viewcode-block" id="propMarAd.MudaVelCom"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.MudaVelCom">[documentos]</a>    <span class="k">def</span> <span class="nf">MudaVelCom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">uc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Muda a velocidade comandada</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">uc</span> <span class="o">=</span> <span class="n">uc</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
+<div class="viewcode-block" id="propMarAd.MostraRot"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.MostraRot">[documentos]</a>    <span class="k">def</span> <span class="nf">MostraRot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna a rotação da máquina atual</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">Rot</span></div>
+<div class="viewcode-block" id="propMarAd.MostraRotCom"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.MostraRotCom">[documentos]</a>    <span class="k">def</span> <span class="nf">MostraRotCom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna a rotação comandada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">RotCom</span>
+        </div>
+<div class="viewcode-block" id="propMarAd.MostraVelCom"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.MostraVelCom">[documentos]</a>    <span class="k">def</span> <span class="nf">MostraVelCom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna a velocidade comandada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">uc</span>        
+        
+      
+        </div>
+<div class="viewcode-block" id="propMarAd.Fx"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.Fx">[documentos]</a>    <span class="k">def</span> <span class="nf">Fx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna a força em surge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">Eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVelCom</span><span class="p">()</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+       
+        <span class="k">if</span>  <span class="n">Eta</span> <span class="o">&lt;=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;a4&#39;</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;b4&#39;</span><span class="p">]</span>
+            <span class="n">c</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;c4&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Eta</span> <span class="ow">and</span> <span class="n">Eta</span> <span class="o">&lt;=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;a3&#39;</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;b3&#39;</span><span class="p">]</span>
+            <span class="n">c</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;c3&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Eta</span> <span class="ow">and</span> <span class="n">Eta</span> <span class="o">&lt;=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;a2&#39;</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;b2&#39;</span><span class="p">]</span>
+            <span class="n">c</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;c2&#39;</span><span class="p">]</span>  
+        <span class="k">elif</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">Eta</span> <span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;a1&#39;</span><span class="p">]</span>
+            <span class="n">b</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;b1&#39;</span><span class="p">]</span>
+            <span class="n">c</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;c1&#39;</span><span class="p">]</span> 
+        
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> 
+        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">r</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">Eta</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">Eta</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;xvveta&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Eta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X</span></div>
+<div class="viewcode-block" id="propMarAd.Fy"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.Fy">[documentos]</a>    <span class="k">def</span> <span class="nf">Fy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna a força em sway</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">Eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVelCom</span><span class="p">()</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">&lt;</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;d*0&#39;</span><span class="p">]</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;e*0&#39;</span><span class="p">]</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;f*0&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">&gt;=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;d*1&#39;</span><span class="p">]</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;e*1&#39;</span><span class="p">]</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;f*1&#39;</span><span class="p">]</span>
+        
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">r</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span>
+        
+        
+        <span class="n">uz</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;dp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="o">*</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;dp&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        
+        <span class="n">Y</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;yreta&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="p">(</span><span class="n">Eta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;yveta&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">Eta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;y*&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">uz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Y</span>
+</div>
+<div class="viewcode-block" id="propMarAd.N"><a class="viewcode-back" href="../PropMarAd.html#PropMarAd.propMarAd.N">[documentos]</a>    <span class="k">def</span> <span class="nf">N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna o momento de yaw</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        
+
+        <span class="n">Eta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVelCom</span><span class="p">()</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">&lt;</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;d*0&#39;</span><span class="p">]</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;e*0&#39;</span><span class="p">]</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;f*0&#39;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">&gt;=</span> <span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mf">0.</span><span class="p">):</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;d*1&#39;</span><span class="p">]</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;e*1&#39;</span><span class="p">]</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;f*1&#39;</span><span class="p">]</span>
+        
+        <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">r</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MostraVel</span><span class="p">()[</span><span class="mi">5</span><span class="p">]</span>
+        
+        <span class="n">uz</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;dp&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="o">*</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">MostraRot</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;dp&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="n">N</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;nreta&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="p">(</span><span class="n">Eta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;nveta&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">Eta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;rho&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;lpp&#39;</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dic</span><span class="p">[</span><span class="s">&#39;n*&#39;</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">uz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">N</span>      </div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Pesquisa rápida</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Digite os termos da busca ou o nome de um módulo, classe ou função.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Índice Geral"
+             >índice</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li><a href="../index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Código do módulo</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Alex S. Oliveira.
+      Criado com <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

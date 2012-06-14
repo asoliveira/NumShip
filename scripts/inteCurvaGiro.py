@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 
+import os
 
+#Multiplicador para a força
 p = (Multbeta,  Multr,  Multl,  Multbrl)
 
-if TipoModelo== 'MARAD':
-    Arq =  './dados/MarAdinputder.dat'
+#Dependenpo do modelo que esteja usando temos que colocar os dados de entrada
+#nos arquivos na pasta dados
+if TipoModelo == 'MARAD':
+    arq=os.path.abspath('./dados/MarAdinputder.dat')
 elif   TipoModelo== 'TP':  
-    Arq =  './dados/TPinputder.dat'
+    arq=os.path.abspath('./dados/TPinputder.dat')
 
+entrada=('Navioteste', arq, 'inputtab.dat')
+io=es(entrada)
 
-
-In = ('Navioteste', Arq, 'inputtab.dat')
-io = es(entrada = In)
-
-DicionarioDerivadas = io.lerarqder()
+DicionarioDerivadas=io.lerarqder()
 del io,  In,  Arq
 
 navio1 = navio(DicionarioDerivadas, Nome = nome,   Tipo = TipoModelo )
@@ -21,7 +23,8 @@ navio1 = navio(DicionarioDerivadas, Nome = nome,   Tipo = TipoModelo )
 
 b = navio1.getCurvaGiro(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
                         tipo= tipoc,  GrausDeLib = GrausDeLib,  
-                        leme = LemeCom,  RotCom=Rot,  saida = saida)
+                        leme = LemeCom,  RotCom=Rot,  saida =
+                        saida, arqs=scgarq)
 
 
 if  saida == 'txt':

@@ -18,32 +18,14 @@ from config import * #parâmetros para configurar a simulação
 data=datetime.datetime.now()
 scgarq='./saida_' + data.strftime(fdata) + '/CurvaGiro'
 
-Multbeta = 1.*sp.array([1., 1.,1.]) 
-Multr =  1.*sp.array([1., 1.,1. ])
-Multl = 1.*sp.array([1.,1.,1. ]) 
-Multbrl = 1.*sp.array([1.,1.,1. ])
-
-##############################################
-##
-##
-##
-##
-##
-####################################################################
-
-print 'Curva de Giro'
-
-execfile('./scripts/inteCurvaGiro.py',  locals())
-
-print 'Integracao Realizada'
-
-#execfile('./scripts/plotCurvaGiro.py',  locals())
-
-#print'plotagem realizada'
-
-
+print 'Início da simulação da Curva de Giro ...\n'
+execfile('./scripts/inteCurvaGiro.py',  globals())
+print 'Integração Realizada.\n'
+if False:
+  execfile('./scripts/plotCurvaGiro.py',  locals())
+  print'plotagem realizada'
+print'Fazendo o relatório...\n'
 execfile('./scripts/relatoriocg.py',  locals())
-
-print'Relatório feito'
-
-print 'Terminado a simulação da curva de Giro'
+print'Relatório feito.'
+print 'Simulação e relatório realizados. Dê uma olhada na pasta \
+"saida<data e hora>".\n'

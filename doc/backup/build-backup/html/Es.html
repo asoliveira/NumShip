@@ -1,0 +1,515 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Módulo Es &mdash; NumShip 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="NumShip 1 documentation" href="index.html" />
+    <link rel="prev" title="Introdução" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introdução"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="module-Es"></span><div class="section" id="modulo-es">
+<h1>Módulo Es<a class="headerlink" href="#modulo-es" title="Link permanente para este título">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">0.1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Autor:</th><td class="field-body">Alex S. Oliveira</td>
+</tr>
+</tbody>
+</table>
+<p>Biblioteca com o propósito de auxiliar na leitura dos dados de entrada</p>
+<dl class="class">
+<dt id="Es.es">
+<em class="property">class </em><tt class="descclassname">Es.</tt><tt class="descname">es</tt><big>(</big><em>entrada</em><big>)</big><a class="reference internal" href="_modules/Es.html#es"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Classe para auxiliar na entrada e saída de dados.</p>
+<p>Argumentos da classe Entrada</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>entrada</strong> (<em>Tupla</em>) &#8211; <p>Tupla com 3 argumentos:</p>
+<ul class="simple">
+<li>entrada[0] &#8211; Nome do navio. <em>Tipo string</em>;</li>
+<li>entrada[1] &#8211; Caminho do arquivo de entrada 
+contendo o  valor das derivadas hidrodinâmicas. 
+<em>Tipo string</em>;</li>
+<li>entrada[2] &#8211; Caminho do arquivo de entrada 
+contendo o valor das forças tabeladas. <em>Tipo
+string</em>;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-veja-tambem admonition seealso">
+<p class="first admonition-title">Veja também</p>
+<p class="last"><strong>Dica</strong> Caso queira saber como é a forma do arquivo
+entrada[1] utilize a função <em>gerartempder([nome,valor])</em> 
+. Esta função gera um template deste arquivo.</p>
+</div>
+<dl class="method">
+<dt id="Es.es.checkformat">
+<tt class="descname">checkformat</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Es.html#es.checkformat"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.checkformat" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Verifica se os dados do arquivo de entrada estão corretos.</p>
+<p>Retorna uma lista dos valores formatados errados no arquivo de
+entrada do tipo</p>
+<p>erro = [&#8216;xu&#8217;, &#8216;yv&#8217;,...].</p>
+<p>Neste caso &#8216;xu&#8217;, &#8216;yv&#8217; de um dos erros de formatação mais de 1
+&#8216;.&#8217; ou &#8216;-&#8216; ou valores alfanuméricos (exceto obviamente os
+números em notação científica como 10e5). Exemplo:
+xu = 10&#8211;e3
+yv = 23ee4</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.coefdertotab">
+<tt class="descname">coefdertotab</tt><big>(</big><em>dic</em>, <em>forge='fx'</em>, <em>intervalo=5</em>, <em>coef='beta'</em>, <em>coef2='gamma'</em>, <em>ConstAdOr='snae'</em>, <em>ConstAdDes='dmi'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.coefdertotab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.coefdertotab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+para uma tabela de forças em surge do tipo sp.array.</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>intervalo</strong> &#8211; Intervalo do ângulo beta em graus (default = 5).</li>
+<li><strong>dic</strong> &#8211; </li>
+<li><strong>forge</strong> &#8211; (default &#8211; &#8216;fx&#8217;);</li>
+<li><strong>coef</strong> &#8211; (default &#8211; &#8216;beta&#8217;);</li>
+<li><strong>coef2</strong> &#8211; (default &#8211; &#8216;gamma&#8217;);</li>
+<li><strong>ConstAdOr</strong> &#8211; (default &#8211; &#8216;snae&#8217;);</li>
+<li><strong>ConstAdDes</strong> &#8211; (default &#8211; &#8216;dmi&#8217;)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first last">Um sp.array[beta, Fx]), onde:
+* Beta &#8211; Ângulo de ataque;
+* Fx &#8211; Forças em Surge.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.coefdertotab2">
+<tt class="descname">coefdertotab2</tt><big>(</big><em>dic</em>, <em>forge='fx'</em>, <em>intervalo=5</em>, <em>coef='betagamma'</em>, <em>ConstAdOr='snae'</em>, <em>ConstAdDes='dmi'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.coefdertotab2"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.coefdertotab2" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+para uma tabela de forças em surge do tipo sp.array.</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>intervalo</strong> &#8211; Intervalo do ângulo beta em graus (default = 5).</li>
+<li><strong>dic</strong> &#8211; </li>
+<li><strong>forge</strong> &#8211; </li>
+<li><strong>coef</strong> &#8211; </li>
+<li><strong>ConstAdOr</strong> &#8211; </li>
+<li><strong>ConstAdDes</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first last">Um sp.array[beta, Fx]), onde:
+* Beta &#8211; Ângulo de ataque;
+* Fx &#8211; Forças em Surge.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.conad">
+<tt class="descname">conad</tt><big>(</big><em>tipo='snae'</em>, <em>var='beta'</em>, <em>dic={}</em>, <em>vel=array(0)</em>, <em>r=array(0)</em>, <em>p=array(0)</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.conad"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.conad" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o coeficiente de adimensionalização.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>tipo</strong> &#8211; &#8216;snae&#8217; ou &#8216;dmi&#8217; (default &#8211; &#8216;snae&#8217;);</li>
+<li><strong>var</strong> &#8211; </li>
+<li><strong>dic</strong> &#8211; </li>
+<li><strong>vel</strong> &#8211; </li>
+<li><strong>r</strong> &#8211; </li>
+<li><strong>p</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first last">Um sp.array([beta, Fx]), onde:
+* Beta &#8211; Ângulo de ataque;
+* Fx &#8211; Forças em Surge.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.fxdertotab">
+<tt class="descname">fxdertotab</tt><big>(</big><em>intervalo=5</em>, <em>Tipo='MARAD'</em>, <em>Rot=array(1.23)</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.fxdertotab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.fxdertotab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+para uma tabela de forças em surge do tipo sp.array.</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1].</p>
+<p>Variáveis de entrada:</p>
+<p>Intervalo &#8211; intervalo do ângulo beta em graus(default = 5).</p>
+<blockquote>
+<div>Saída</div></blockquote>
+<p>Saída é um sp.array[beta, Fx]):
+Beta - Ângulo de ataque
+Fx = Forças em Surge</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.fydertotab">
+<tt class="descname">fydertotab</tt><big>(</big><em>intervalo=5.0</em>, <em>Tipo='MARAD'</em>, <em>Rot=array(1.23)</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.fydertotab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.fydertotab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+para uma tabela de forças em sway do tipo sp.array.</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1].</p>
+<p>Variáveis de entrada</p>
+<p>Intervalo = intervalo do ângulo beta em graus (default = 5).</p>
+<p>Saída</p>
+<p>Saida é um sp.array[beta, Fx]):
+Beta - Ângulo de ataque
+Fy = Forças em Sway.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.kdertotab">
+<tt class="descname">kdertotab</tt><big>(</big><em>intervalo=5</em>, <em>Tipo='MARAD'</em>, <em>Rot=array(1.23)</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.kdertotab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.kdertotab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+para uma tabela de Momento de roll do tipo sp.array.</p>
+<p>Variáveis de entrada</p>
+<p>Intervalo = intervalo do ângulo beta em graus
+Default = 5.</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1].</p>
+<p>Saída</p>
+<p>Saida é um sp.array[beta, Fx]):
+Beta - Ângulo de ataque
+K = Momento de roll.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.lerarqder">
+<tt class="descname">lerarqder</tt><big>(</big><em>separator='</em>, <em>'</em>, <em>comment='#'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.lerarqder"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.lerarqder" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Processa a entrada das derivadas hidrodinâmicas.</p>
+<p>Devolve um dicionário de sp.array com os valores possuindo como 
+chaves o nome das variáveis em letra minúscula.</p>
+<p>Variáveis de entrada:</p>
+<ul class="simple">
+<li>separator &#8211; Separador de uma variável da outra. Tipo string.
+(default &#8216;,&#8217;);</li>
+<li>comment &#8211; Indicativo de linha para comentário. Tipo string.
+(default &#8216;#&#8217;).</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.lerarqtab">
+<tt class="descname">lerarqtab</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Es.html#es.lerarqtab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.lerarqtab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Lê o arquivo de forças tabeladas.</p>
+<p>Ainda não implementado.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.lerbdder">
+<tt class="descname">lerbdder</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Es.html#es.lerbdder"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.lerbdder" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Lê banco de dados de derivadas hidrodinâmicas.</p>
+<p>Ainda não implementado.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.lerbdtab">
+<tt class="descname">lerbdtab</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Es.html#es.lerbdtab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.lerbdtab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Lê o banco de dados com os valores de força tabelados</p>
+<p>Ainda não implementado</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.listararq">
+<tt class="descname">listararq</tt><big>(</big><em>separator='</em>, <em>'</em>, <em>comment='#'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.listararq"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.listararq" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Processa o arquivo de entrada.</p>
+<p>Lê o arquivo <em>entrada[0]</em> e devolve uma lista com todas as letras
+minúsculas sem &#8220;enter&#8221; e sem espaço separada pela marcação do
+separador.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>separator</strong> (<em>String.</em>) &#8211; Separa um valor do outro. (default &#8211; &#8216;,&#8217;);</li>
+<li><strong>comment</strong> (<em>String</em>) &#8211; O indicador do comentário. (default &#8211; &#8216;#&#8217;);</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Retorna uma lista com os valores do arquivo de entrada;</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo de retorno:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first">Lista.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exemplo :</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><pre>In [3]: cd ../source
+In [4]: import Es
+In [5]: en=Es.es(('NavioTeste', '../dados/MarAdinputder.dat',
+        'inputtab.dat'))
+In [6]: en.listararq()</pre>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.ndertotab">
+<tt class="descname">ndertotab</tt><big>(</big><em>intervalo=5</em>, <em>Tipo='MARAD'</em>, <em>Rot=array(1.23)</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.ndertotab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.ndertotab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Transforma os valores de derivadas hidrodinâmicas em entrada[1]
+para uma tabela de Momento de yaw do tipo sp.array.</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1].</p>
+<p>Variáveis de entrada</p>
+<p>Intervalo = intervalo do ângulo beta em graus
+Default = 5.</p>
+<p>Saída</p>
+<p>Saida é um sp.array[beta, Fx]):
+Beta - Ângulo de ataque
+N = Momento de yaw.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotcg">
+<tt class="descname">plotcg</tt><big>(</big><em>save=True</em>, <em>tipoc='port'</em>, <em>formato='eps'</em>, <em>passo=0.5</em>, <em>tmax=200</em>, <em>tini=0</em>, <em>metodo='euler'</em>, <em>TipoModelo='TP'</em>, <em>GrausDeLib=4</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotcg"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotcg" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Plota curva de Giro</p>
+<p>Variáveis de entrada</p>
+<p>save (True/False) &#8211; Opção para salvar as figuras ou somente mostrar 
+os gráficos, utilizar somente True até o momento;
+tipoc (&#8216;port&#8217;/&#8217;starboard&#8217;) &#8211; Opção para o tipo de curva de giro para
+bombordo o boreste;
+formato (&#8216;png&#8217;/&#8217;pdf&#8217;/&#8217;ps&#8217;/&#8217;eps&#8217;/&#8217;svg&#8217;) &#8211; formatos de saída da figura;
+passo (float) &#8211; Paso de tempo da integração;
+tmax  (integer) &#8211; Tempo  máximo;
+tini (integer) &#8211; Tempo inicial;
+metodo (&#8216;euler&#8217;) &#8211; Método de integração;</p>
+<p>Salva as figuras  no diretório 
+&#8216;./figuras/Curva_de_Giro/curva_de_giro&#8217;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotcoefdertotab">
+<tt class="descname">plotcoefdertotab</tt><big>(</big><em>formato='eps'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotcoefdertotab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotcoefdertotab" title="Link permanente para esta definição">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotfxb">
+<tt class="descname">plotfxb</tt><big>(</big><em>intervalo=5.0</em>, <em>save=True</em>, <em>formato='eps'</em>, <em>Tipo='MARAD'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotfxb"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotfxb" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Plota o gráfico de forças em surge contra beta</p>
+<p>Variáveis de entrada:</p>
+<p>Intervalo (Float)&#8211; intervalo do ângulo beta em graus. Default = 5.;
+save (True/False) &#8211; Opção para salvar as figuras ou somente mostrar 
+os gráficos, utilizar somente True até o momento;
+formato (&#8216;png&#8217;/&#8217;pdf&#8217;/&#8217;ps&#8217;/&#8217;eps&#8217;/&#8217;svg&#8217;) &#8211; formatos de saída da figura;</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1];
+Salva as figuras  no diretório &#8216;./figuras/tab/</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotfyb">
+<tt class="descname">plotfyb</tt><big>(</big><em>intervalo=5.0</em>, <em>save=True</em>, <em>formato='eps'</em>, <em>Tipo='MARAD'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotfyb"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotfyb" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Plota o gráfico de forças em sway contra beta</p>
+<p>Variáveis de entrada:</p>
+<p>Intervalo (Float)&#8211; intervalo do ângulo beta em graus. Default = 5.;
+save (True/False) &#8211; Opção para salvar as figuras ou somente mostrar 
+os gráficos, utilizar somente True até o momento;
+formato (&#8216;png&#8217;/&#8217;pdf&#8217;/&#8217;ps&#8217;/&#8217;eps&#8217;/&#8217;svg&#8217;) &#8211; formatos de saída da figura;</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1];
+Salva as figuras  no diretório &#8216;./figuras/tab/</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotkb">
+<tt class="descname">plotkb</tt><big>(</big><em>intervalo=5.0</em>, <em>save=True</em>, <em>formato='eps'</em>, <em>Tipo='MARAD'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotkb"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotkb" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Plota o gráfico de momento  de roll em surge contra beta</p>
+<p>Variáveis de entrada:</p>
+<p>Intervalo (Float)&#8211; intervalo do ângulo beta em graus. Default = 5.;
+save (True/False) &#8211; Opção para salvar as figuras ou somente mostrar 
+os gráficos, utilizar somente True até o momento;
+formato (&#8216;png&#8217;/&#8217;pdf&#8217;/&#8217;ps&#8217;/&#8217;eps&#8217;/&#8217;svg&#8217;) &#8211; formatos de saída da figura;</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1];
+Salva as figuras  no diretório &#8216;./figuras/tab/</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotnb">
+<tt class="descname">plotnb</tt><big>(</big><em>intervalo=5.0</em>, <em>save=True</em>, <em>formato='eps'</em>, <em>Tipo='MARAD'</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotnb"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotnb" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Plota o gráfico de momento de yaw em surge contra beta</p>
+<p>Variáveis de entrada:</p>
+<p>Intervalo (Float)&#8211; intervalo do ângulo beta em graus. Default = 5.;
+save (True/False) &#8211; Opção para salvar as figuras ou somente mostrar 
+os gráficos, utilizar somente True até o momento;
+formato (&#8216;png&#8217;/&#8217;pdf&#8217;/&#8217;ps&#8217;/&#8217;eps&#8217;/&#8217;svg&#8217;) &#8211; formatos de saída da figura;</p>
+<p>É necessário carregar um arquivo de derivadas em entrada [1];
+Salva as figuras  no diretório &#8216;./figuras/tab/</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.plotzz">
+<tt class="descname">plotzz</tt><big>(</big><em>save=True</em>, <em>formato='eps'</em>, <em>passo=0.5</em>, <em>tmax=200</em>, <em>tini=0</em>, <em>metodo='euler'</em>, <em>TipoModelo='TP'</em>, <em>GrausDeLib=4</em>, <em>LemeCom=array(10.0)</em>, <em>Proa=array(10.0)</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.plotzz"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.plotzz" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Plota curva de ZigZag</p>
+<p>Variáveis de entrada:</p>
+<p>save (True/False) &#8211; Opção para salvar as figuras ou somente mostrar 
+os gráficos, utilizar somente True até o momento;
+formato (&#8216;png&#8217;/&#8217;pdf&#8217;/&#8217;ps&#8217;/&#8217;eps&#8217;/&#8217;svg&#8217;) &#8211; formatos de saída da 
+figura;
+passo (float) &#8211; Paso de tempo da integração;
+tmax  (integer) &#8211; Tempo  máximo;
+tini (integer) &#8211; Tempo inicial;
+metodo (&#8216;euler&#8217;) &#8211; Método de integração;</p>
+<p>Salva as figuras  no diretório &#8216;./figuras/Curva_de_Giro/curva_de_giro&#8217;</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.setarqder">
+<tt class="descname">setarqder</tt><big>(</big><em>arq</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.setarqder"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.setarqder" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Entra com o caminho do arquivo de derivadas hidrodinâmicas.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.setarqtab">
+<tt class="descname">setarqtab</tt><big>(</big><em>arq</em><big>)</big><a class="reference internal" href="_modules/Es.html#es.setarqtab"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.setarqtab" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Entra com o caminho do arquivo de forças tabeladas.</p>
+<p>Ainda não implementado.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Es.es.setbd">
+<tt class="descname">setbd</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Es.html#es.setbd"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Es.es.setbd" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Entra com o caminho do banco de dados.</p>
+<p>Ainda não implementado.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="Es.gerartemplate">
+<tt class="descclassname">Es.</tt><tt class="descname">gerartemplate</tt><big>(</big><em>nome='inputder.dat'</em>, <em>valor=' &lt;valor&gt;</em>, <em>'</em><big>)</big><a class="headerlink" href="#Es.gerartemplate" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Gera um template para o arquivo de derivadas hidrodinâmicas.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nome</strong> (<em>String.</em>) &#8211; Nome do arquivo de saída. (default &#8216;inputder.dat&#8217;);</li>
+<li><strong>valor</strong> (<em>String.</em>) &#8211; Preenchimento do campo para ser substituído pelo valor das
+derivadas.(default &#8216; &lt;valor&gt;&#8217;)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>a</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Tópico anterior</h4>
+  <p class="topless"><a href="intro.html"
+                        title="capítulo anterior">Introdução</a></p>
+  <h3>Esta Página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/Es.txt"
+           rel="nofollow">Exibir Fonte</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Pesquisa rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Digite os termos da busca ou o nome de um módulo, classe ou função.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introdução"
+             >anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Alex S. Oliveira.
+      Criado com <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

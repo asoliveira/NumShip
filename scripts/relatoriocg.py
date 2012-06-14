@@ -5,9 +5,9 @@
 ##   Relatório
 ##
 ################################################
+temp= scgarq + '/relcg.tex' 
 try:
-  temp = scgarq + '/relcg.tex' 
-  f = open(temp, 'w')
+  f= open(temp, 'w')
 except NameError:
   print 'houve algum problema na criação do diretório' + temp
 del temp

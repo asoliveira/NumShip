@@ -558,7 +558,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         velocidade=None, tipo='ZigZag', leme=sp.array(20.),
         proa=sp.array(20.), RotCom =sp.array(1),osa=sp.array(0.05),
         ospath=sp.array(150), erro=sp.array(0.05),
-        errotf=sp.array(0.05), errotd=sp.array(0.05)):
+        errotf=sp.array(0.05), errotd=sp.array(0.05), arqs='saida'):
     """
     Simulador de manobras padrão
     _________________________
@@ -806,7 +806,7 @@ propHis,
           RotCom=None, VelCom= None, Vel=None, Eta='vel',
           PosIne=sp.array([[0.], [0.], [0.], [0.], [0.], [0.] ]),
           errotf=sp.array(0.05), errotd=sp.array(0.05),
-          errosr=sp.array(0.001), saida='txt'):
+          errosr=sp.array(0.001), saida='txt', arqs='saida'):
     """
     """
 
@@ -852,10 +852,10 @@ propHis,
       EtaHis = sp.zeros((nlin, 2)) #histórico Eta
       betaHis =  sp.zeros((nlin, 2)) #histórico beta
     elif saida == 'txt':
-      if os.path.exists(scgarq):
-        os.rename(scgarq, scgarq + '2')
-      os.makedirs(scgarq)
-      os.chdir(scgarq)
+      if os.path.exists(arqs):
+        os.rename(arqs, arqs + '2')
+      os.makedirs(arqs)
+      os.chdir(arqs)
       lemeHis = open('leme.dat', 'w')#historico do leme
       lemeHis.write('#Navio ' + self.nome + '\n' +  
             '#Manobra de Curva de Giro\n#\n') 

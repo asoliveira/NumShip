@@ -95,9 +95,9 @@ while not aprovar:
   r=r.split(',')
   for i in r:
     if not i.isdigit():
-      r=raw_input('Estamos detectando que você:\nDigitou letras ao invés dos \
-números indicados;Ou \nEsqueceu de colocar a vírgula entre as suas \
-escolhas.\nTente digitar novamente as opções:\n\
+      r=raw_input('Estamos detectando que você:\nDigitou letras ao invés \
+dos números indicados;Ou \nEsqueceu de colocar a vírgula entre as \
+suas escolhas.\nTente digitar novamente as opções:\n\
 [1] Curva de Giro, [2] Curva de ZigZag\n\
 Coloque a sua resposta separada por vírgulas. Exemplo:\n\
 1,2,3\n')
@@ -123,4 +123,4 @@ if '1' in SIMULACOES:
 if '2' in SIMULACOES:
   import simulaZigZag
 
-#execfile(os.path.abspath('simulaTeste.py'))
+
