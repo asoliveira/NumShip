@@ -224,9 +224,9 @@ Leme
     cori = m*(v*r + xg*(r**2) -  zg*p*r) 
     
     if self.tipo == 'MARAD':
-      saida = (self.casco.Fx() + self.prop.Fx() +
-          self.leme.Fx(self.MostraRot(),
-          self.MostraVelCom()/self.MostraVel()[0]) + cori) 
+        saida = (self.casco.Fx() + self.prop.Fx() +
+                self.leme.Fx(self.MostraRot(),
+                self.MostraVelCom() / self.MostraVel()[0]) + cori) 
     elif self.tipo == 'TP':
       saida = self.casco.Fx() + self.leme.Fx() + self.prop.Fx() + cori
   
@@ -1052,7 +1052,7 @@ propHis,
       if saida == 'txt':
         temp = sp.zeros((4, 1))
         if GrausDeLib == 4:
-          temp= ft
+          temp = ft
         elif GrausDeLib == 3:
           temp[:2]  = ft[:2]
           temp[3]  = ft[2]
@@ -3149,8 +3149,6 @@ Curva_de_Giro_starboard . Default -Zig-Zag
     
     #return saida
 
-#if __name__ == '__main__':
-  #main()
 
       elif saida == 'mem': 
         temp = sp.hstack(sp.array(ft))
@@ -3330,7 +3328,3 @@ intervalo = intervalo
     
     return saida
 
-if __name__ == '__main__':
-  print ("Módulo chamado pelo mesmo módulo")
-else:
-  print ("Módulo chamado por outro módulo")

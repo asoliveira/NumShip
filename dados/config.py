@@ -22,7 +22,7 @@ Rot = sp.array(0.62)
 tipoc = 'starboard' #tipo  de curva que será realizada 'starboard' ou 'port'
 saida = 'txt' #Fimal do arquivo de saída
 adi = False  #Valor booleano. Dados de entrada Adimensionais ou não
-fdata ="%Y-%d_%H:%M" #formato da data para ser usado em alguns momentos como
+fdata ="%d-%m-%Y_%H:%M" #formato da data para ser usado em alguns momentos como
 #para nomear a pasta de saída
 
 #Fator multiplicador da força

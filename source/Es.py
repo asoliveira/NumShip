@@ -121,7 +121,7 @@ def gerartemplate(nome='inputder.dat', valor = ' <valor>,'):
 class es (object) :
     """Classe para auxiliar na entrada e saída de dados."""
     
-    def init(self, entrada):
+    def __init__(self, entrada):
         """Argumentos da classe Entrada      
         
         **entrada** -- Tupla com 3 argumentos:

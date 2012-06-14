@@ -17,16 +17,16 @@ xdrdretaetaeta = 0.0, #Este dado não foi encontrado
  
 #	 Sway 
 ydotv = -1.46e-2,
-ydotr	 = -2.5e-4,         
-y*	 = 6.3e-5,
+ydotr = -2.5e-4,         
+y* = 6.3e-5,
 yv = -1.1e-2,            
 yv|v| = -3.98e-2,
-yr =  3.94e-3,
+yr  = 3.94e-3,
 yr|r| = 2.05e-3,
 yv|r| = -1.52e-2,
-ydr	 = 4.16e-3,
-yreta = 1.38e-3,
-yveta = -2.66e-3,
+ydr = 4.16e-3,
+yreta		=	1.38e-3,
+yveta		=	-2.66e-3,
 
  
 #	 Yaw
@@ -84,7 +84,7 @@ rotnom = 0.62,#1.42,
 #
 #
 # deslo = 195750,     #em lastro
-#deslo =  3.46973e5 , 	#em full-load
+#deslo   =3.46973e5 , 	#em full-load
 rho = 1025,
 g = 9.18,
 
@@ -95,4 +95,4 @@ b = 58.34, #b = 191.31 ft
 xg = 0.0,
 zg = 0.0,
 
-unom = 4.11, #Velocidade nominal em 4.11 m/s =  8 knot e 8.23 = 16 knot
+unom = 4.11, #Velocidade nominal em 4.11 m/s  = 8 knot e 8.23 = 16 knot

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# - *  - coding: utf-8 - *  -
 
 #
 #This file is part of a program called NumShip
@@ -22,7 +22,7 @@
 import scipy as sp
 import numpy  as np
 
-from LemeGen import *
+from LemeGen import  *  
 
 class lemeMarAd(leme):
     """
@@ -70,8 +70,12 @@ class lemeMarAd(leme):
             e = self.dic['e0']
             f = self.dic['f0']
             
-        ud = sp.sqrt(d*(u**2) + e*u*Rot*self.dic['dp'] + f*(Rot*self.dic['dp'])**2)
-        X = ((self.dic['rho']/2)*(self.dic['lpp']*ud)**2)*(self.dic['xdrdr']*(self.MostraLeme()**2) + self.dic['xdrdretaetaeta']*((self.MostraLeme()*Eta)**2))
+        ud = sp.sqrt(d * (u **  2) + e * u * Rot * self.dic['dp'] + f * 
+                    (Rot * self.dic['dp']) **  2)
+        X = ((self.dic['rho'] / 2) *  (self.dic['lpp'] *  ud) **  2) * \
+                  (self.dic['xdrdr'] *  (self. MostraLeme() **  2) + \
+                  self.dic['xdrdretaetaeta'] * ((self.MostraLeme() * Eta) ** \
+                  2))
 
         return X
     
@@ -93,9 +97,12 @@ class lemeMarAd(leme):
             e = self.dic['e0']
             f = self.dic['f0']
             
-        ud = sp.sqrt(d*(u**2) + e*u*Rot*self.dic['dp'] + f*(Rot*self.dic['dp'])**2)
+        ud = sp.sqrt(d *  (u **  2) + e *  u *  Rot *  self.dic['dp'] +
+f *  (Rot *  self.dic['dp']) **  2)
 
-        Y =  (self.dic['rho']/2)*(self.dic['lpp']**2)*(self.dic['ydr']*(ud**2)*self.MostraLeme())
+        Y =  (self.dic['rho'] / 
+2) *  (self.dic['lpp'] **  2) *  (self.dic['ydr'] *  (ud **  2) * 
+self.MostraLeme())
         
         return Y
       
@@ -124,8 +131,11 @@ class lemeMarAd(leme):
             e = self.dic['e0']
             f = self.dic['f0']
             
-        ud = sp.sqrt(d*(u**2) + e*u*Rot*self.dic['dp'] + f*(Rot*self.dic['dp'])**2)
-        N =  (self.dic['rho']/2)*(self.dic['lpp']**3)*(self.dic['ndr']*(ud**2)*self.MostraLeme())
+        ud = sp.sqrt(d *  (u **  2) + e *  u *  Rot *  self.dic['dp'] +
+f *  (Rot *  self.dic['dp']) **  2)
+        N =  (self.dic['rho'] / 
+2) *  (self.dic['lpp'] **  3) *  (self.dic['ndr'] *  (ud **  2) * 
+self.MostraLeme())
         
         return N
 

@@ -3,28 +3,28 @@
 import os
 
 #Multiplicador para a força
-p = (Multbeta,  Multr,  Multl,  Multbrl)
+p = (Multbeta, Multr, Multl, Multbrl)
 
 #Dependenpo do modelo que esteja usando temos que colocar os dados de entrada
 #nos arquivos na pasta dados
 if TipoModelo == 'MARAD':
-    arq=os.path.abspath('./dados/MarAdinputder.dat')
-elif   TipoModelo== 'TP':  
-    arq=os.path.abspath('./dados/TPinputder.dat')
+    arq = os.path.abspath('./dados/marad_derivada.dat')
+elif   TipoModelo == 'TP':  
+    arq = os.path.abspath('./dados/tp_derivada.dat')
 
-entrada=('Navioteste', arq, 'inputtab.dat')
-io=es(entrada)
+entrada = ('Navioteste', arq, 'inputtab.dat')
+io = es(entrada)
 
-DicionarioDerivadas=io.lerarqder()
-del io,  In,  Arq
+DicionarioDerivadas = io.lerarqder()
+del io, entrada, arq
 
 navio1 = navio(DicionarioDerivadas, Nome = nome,   Tipo = TipoModelo )
 
 
-b = navio1.getCurvaGiro(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
-                        tipo= tipoc,  GrausDeLib = GrausDeLib,  
-                        leme = LemeCom,  RotCom=Rot,  saida =
-                        saida, arqs=scgarq)
+b = navio1.getCurvaGiro(met = metodo, peso = p,  t = tmax, t0 = tini, 
+                        dt = passo, tipo = tipoc, GrausDeLib = GrausDeLib,  
+                        leme = LemeCom, RotCom = Rot, saida = saida, 
+                        arqs = scgarq)
 
 
 if  saida == 'txt':
@@ -55,7 +55,6 @@ except NameError:
 if adi :
     cont = 0
     for linha in velHis:
-
         v = sp.sqrt(linha[1]**2 + linha[2]**2)
         rho = DicionarioDerivadas['rho']
         lpp = DicionarioDerivadas['lpp']
@@ -99,7 +98,7 @@ if adi :
                     forHis[cont, coluna] = forHis[cont, coluna]*(2/(rho*((lpp*v)**2)))
         cont += 1 
 
-    listacg [0]['transfer'] = listacg [0]['transfer']*(1/lpp)
-    listacg [0]['advance'] = listacg [0]['advance']*(1/lpp)
-    listacg [0]['taticalDiameter'] = listacg [0]['taticalDiameter']*(1/lpp)
+    listacg[0]['transfer'] = listacg[0]['transfer']*(1/lpp)
+    listacg[0]['advance'] = listacg[0]['advance']*(1/lpp)
+    listacg[0]['taticalDiameter'] = listacg[0]['taticalDiameter']*(1/lpp)
     
