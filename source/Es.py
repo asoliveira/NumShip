@@ -299,7 +299,8 @@ class es (object) :
         """
         pass
     
-    def fxdertotab (self, intervalo = 5, Tipo = 'MARAD', Rot=sp.array(1.23)):
+    def fxdertotab (self, intervalo=5, Tipo = 'MARAD', rot=sp.array(1.23), 
+                    vel=12.7):
         """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
         para uma matriz tabelada de forças em surge do tipo `sp.array`. 
         
@@ -308,7 +309,9 @@ class es (object) :
         :param intervalo: Intervalo do ângulo beta em graus(default = 5);
         :param Tipo: Tipo de modelo matemático a ser 
                      utilizado(‘MARAD’, ‘TP’);
-        :param Rot: Número de rotações por do propulsor;
+        :param rot: Número de rotações por do propulsor;
+        :param vel: Velocidade "u"  inicial. Não coloque "0.0"(zero), pois
+                    retornará um array com coluna de valor "nan"(infinito);
         :return: Um sp.array do tipo; sp.array[beta, Fx]), onde:
 
                  * Beta -- Ângulo de ataque;
@@ -316,33 +319,48 @@ class es (object) :
                 
         :type intervalo: int
         :type Tipo: str
-        :type Rot: sp.array
+        :type rot: sp.array
+        :type vel: float
         :rtype: sp.array
+        
+        :Example:
+        
+            >>> import Es
+            >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+            ... 'inputtab.dat')
+            >>> en = Es.es(entrada)
+            >>> print en.fxdertotab()[:2,]
+            [[  0.00000000e+00  -7.74662690e+06]
+             [  5.29411765e+00  -7.47437622e+06]]
         
         """
         DicionarioDerivadas = self.lerarqder()
         
         navio1 = navio(DicionarioDerivadas, Nome='Teste', Tipo=Tipo)
-        navio1.MudaRotCom(Rot)
+        navio1.MudaRotCom(rot)
         
         
-        saida = sp.zeros([len(sp.arange(0., sp.pi, intervalo * sp.pi / 180)),
-        2])
+        saida = sp.zeros([sp.size(sp.linspace(0. , sp.pi/2, 90/intervalo)), 2])
         
-        Posicao = sp.zeros((6, 1))
-        Velocidade = sp.zeros((6, 1))
-        Leme= sp.array(0.)
+        posicao = sp.zeros((6, 1))
+        velocidade = sp.zeros((6, 1))
+        velocidade[0] = vel
+        leme= sp.array(0.)
         
-        navio1.MudaVel(Velocidade)
-        navio1.MudaPos(Posicao)
-        navio1.MudaLemeCom(Leme)
+        navio1.MudaVel(velocidade)
+        navio1.MudaPos(posicao)
+        navio1.MudaLemeCom(leme)
         
+        
+        a = []
         contlinha = 0
-        for beta in sp.arange(0. , sp.pi, intervalo* sp.pi/180):
-            Velocidade[0] = sp.array([12.7])*sp.cos(beta)
-            Velocidade[1] = -sp.array([12.7])*sp.sin(beta)
-            navio1.MudaVel(Velocidade)
-            saida[contlinha] = sp.array([beta*180./sp.pi, navio1.CalcFx()])
+        for beta in sp.linspace(0. , sp.pi/2, 90/intervalo):
+            velocidade[0] = sp.array([vel])*sp.cos(beta)
+            velocidade[1] = -sp.array([vel])*sp.sin(beta)
+            navio1.MudaVel(velocidade)
+            a.append(navio1.CalcFx())
+            saida[contlinha] = sp.array([beta * 180. / sp.pi, 
+                                        navio1.CalcFx()])
             contlinha += 1
             
         return saida

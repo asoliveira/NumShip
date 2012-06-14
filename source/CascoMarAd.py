@@ -47,7 +47,11 @@ class cascoMarAd(casco):
         r = self.MostraVel()[5]
         
 
-        X = (self.dic['rho']/2)*(self.dic['lpp']**4)*(self.dic['xrr']*r**2) + (self.dic['rho']/2)*(self.dic['lpp']**3)*(self.dic['xvr']*v*r)  +  (self.dic['rho']/2)*(self.dic['lpp']**2)*((self.dic['xvv'])*v**2 )
+        X = (self.dic['rho'] / 2) * (self.dic['lpp'] ** 4) * \
+             (self.dic['xrr'] * r ** 2) + (self.dic['rho'] / 2) * \
+             (self.dic['lpp'] ** 3) * (self.dic['xvr'] * v * r)  + \
+             (self.dic['rho'] / 2) * (self.dic['lpp'] ** 2) * \
+             ((self.dic['xvv']) * v ** 2 )
 
         return X
     

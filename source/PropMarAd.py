@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# - * - coding: utf-8 - * -
 
 #
 #This file is part of a program called NumShip
@@ -18,14 +18,12 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from PropGen import *
+from PropGen import  * 
 
 class propMarAd(prop):
     
     def __init__(self,  DicionarioDerivadas):
-        """
-        Construtor do cacso
-        __________________________
+        """Construtor do casco
 
         """
         self.dic = DicionarioDerivadas
@@ -39,7 +37,8 @@ class propMarAd(prop):
         """
         Muda a rotação da máquina caminhando um passo 'dt' no tempo
         """
-        self.Rot = self.Rot + (self.RotCom - self.Rot)*(1-sp.exp(-self.dic['lambdaprop']*dt))
+        self.Rot = self.Rot + (self.RotCom - self.Rot) * \
+                   (1 - sp.exp( - self.dic['lambdaprop'] * dt))
 #        Eta = self.MostraVelCom()/self.MostraVel()[0]
 #        self.Rot = self.RotCom/Eta
     def MudaRotCom(self,  Rot):
@@ -77,7 +76,7 @@ class propMarAd(prop):
         Retorna a força em surge
         """
 
-        Eta = self.MostraVelCom()/self.MostraVel()[0]
+        Eta = self.MostraVelCom() / self.MostraVel()[0]
        
         if  Eta <= sp.array(-1.):
             a =  self.dic['a4']
@@ -99,8 +98,13 @@ class propMarAd(prop):
         u = self.MostraVel()[0] 
         v = self.MostraVel()[1]
         r  = self.MostraVel()[5]
-        X = (self.dic['rho']*(self.dic['lpp']**2)/2)*(u**2)*(a + b*Eta + c*(Eta**2)) + (self.dic['rho']*(self.dic['lpp']**2)/2)*self.dic['xvveta']*(v**2)*(Eta-1)
+        X = (self.dic['rho'] * (self.dic['lpp'] ** 2) / 2) * (u ** 2) * (a +
+             b * Eta + c * (Eta ** 2)) + (self.dic['rho'] * \
+             (self.dic['lpp'] ** 2) / 2) * self.dic['xvveta'] * (v ** 2) * \
+             (Eta-1)
+        
         return X
+        
     def Fy(self):
         """
         Retorna a força em sway
@@ -122,18 +126,22 @@ class propMarAd(prop):
         r  = self.MostraVel()[5]
         
         
-        uz = sp.sqrt(d*(u**2) + e*u*self.MostraRot()*self.dic['dp'] + f*((self.MostraRot()*self.dic['dp'])**2))
+        uz = sp.sqrt(d * (u ** 2) + e * u * self.MostraRot() * 
+            self.dic['dp'] + f * ((self.MostraRot() * self.dic['dp']) ** 2))
 
         
-        Y = (self.dic['rho']*(self.dic['lpp']**3)/2)*self.dic['yreta']*u*r*(Eta-1) + (self.dic['rho']*(self.dic['lpp']**2)/2)*self.dic['yveta']*u*v*(Eta-1) + (self.dic['rho']*(self.dic['lpp']**2)/2)*self.dic['y*']*(uz**2)
+        Y = (self.dic['rho'] * (self.dic['lpp'] ** 3)/2) * \
+            self.dic['yreta'] * u * r * (Eta-1) + (self.dic['rho'] * \
+            (self.dic['lpp'] ** 2) / 2) * self.dic['yveta'] * u * v * \
+            (Eta - 1) + (self.dic['rho'] * (self.dic['lpp'] ** 2) / 2) * \
+            self.dic['y*'] * (uz ** 2)
+            
         return Y
 
     def N(self):
         """
         Retorna o momento de yaw
         """
-
-        
 
         Eta = self.MostraVelCom()/self.MostraVel()[0]
         
@@ -150,7 +158,13 @@ class propMarAd(prop):
         v = self.MostraVel()[1]
         r  = self.MostraVel()[5]
         
-        uz = sp.sqrt(d*(u**2) + e*u*self.MostraRot()*self.dic['dp'] + f*((self.MostraRot()*self.dic['dp'])**2))
+        uz = sp.sqrt(d * (u ** 2) + e * u * self.MostraRot() * 
+             self.dic['dp'] + f * ((self.MostraRot() * self.dic['dp']) ** 2))
 
-        N = (self.dic['rho']*(self.dic['lpp']**4)/2)*self.dic['nreta']*u*r*(Eta-1) + (self.dic['rho']*(self.dic['lpp']**3)/2)*self.dic['nveta']*u*v*(Eta-1) + (self.dic['rho']*(self.dic['lpp']**3)/2)*self.dic['n*']*(uz**2)
+        N = (self.dic['rho'] * (self.dic['lpp'] ** 4)/2) * \
+             self.dic['nreta'] * u * r * (Eta-1) + (self.dic['rho'] * \
+             (self.dic['lpp'] ** 3)/2) * self.dic['nveta'] * u * v * \
+             (Eta-1) + (self.dic['rho'] * (self.dic['lpp'] ** 3)/2) * \
+             self.dic['n*'] * (uz ** 2)
+             
         return N      

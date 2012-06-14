@@ -230,7 +230,7 @@ Leme
     elif self.tipo == 'TP':
       saida = self.casco.Fx() + self.leme.Fx() + self.prop.Fx() + cori
   
-    return    saida
+    return saida
 
   def CalcFy(self):
     """
@@ -274,7 +274,7 @@ Leme
     elif self.tipo == 'TP':
       saida = self.casco.K() + self.leme.K() + self.prop.K() + cori
   
-    return    saida
+    return saida
 
   
   def CalcN(self):
@@ -430,7 +430,7 @@ self.CalcN()])
     H = None
     H = self.casco.M(GrausDeLib) - self.casco.Ma(GrausDeLib)
     
-    return  sp.mat(H)
+    return sp.mat(H)
 
   def MatRot(self, p=None):
     """
@@ -1694,7 +1694,7 @@ Curva_de_Giro_starboard . Default -Zig-Zag
     #elif self.tipo == 'TP':
       #saida = self.casco.Fx() + self.leme.Fx() + self.prop.Fx() + cori
   
-    #return    saida
+    #return saida
 
   #def CalcFy(self):
     #"""
@@ -1738,7 +1738,7 @@ Curva_de_Giro_starboard . Default -Zig-Zag
     #elif self.tipo == 'TP':
       #saida = self.casco.K() + self.leme.K() + self.prop.K() + cori
   
-    #return    saida
+    #return saida
 
   
   #def CalcN(self):
@@ -1894,7 +1894,7 @@ Curva_de_Giro_starboard . Default -Zig-Zag
     #H = None
     #H = self.casco.M(GrausDeLib) - self.casco.Ma(GrausDeLib)
     
-    #return  sp.mat(H)
+    #return sp.mat(H)
 
   #def MatRot(self, p=None):
     #"""

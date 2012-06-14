@@ -61,7 +61,7 @@ class lemeMarAd(leme):
         
         
         
-        if Rot>= sp.array([0.]):
+        if Rot >= sp.array([0.]):
             d = self.dic['d1']
             e = self.dic['e1']
             f = self.dic['f1']
@@ -71,11 +71,12 @@ class lemeMarAd(leme):
             f = self.dic['f0']
             
         ud = sp.sqrt(d * (u **  2) + e * u * Rot * self.dic['dp'] + f * 
-                    (Rot * self.dic['dp']) **  2)
-        X = ((self.dic['rho'] / 2) *  (self.dic['lpp'] *  ud) **  2) * \
-                  (self.dic['xdrdr'] *  (self. MostraLeme() **  2) + \
-                  self.dic['xdrdretaetaeta'] * ((self.MostraLeme() * Eta) ** \
-                  2))
+                    (Rot * self.dic['dp']) ** 2)
+                    
+        X = ((self.dic['rho'] / 2) * (self.dic['lpp'] * ud) ** 2) * \
+             (self.dic['xdrdr'] * (self. MostraLeme() ** 2) + \
+             self.dic['xdrdretaetaeta'] * ((self.MostraLeme() * Eta) ** \
+             2))
 
         return X
     
