@@ -301,7 +301,7 @@ class es (object) :
     
     def fxdertotab (self, intervalo = 5, Tipo = 'MARAD', Rot=sp.array(1.23)):
         """ Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de forças em surge do tipo `sp.array`. 
+        para uma matriz tabelada de forças em surge do tipo `sp.array`. 
         
         É necessário carregar um arquivo de derivadas em entrada [1].
          
@@ -335,7 +335,7 @@ class es (object) :
         
         navio1.MudaVel(Velocidade)
         navio1.MudaPos(Posicao)
-        navio1.MudaLeme(Leme)
+        navio1.MudaLemeCom(Leme)
         
         contlinha = 0
         for beta in sp.arange(0. , sp.pi, intervalo* sp.pi/180):
