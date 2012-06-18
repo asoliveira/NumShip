@@ -28,4 +28,4 @@ print'Fazendo o relatório...\n'
 execfile('./scripts/relatoriocg.py',  locals())
 print'Relatório feito.'
 print 'Simulação e relatório realizados. Dê uma olhada na pasta \
-"saida<data e hora>".\n'
+"saida<data_hora>".\n'

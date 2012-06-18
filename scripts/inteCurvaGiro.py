@@ -18,12 +18,12 @@ io = es(entrada)
 DicionarioDerivadas = io.lerarqder()
 del io, entrada, arq
 
-navio1 = navio(DicionarioDerivadas, Nome = nome,   Tipo = TipoModelo )
+navio1 = navio(DicionarioDerivadas, nome = nome,  tipo = TipoModelo )
 
 
-b = navio1.getCurvaGiro(met = metodo, peso = p,  t = tmax, t0 = tini, 
-                        dt = passo, tipo = tipoc, GrausDeLib = GrausDeLib,  
-                        leme = LemeCom, RotCom = Rot, saida = saida, 
+b = navio1.getCurvaGiro(met = metodo, peso = p, t = tmax, t0 = tini, 
+                        dt = passo, tipo = tipoc, GrausDeLib = GrausDeLib, 
+                        leme = LemeCom, rotcom = Rot, saida = saida, 
                         arqs = scgarq)
 
 
@@ -33,7 +33,7 @@ if  saida == 'txt':
     propHis = np.genfromtxt('propulsor.dat')
     velHis = np.genfromtxt('velo.dat')
     velinHis = np.genfromtxt('veloiner.dat')
-    etaHis = np.genfromtxt('Eta.dat')
+    etaHis = np.genfromtxt('eta.dat')
     forHis = np.genfromtxt('forcas.dat')
     posHis = np.genfromtxt('pos.dat')
     acelHis = np.genfromtxt('acel.dat')
@@ -43,7 +43,8 @@ if  saida == 'txt':
     listacg = b
     del b
 else:
-    velHis, posHis,  acelHis, forHis,  velinHis,  lemeHis,  propHis,  EtaHis,  listacg,  betaHis = b
+    velHis, posHis, acelHis, forHis, velinHis, lemeHis, propHis, EtaHis, \
+    listacg, betaHis = b
     del b
 try:
   dircg = scgarq + '/figuras/Curva_de_Giro/' 
@@ -66,21 +67,21 @@ if adi :
         
         propHis[cont, 1] = propHis[cont, 1]*(lpp/v)
         
-        for coluna in sp.arange( len(velHis[cont,  :])):
+        for coluna in sp.arange( len(velHis[cont, :])):
             if coluna == 0:
                 velHis[cont, coluna] = velHis[cont, coluna]*(v/lpp)
             else:
                 velHis[cont, coluna] = velHis[cont, coluna]*(1/v)
                 if coluna > 3:
                     velHis[cont, coluna] = velHis[cont, coluna]*(lpp)
-        for coluna in sp.arange( len(acelHis[cont,  :])):
+        for coluna in sp.arange( len(acelHis[cont, :])):
             if coluna == 0:
                 acelHis[cont, coluna] = acelHis[cont, coluna]*(v/lpp)
             else:
                 acelHis[cont, coluna] = acelHis[cont, coluna]*(lpp/v**2)
                 if coluna > 3:
                     acelHis[cont, coluna] = acelHis[cont, coluna]*(lpp)
-        for coluna in sp.arange( len(posHis[cont,  :])):
+        for coluna in sp.arange( len(posHis[cont, :])):
             if coluna == 0:
                 posHis[cont, coluna] = posHis[cont, coluna]*(v/lpp)
             else:
@@ -88,7 +89,7 @@ if adi :
                 if coluna > 3:
                     posHis[cont, coluna] = posHis[cont, coluna]*(lpp)
 
-        for coluna in sp.arange( len(forHis[cont,  :])):
+        for coluna in sp.arange( len(forHis[cont, :])):
             if coluna == 0:
                 forHis[cont, coluna] = forHis[cont, coluna]*(v/lpp)
             else:            

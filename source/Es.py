@@ -202,7 +202,7 @@ class es (object) :
         :return: Retorna uma lista dos valores formatados errados no arquivo 
                  de entrada (entrada[1]).
         
-        :Exemple:
+        :Example:
 
             >>> import Es
             >>> entrada = ('NavioTeste', '../dados/mauformatado.dat',
@@ -256,7 +256,7 @@ class es (object) :
         :type comment: str
         :rtype: dict
         
-        :Exemple:
+        :Example:
         
             >>> import Es
             >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
@@ -575,7 +575,7 @@ class es (object) :
         :type formato: str
         :type Tipo: str
         
-         :Exemple:
+        :Example:
          
             >>> import Es
             >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
@@ -615,7 +615,7 @@ class es (object) :
         :type formato: str
         :type Tipo: str
                         
-        :Exemple:
+        :Example:
          
             >>> import Es
             >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
@@ -657,7 +657,7 @@ class es (object) :
         :type formato: str
         :type Tipo: str
                         
-        :Exemple:
+        :Example:
          
             >>> import Es
             >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
@@ -699,7 +699,7 @@ class es (object) :
         :type formato: str
         :type Tipo: str
                         
-        :Exemple:
+        :Example:
          
             >>> import Es
             >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
@@ -725,48 +725,63 @@ class es (object) :
             plt.clf()
 
 
-    def plotzz(self, save=True, formato='eps', passo=0.5, tmax=200, tini= 0,
-        metodo='euler', TipoModelo='TP', GrausDeLib=4, LemeCom=sp.array(10.), 
-        Proa=sp.array(10.)):
+    def plotzz(self, save=True, formato='eps', passo=0.5, tmax=200, tini=0,
+               metodo='euler', TipoModelo='MARAD', GrausDeLib=3, 
+               LemeCom=sp.array(10.), Proa=sp.array(10.)):
         """Plota curva de ZigZag
         
-        Variáveis de entrada:
+        Salva as figuras  no diretório './figuras/Curva_de_Giro/curva_de_giro' 
+         
+        :param save: Opção para salvar as figuras ou somente mostrar os
+                     gráficos;
+        :param formato: ('png'/'pdf'/'ps'/'eps'/'svg') Formatos de saída da 
+                        figura;
+        :param passo: Paso de tempo da integração;
+        :param tmax: Tempo  máximo;
+        :param tini: Tempo inicial;
+        :param metodo: Método de integração;
+        :param TipoModelo: Modelo matemático que será utilizado (TP/MARAD)
+                           (default = 'MARAD')
+        :param GrausDeLib: Graus de liberdade da simulação(default = 4)
+        :param LemeCom: Valor do leme na curva ZigZag *LemeCom* \/Proa. 
+                     (default = sp.array(10.);
+        :param Proa: Tipo de curva ZigZag LemeCom/\ *Proa*. 
+                     (default = sp.array(10.);
+        :type save: bool
+        :type formato: str
+        :type passo: float
+        :type metodo: str
+        :type TipoModelo: str
+        :type GrausDeLib: int
+        :type LemeCom: numpy.ndarray
+        :type Proa: numpy.ndarray
         
-        save (True/False) -- Opção para salvar as figuras ou somente mostrar 
-        os gráficos, utilizar somente True até o momento;
-        formato ('png'/'pdf'/'ps'/'eps'/'svg') -- formatos de saída da 
-        figura;
-        passo (float) -- Paso de tempo da integração;
-        tmax  (integer) -- Tempo  máximo;
-        tini (integer) -- Tempo inicial;
-        metodo ('euler') -- Método de integração;
-                
-        Salva as figuras  no diretório './figuras/Curva_de_Giro/curva_de_giro'
+        :Example:
         
         """ 
         
         DicionarioDerivadas = self.lerarqder()
         
-        navio1 = navio(DicionarioDerivadas, Nome = 'Teste', Tipo = TipoModelo
-)
+        navio1 = navio(DicionarioDerivadas, Nome = 'Teste', 
+                       Tipo = TipoModelo)
         
         
         a = navio1.simula(met = metodo, t = tmax, t0 = tini, dt=passo, 
-GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
-        dir = './figuras/Zig_Zag/' + TipoModelo + '/' 
-        os.makedirs(dir)
-####################################
-##
-##       Velocidade em Surge
-##
-####################################        
+                          GrausDeLib = GrausDeLib, tipo ='ZigZag', 
+                          leme = LemeCom, proa = Proa)
+                          
+        dirsaida = './figuras/Zig_Zag/' + TipoModelo + '/' 
+        os.makedirs(dirsaida)
+        
+        #Plotando a velocidade em surge
+        
         plt.plot(a[0][:, 0], a[0][:, 1], 'bo')
         plt.ylabel(r'$u$')
         plt.xlabel(r'$t$')
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltut', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltut', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -783,7 +798,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltvt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltvt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -801,7 +816,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltvelyawt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltvelyawt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -819,7 +834,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltvelrollt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltvelrollt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -839,7 +854,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltxt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltxt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -856,7 +871,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltyt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltyt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -875,7 +890,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltyawt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltyawt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -893,7 +908,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltrollt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltrollt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -917,7 +932,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltdotut', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltdotut', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -934,7 +949,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltdotvt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltdotvt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -953,7 +968,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltdotrt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltdotrt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -971,7 +986,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltdotpt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltdotpt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -997,7 +1012,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltforsurget', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltforsurget', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -1013,7 +1028,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltforswayt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltforswayt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -1031,7 +1046,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltNt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltNt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -1048,7 +1063,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltKt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltKt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -1067,7 +1082,7 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltnt', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltnt', format=formato)
             plt.clf()
         else:
             plt.show()
@@ -1084,11 +1099,12 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         plt.title ('ZigZag10/10')
         
         if save:
-            plt.savefig(dir + TipoModelo +'pltlemet', format=formato)
+            plt.savefig(dirsaida + TipoModelo +'pltlemet', format=formato)
             plt.clf()
         else: 
             plt.show()
             plt.clf() 
+            
     def plotcg(self, save=True, tipoc='port', formato='eps', passo=0.5,
         tmax=200, tini=0, metodo='euler', TipoModelo='TP', GrausDeLib=4):
         """Plota curva de Giro
@@ -1501,57 +1517,59 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
 
     def setarqder(self, arq):
         """
-        Entra com o caminho do arquivo de derivadas hidrodimâmicas.
-        
-        @return  :
-        @author
+        Entra com o caminho do arquivo de derivadas hidrodinâmicas.
+
         """
         
+        print 'Não implementado'
         self.arqder = arq
         pass
         
     def setarqtab(self, arq):
         """
          Entra com o caminho do arquivo de forças tabeladas.
-         Não implementado na versão 191010.
-        
-        @return  :
-        @author
+         
+         Não implementado
+         
         """
         
         self.arqtab = arq
+        print 'Não implementado'
         pass
         
     
     def setbd(self):
+        """Entra com o caminho do banco de dados.
+        
+        Não implementado
+        
         """
-        Entra com o caminho do banco de dados.
-        Não implementado na versão 191010.
-        @return  :
-        @author
-        """
+        print 'Não implementado'
         pass
 
 
     
     def conad(self, tipo='snae', var='beta', dic={}, vel=sp.array(0),
-        r=sp.array(0), p=sp.array(0)):
+              r=sp.array(0), p=sp.array(0)):
+        """Retorna o coeficiente de adimensionalização
+        
+        :param tipo: 'snae' ou 'dmi' (default = 'snae');
+        :param var: (defaulf ='beta');
+        :param dic: Dicionário contendo as variáveis:
+                    * 'rho' -- Densidade da água;
+                    * 'lpp' -- Comprimento da embarcação;
+                    * 'b' -- Boca da embarcação;
+                    * 'df' -- ;
+                    * 'da' -- ;
+        :param vel:
+        :param r:
+        :param p:     
+        :return: Retorna um sp.array[beta, Fx]);
+                 * Beta - Ângulo de ataque
+                 * Fx - Forças em Surge 
+        
         """
-        Retorna o coeficiente de adimencionalisação
         
-        Variáveis de entrada
-        
-        Tipo = 'snae' ou 'dmi'; 
-        Default = 'snae'
-
-        _
-        Saída
-        
-        Saida é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        Fx = Forças em Surge 
-        
-        """
         den = dic['rho']
         L = dic['lpp']
         B = dic['b'] 
@@ -1567,313 +1585,8 @@ GrausDeLib = GrausDeLib, tipo ='ZigZag', leme = LemeCom, proa = Proa)
         elif tipo == 'dmi'and var =='epsilon':
             saida = sp.array(0.5 * den * ((vel +(T ** 2 + (B / 2) ** 2) * 
             (p)) ** 2) * L * T)#falta o elemento de área
-        return saida
-        
-    def coefdertotab2 (self, dic, forge='fx', intervalo=5, coef='betagamma', 
-        ConstAdOr='snae', ConstAdDes='dmi' ):
-        """
-        Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de forças em surge do tipo sp.array. 
-        
-        É necessário carregar um arquivo de derivadas em entrada [1].
-        _
-        Variáveis de entrada
-        
-        Intervalo = intervalo do ângulo beta em graus
-        Default = 5.
-
-        _
-        Saída
-        
-        Saida é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        Fx = Forças em Surge 
-        """
-        
-        navio1 = navio()
-        navio1.dic= self.lerarqder()
-
-        navio1.x = sp.array([[0.], [0.], [0.], [0.], [0.], [0.] ])
-        navio1.dotx = sp.array([[dic['unom']], [0.], [0.], [0.], [0.], [0.]  ])
-        navio1.angleme = sp.array([0.] )
-
-        if  'beta' in coef:
-            maxint1 = 1.
-        else:
-            maxint1 = 2.
-        
-        
-        saida = sp.zeros([len( sp.arange(0., sp.pi / maxint1, intervalo * 
-        sp.pi/180)) * len(sp.arange(0., sp.pi / 2., intervalo * sp.pi / 
-        180)), 3])
-        
-        contlinha = 0
-        for ang1 in sp.arange(0. , sp.pi/maxint1, intervalo* sp.pi/180):
-            for ang2 in sp.arange(0. , sp.pi/2., intervalo* sp.pi/180):
-                if   ConstAdOr =='snae':
-                    coeforpf = self.conad(tipo='snae', dic=dic, vel=
-                    dic['unom'])
-                    coeforpm = coeforpf* dic[ 'lpp']
-                if 'beta' in coef:
-                    u = dic['unom']*sp.cos(ang1)
-                    v = - dic['unom']*sp.sin(ang1)
-
-                    navio1.dotx[0] = u
-                    navio1.dotx[5] = v
-
-                    coefdes = self.conad(tipo='dmi', var='beta', dic=dic, 
-                    vel=dic['unom'])
-                
-                    if forge == 'fx':
-                        f1 = sp.array( navio1.calcforcx() * 
-                        (coeforpf /coefdes))
-                    elif forge == 'fy':
-                        f1 = sp.array( navio1.calcforcy() * (coeforpf/coefdes))
-                    elif forge == 'k':
-                        f1 = sp.array(ang, navio1.calck() * (coeforpm /
-                        (coefdes * dic['lpp'])))
-                    elif forge == 'n':
-                        f1 = sp.array(ang, navio1.calcn() * (coeforpm /
-                        (coefdes * dic['lpp'])))
-                        
-                    navio1.dotx[0] = dic['unom']
-                    navio1.dotx[5] = 0.
-                else:
-#                    Caso gamma
-                    r = sp.tan(ang1) * 2 * dic['unom'] / dic['lpp']
-                    navio1.dotx[5] = r
-                    coefdes = self.conad(tipo='dmi', var='gamma', dic=dic, 
-                    vel=dic[ 'unom'], r = navio1.dotx[5])
-                    
-                    if forge == 'fx':
-                        f1 = sp.array([ang, navio1.calcforcx() * (coeforpf /
-                        coefdes)])
-                    elif forge == 'fy':
-                        f1 = sp.array([ang, navio1.calcforcy() * (coeforpf /
-                        coefdes)])
-                    elif forge == 'k':
-                        f1 = sp.array([ang, navio1.calck() * (coeforpm /
-                        (coefdes * dic['lpp']))])
-                    elif forge == 'n':
-                        f1 = sp.array([ang, navio1.calcn() * (coeforpm / 
-                        (coefdes * dic['lpp']))])
-                    
-                    navio1.dotx[5]= 0.
-
-#                    Caso phi
-                    navio1.x[3] = ang2
-                    coefdes = self.conad(tipo='dmi', var='gamma', dic=dic, 
-                    vel=dic['unom'], r=navio1.dotx[5])
-
-                    if forge == 'fx':
-                        f2 = sp.array([ang, navio1.calcforcx() *
-                        (coeforpf/coefdes)])
-                    elif forge == 'fy':
-                        f2 = sp.array([ang, navio1.calcforcy() *
-                        (coeforpf/coefdes)])
-                    elif forge == 'k':
-                        f2 = sp.array([ang, navio1.calck() * (coeforpm /
-                        (coefdes * dic['lpp']))])
-                    elif forge == 'n':
-                        f2 = navio1.calcn() * (coeforpm/(coefdes*dic['lpp']))
-                    
-#
-#
-                    navio1.dotx[5] = r
-                    navio1.x[3]= ang2                        
-                    if forge == 'fx':
-                        saida[contlinha] = sp.array([ang1, and2,
-                        navio1.calcforcx() * (coeforpf/coefdes) - (f1+f2)])
-                    elif forge == 'fy':
-                        saida[contlinha] = sp.array([ang1, and2, 
-                        navio1.calcforcy() * (coeforpf/coefdes) - (f1+f2)])
-                    elif forge == 'k':
-                        saida[contlinha] = sp.array([ang1, and2, 
-                        navio1.calck() * (coeforpm/(coefdes*dic['lpp'])) - 
-                        (f1+f2)])
-                    elif forge == 'n':
-                        saida[contlinha] = sp.array([ang1, and2,
-                        navio1.calcn() * (coeforpm/(coefdes*dic['lpp'])) - 
-                        (f1+f2)])
-                    
-#               Procedimento de cálculo final
-
-               
-                
-#                    Caso gamma
-                if 'gamma' in coef:
-                    r = sp.tan(ang1) * 2 * dic['unom'] / dic['lpp']
-                    navio1.dotx[5] = r
-                    
-                    coefdes = self.conad(tipo = 'dmi', var = 'gamma', 
-                    dic = dic, vel = dic['unom'], r = navio1.dotx[5])
-                    
-                    if forge == 'fx':
-                        f2 = sp.array(navio1.calcforcx() * 
-                        (coeforpf/coefdes))
-                    elif forge == 'fy':
-                        f2 = sp.array(navio1.calcforcy() * (coeforpf /
-                        coefdes))
-                    elif forge == 'k':
-                        f2 = sp.array(navio1.calck() * (coeforpm / (coefdes *
-                        dic['lpp'])))
-                    elif forge == 'n':
-                        f2 = sp.array(navio1.calcn() * (coeforpm / (coefdes *
-                        dic['lpp'])))
-
-
-
-
-#                  
-#
-                if 'phi' in coef:
-#                    Caso phi
-                    navio1.x[3] = ang2
-                    coefdes = self.conad(tipo = 'dmi', var = 'gamma', dic =
-                    dic, vel = dic['unom'], r = navio1.dotx[5])
-                    if forge == 'fx':
-                        f2 = sp.array(navio1.calcforcx() * (coeforpf/coefdes))
-                    elif forge == 'fy':
-                        f2 = sp.array( navio1.calcforcy() * (coeforpf/coefdes))
-                    elif forge == 'k':
-                        f2 = sp.array(navio1.calck() * (coeforpm / (coefdes *
-                    dic['lpp'])))
-                    elif forge == 'n':
-                        f2 = sp.array(navio1.calcn() * (coeforpm / (coefdes *
-                        dic['lpp'])))
-                
-#
-#
-                    navio1.dotx[0] = u
-                    navio1.dotx[5] = v                       
-                if forge == 'fx':
-                    saida[contlinha] = sp.array([ang1, ang2, 
-                    navio1.calcforcx() * (coeforpf / coefdes) - (f1+f2)])
-                elif forge == 'fy':
-                    saida[contlinha] = sp.array([ang1, ang2, 
-                    navio1.calcforcy() * (coeforpf / coefdes) - (f1+f2)])
-                elif forge == 'k':
-                    saida[contlinha] = sp.array([ang1, ang2, navio1.calck() *
-                    (coeforpm / (coefdes * dic['lpp'])) - (f1+f2)])
-                elif forge == 'n':
-                    saida[contlinha] = sp.array([ang1, ang2, navio1.calcn() *
-                    (coeforpm / (coefdes * dic['lpp'])) - (f1 + f2)])
-            contlinha += 1
             
         return saida
-    
-    def coefdertotab (self, dic, forge='fx', intervalo=5, coef='beta',
-    coef2='gamma' , ConstAdOr='snae', ConstAdDes='dmi' ):
-        """
-        Transforma os valores de derivadas hidrodinâmicas em entrada[1]
-        para uma tabela de forças em surge do tipo sp.array. 
-        
-        É necessário carregar um arquivo de derivadas em entrada [1].
-        _
-        Variáveis de entrada
-        
-        Intervalo = intervalo do ângulo beta em graus
-        Default = 5.
-
-        _
-        Saída
-        
-        Saida é um sp.array[beta, Fx]):
-        Beta - Ângulo de ataque
-        Fx = Forças em Surge 
-        """
-        
-        navio1 = navio()
-        navio1.dic= self.lerarqder()
-
-        navio1.x = sp.array([[0.], [0.], [0.], [0.], [0.], [0.] ])
-        navio1.dotx = sp.array([[dic['unom']], [0.], [0.], [0.], [0.], [0.]  ])
-        navio1.angleme = sp.array([0.] )
-
-        if coef == 'beta':
-            maxint = 1.
-        else:
-            maxint = 2.
-        
-        
-        saida = sp.zeros([len( sp.arange(0. , sp.pi/maxint, intervalo*
-sp.pi/180)), 2])
-        
-        contlinha = 0
-        for ang in sp.arange(0. , sp.pi/maxint, intervalo* sp.pi/180):
-            if   ConstAdOr =='snae':
-                coeforpf = self.conad(tipo = 'snae', dic = dic, vel = dic[
-'unom'])
-                coeforpm = coeforpf* dic[ 'lpp']
-            if coef =='beta':
-                navio1.dotx[0] = dic['unom']*sp.cos(ang)
-                navio1.dotx[1] = - dic['unom']*sp.sin(ang)
-                
-                coefdes = self.conad(tipo = 'dmi', var ='beta', dic = dic, 
-vel= dic[ 'unom'])
-                
-            elif coef == 'gamma':
-                navio1.dotx[5] = sp.tan(ang)*2*dic['unom']/dic['lpp']
-                
-                coefdes = self.conad(tipo = 'dmi', var = 'gamma', dic = dic, 
-vel= dic[ 'unom'], r = navio1.dotx[5])
-            
-            elif coef == 'epsilon':
-                navio1.dotx[3] = sp.tan(ang)*dic['unom'] / sp.sqrt((((dic['df']
-+ dic['da'])/2)**2 + (dic['b']/2)**2))
-            
-                coefdes = self.conad(tipo = 'dmi', var = 'epsilon', dic =
-dic, vel= dic[ 'unom'], p = navio1.dotx[3])
-            
-            elif coef == 'phi':
-                navio1.x[3] = ang
-                
-                coefdes = self.conad(tipo = 'dmi', var = 'phi', dic = dic, 
-vel= dic[ 'unom'])
-                
-            if forge == 'fx':
-                saida[contlinha] = sp.array([ang, navio1.calcforcx() *
-(coeforpf/coefdes)])
-            elif forge == 'fy':
-                saida[contlinha] = sp.array([ang, navio1.calcforcy() *
-(coeforpf/coefdes)])
-            elif forge == 'k':
-                saida[contlinha] = sp.array([ang, navio1.calck() *
-(coeforpm/(coefdes*dic['lpp']))])
-            elif forge == 'n':
-                saida[contlinha] = sp.array([ang, navio1.calcn() *
-(coeforpm/(coefdes*dic['lpp']))])
-            
-            contlinha += 1
-            
-        return saida
-    def plotcoefdertotab(self, formato = 'eps'):
-        
-        """
-        """
-        listf = [ 'fx', 'fy', 'k', 'n']
-        listcoef = ['beta', 'gamma', 'epsilon', 'phi']
-        
-        dic = self.lerarqder()
-        
-        for f in listf:
-           for  coef in listcoef:
-                temp = self.coefdertotab (dic, forge = f, intervalo = 5, coef
-= coef, ConstAdOr = 'snae', ConstAdDes = 'dmi' )
-                plt.plot(temp[:, 0], temp[:, 1], 'g^')#v 
-                plt.ylabel(f.capitalize())
-                temp = '$\$ '
-                plt.xlabel( temp.replace('$ ', coef + '$'))
-                
-                if 'f' in f:
-                    plt.title ('Forca ' + f.capitalize() + ' Versus ' +
-temp.replace('$ ', coef + '$'))
-                else:
-                    plt.title ('Momento ' + f.capitalize() + ' Versus ' +
-temp.replace('$ ', coef + '$'))
-                nomedoarq = './figuras/TabelaDmi/'+f +coef
-                plt.savefig( nomedoarq , format=formato)
-                plt.clf()
 
 if __name__ == "__main__":
     import doctest

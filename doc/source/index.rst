@@ -13,6 +13,7 @@ Bem Vindo a Documentação do NumShip!
 
    intro
    Es
+   navio
 
 Indíces e tabelas
 ==================
