@@ -21,7 +21,7 @@ scgarq='./saida_' + data.strftime(fdata) + '/CurvaGiro'
 print 'Início da simulação da Curva de Giro ...\n'
 execfile('./scripts/inteCurvaGiro.py',  globals())
 print 'Integração Realizada.\n'
-if False:
+if plot:
   execfile('./scripts/plotCurvaGiro.py',  locals())
   print'plotagem realizada'
 print'Fazendo o relatório...\n'

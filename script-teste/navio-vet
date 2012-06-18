@@ -1,0 +1,25 @@
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../source'))
+
+import scipy as sp
+import matplotlib.pyplot as plt
+
+import Es
+import Navio
+
+entrada = ('NavioTeste', '../dados/bemformatado.dat', 'inputtab.dat')
+en = Es.es(entrada)
+nav = Navio.navio(en.lerarqder())
+nav.MudaVelCom(nav.uc)
+nav.MudaVel(sp.array([nav.uc, 0, 0, 0, 0, 0]))
+print nav.VetF().reshape(4,1)
+
+pa = (1, 1, 1)
+pb = (1, 1, 1)
+pc = (1, 1, 1)
+pd = (1, 1, 1)
+p = (pa, pb, pc, pd)
+gl = 3
+
+print nav.VetF((gl, p)).reshape(3,1)

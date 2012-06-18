@@ -22,8 +22,9 @@ Rot = sp.array(0.62)
 tipoc = 'starboard' #tipo  de curva que será realizada 'starboard' ou 'port'
 saida = 'txt' #Fimal do arquivo de saída
 adi = False  #Valor booleano. Dados de entrada Adimensionais ou não
-fdata ="%d-%m-%Y_%H:%M" #formato da data para ser usado em alguns momentos como
-#para nomear a pasta de saída
+fdata = "%d-%m-%Y_%H:%M" #formato da data para ser usado em alguns momentos
+#como para nomear a pasta de saída
+plot = True #plotar?
 
 #Fator multiplicador da força
 Multbeta=1.*sp.array([1., 1.,1.]) 

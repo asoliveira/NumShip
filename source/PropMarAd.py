@@ -45,37 +45,42 @@ class propMarAd(prop):
         """
         Muda a rotação comandada
         """        
+        
         self.RotCom = Rot.copy()
         
     def MudaVelCom(self,  uc):
         """
         Muda a velocidade comandada
-        """        
+        """ 
+        
         self.uc = uc.copy()
+        
     def MostraRot(self):
         """
         Retorna a rotação da máquina atual
         """
+        
         return self.Rot
-    def MostraRotCom(self):
+        
+    def MostraRotCom (self):
         """
         Retorna a rotação comandada
         """
+        
         return self.RotCom
         
-    def MostraVelCom(self):
+    def MostraVelCom (self):
         """
         Retorna a velocidade comandada
         """
-        return self.uc        
         
-      
+        return self.uc         
         
-    def Fx(self):
+    def Fx (self):
         """
         Retorna a força em surge
         """
-
+        
         Eta = self.MostraVelCom() / self.MostraVel()[0]
        
         if  Eta <= sp.array(-1.):
@@ -105,7 +110,7 @@ class propMarAd(prop):
         
         return X
         
-    def Fy(self):
+    def Fy (self):
         """
         Retorna a força em sway
         """
@@ -138,7 +143,7 @@ class propMarAd(prop):
             
         return Y
 
-    def N(self):
+    def N (self):
         """
         Retorna o momento de yaw
         """
