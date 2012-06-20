@@ -616,16 +616,16 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     :param rotcom: Comando de rotação do propulsor[opcional];
     :param velcom: Comando de velocidade da embarcação[opcional];
     :param vel: Velocidade da embarcação[opcional];
-    :return: Uma tupla (velohis, poshis, acelhis, fhis, veloInerhis, lemehis,
+    :return: Uma tupla (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
              prophis, etahis, dados, betahis)
              Em cada elemento da tupla a primeira coluna é o passo de tempo e
              as demais são as variáveis:
-             * veloHis -- histórico de velocidades;
-             * posHis -- histórico de posições;
-             * acelHis --- histórico de acelerações;
-             * fHis -- histórico de forças;
-             * veloInerHis -- histórico de velocidades no sistema inercial;
-             * lemeHis -- histórico do comando de leme.
+             * velohis -- histórico de velocidades;
+             * poshis -- histórico de posições;
+             * acelhis --- histórico de acelerações;
+             * fhis -- histórico de forças;
+             * veloinerhis -- histórico de velocidades no sistema inercial;
+             * lemehis -- histórico do comando de leme.
              Ou simplesmente cria arquivos `txt` no diretório indicado na
              entrada com todos este valores
     :type GrausDeLib: int
@@ -681,7 +681,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     if saida == 'mem':
       lemehis = sp.zeros((nlin, 2)) #historico do leme
       velohis = sp.zeros((nlin, 7)) #histórico da velocidade
-      veloInerhis = sp.zeros((nlin, 4))#histórico da velocidade no
+      veloinerhis = sp.zeros((nlin, 4))#histórico da velocidade no
       #sistema inercial. Verificar depois a necessidade
       poshis =  sp.zeros((nlin, 7)) #histórico da posição no sistema
       #inercial
@@ -712,12 +712,12 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
                     'dot roll'.rjust(11) + ' ' + 'dot pitch'.rjust(11) +
                     ' ' + 'dot yaw'.rjust(11) + ' ' + '\n') 
       
-      veloInerhis = open('veloiner.dat', 'w')#histórico da velocidade no
+      veloinerhis = open('veloiner.dat', 'w')#histórico da velocidade no
       #sistema inercial. Verificar depois a necessidade
-      veloInerhis.write('#Navio ' + self.nome + '\n' +  
+      veloinerhis.write('#Navio ' + self.nome + '\n' +  
                         '#Manobra de Curva de Giro\n#\n')
-      veloInerhis.write('#Velocidade Inercial\n#\n')
-      veloInerhis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
+      veloinerhis.write('#Velocidade Inercial\n#\n')
+      veloinerhis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
               'v'.rjust(11) + ' ' + 'r'.rjust(11) + '\n') 
 
       poshis =  open('pos.dat', 'w')#histórico da posição no sistema
@@ -834,14 +834,14 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       
       #Velocidade Inercial
       if saida == 'txt':
-        veloInerhis.write('%.2f'.rjust(5)%(tp) + ' ')
+        veloinerhis.write('%.2f'.rjust(5)%(tp) + ' ')
         for arg in VelIn:
-          veloInerhis.write('%.5e'.rjust(11)%(arg) + ' ')
-        veloInerhis.write('\n')
+          veloinerhis.write('%.5e'.rjust(11)%(arg) + ' ')
+        veloinerhis.write('\n')
       elif saida == 'mem':
         d = sp.hstack(VelIn)
-        veloInerhis[cont, 1:] = d #
-        veloInerhis[cont, 0] = tp #
+        veloinerhis[cont, 1:] = d #
+        veloinerhis[cont, 0] = tp #
 
       #histórico Leme
       if saida == 'txt':
@@ -1004,24 +1004,26 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       self.prop.MudaRot(tp)
       self.leme.MudaLeme(tp)
     if saida == 'txt':
-      arq = (velohis, poshis, acelhis, fhis, veloInerhis, lemehis, prophis,
+      arq = (velohis, poshis, acelhis, fhis, veloinerhis, lemehis, prophis,
              etahis)
       for arg in arq:
         arg.close()
       return dados
     elif saida == 'mem':
-      return (velohis, poshis, acelhis, fhis, veloInerhis, lemehis, prophis,
+      return (velohis, poshis, acelhis, fhis, veloinerhis, lemehis, prophis,
               etahis, dados, betahis)
-    pass
+  def usr ():
+      """teste"""
+      pass
+      
 
   def getCurvaZigZag (self, peso=None, met='euler', t0=0., dt=0.5, t=100.,
                       GrausDeLib=3, tipo='port', leme=sp.array(20.),
-                      rotcom=None, velcom=None, vel=None,
-                      proa=sp.array([20.]), eta='vel', 
-                      posine=None,
-                      osa=sp.array(0.0), ospath=sp.array(0.0),
-                      erro=sp.array(0.005),saida='txt'):
-    """Simula manobras de Curva de Giro
+                      rotcom=None, velcom=None, vel=None, proa=None,
+                      eta='vel', posine=None, osa=sp.array(0.0),
+                      ospath=sp.array(0.0), erro=sp.array(0.005),
+                      saida='txt', arqs='./saida/zz'):
+    """Simula manobras de Zig Zag
     
     :param GrausDeLib: Graus de liberdade de modelo matemático;
     :param met: Método de integração. (default = euler);
@@ -1042,7 +1044,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     :param rotcom: Comando de rotação do propulsor[opcional];
     :param velcom: Comando de velocidade da embarcação[opcional];
     :param vel: velocidade da embarcação[opcional];
-    :return: (velohis, poshis, acelhis, fhis, veloInerhis, lemehis,
+    :return: (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
              prophis, etahis, dados, betahis)
              Em cada elemento da tupla a primeira coluna é o passo de tempo e
              as demais são as variáveis:
@@ -1050,7 +1052,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
              * poshis -- histórico de posições;
              * acelhis --- histórico de acelerações;
              * fhis -- histórico de forças;
-             * veloInerhis -- histórico de velocidades no sistema inercial;
+             * veloinerhis -- histórico de velocidades no sistema inercial;
              * lemehis -- histórico do comando de leme.
     :type GrausDeLib: int
     :type met: str
@@ -1081,41 +1083,41 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       vel[0] = self.dic['unom']
     if posine == None:
       posine = sp.zeros((6,1))
+    if proa == None:
+      proa = sp.array(20.)
     
     self.MudaPos( posine)
-    self.Mudavel(vel)
+    self.MudaVel(vel)
     self.MudaRotCom(rotcom)
-    self.Mudavelcom(velcom)
+    self.MudaVelCom(velcom)
 
 
     if tipo == 'port':
       self.MudaLemeCom(sp.array(leme*sp.pi/180))
-      exe=0
+      exe = 0
     elif tipo == 'starboard':
       self.MudaLemeCom(sp.array(-leme*sp.pi/180))
-      exe=1
+      exe = 1
 
-    
-#
-#   Criando espaço na memória para armazenar os parâmetros da curva
-#
-#Número de linhas das colunas a seremcriadas
+    #Criando espaço na memória para armazenar os parâmetros da curva
     nlin = len(sp.arange(t0, t, dt)) 
 
     if saida == 'mem':
       lemehis = sp.zeros((nlin, 2)) #historico do leme
       velohis = sp.zeros((nlin, 7)) #histórico da velocidade
-      veloInerhis = sp.zeros((nlin, 4))#histórico da velocidade no
-#sistema inercial Verificar depois a necessidade
-      poshis =  sp.zeros([nlin, 7]) #histórico da posição no sistema
-#inercial
+      veloinerhis = sp.zeros((nlin, 4))#histórico da velocidade no
+      #sistema inercial Verificar depois a necessidade
+      poshis =  sp.zeros([nlin, 7]) #histórico da posição no sistema inercial
       fhis     = sp.zeros((nlin, 5)) #histórico de forças
       acelhis = sp.zeros((nlin, 7)) #histórico de acelerações
       prophis = sp.zeros((nlin, 2)) #histórico Máquina
       etahis = sp.zeros((nlin, 2)) #histórico eta
     elif saida == 'txt':
-      os.makedirs('./saida/ZigZag')
-      os.chdir('./saida/ZigZag')
+      if os.path.exists(arqs):
+        os.rename(arqs, arqs + '2')        
+      os.makedirs(arqs)
+      os.chdir(arqs)
+      
       lemehis = open('leme.dat', 'w')#historico do leme
       lemehis.write('#Navio ' + self.nome + '\n' +  '#Manobra de Curva \
             de Zig-Zag\n#\n')
@@ -1132,12 +1134,12 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
               roll'.rjust(11) + ' ' + ' dot pitch'.rjust(11)  + 
               ' ' + 'dot yaw'.rjust(11) + ' ' + '\n') 
       
-      veloInerhis = open('veloiner.dat', 'w')#histórico da velocidade no
+      veloinerhis = open('veloiner.dat', 'w')#histórico da velocidade no
 #sistema inercial Verificar depois a necessidade
-      veloInerhis.write('#Navio ' + self.nome + '\n' +  '#Manobra de \
+      veloinerhis.write('#Navio ' + self.nome + '\n' +  '#Manobra de \
               Curva de Zig-Zag\n#\n')
-      veloInerhis.write('#velocidade Inercial\n#\n')
-      veloInerhis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
+      veloinerhis.write('#velocidade Inercial\n#\n')
+      veloinerhis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
               'v'.rjust(11)  + ' '  + 'r'.rjust(11) + '\n') 
 
       poshis =  open('pos.dat', 'w')#histórico da posição no sistema
@@ -1265,7 +1267,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
 #                inc = velocidades Lineares no Sistema Inecial
 #
       MatRot = self.MatRot()
-      velIn = MatRot * sp.matriz(self.vel[0:3])
+      velIn = MatRot * sp.matrix(self.vel[0:3])
 
       posine = self.MostraPos()[0:3]
 
@@ -1286,14 +1288,14 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
 ##################################                
 #          velocidade Inercial
       if saida == 'txt':
-        veloInerhis.write('%.2f'.rjust(5)%(tp) + ' ')
+        veloinerhis.write('%.2f'.rjust(5)%(tp) + ' ')
         for arg in velIn:
-          veloInerhis.write('%.5e'.rjust(11)%(arg) + ' ')
-        veloInerhis.write('\n')
+          veloinerhis.write('%.5e'.rjust(11)%(arg) + ' ')
+        veloinerhis.write('\n')
       elif saida == 'mem':
         d = sp.hstack(velIn)
-        veloInerhis[cont, 1:] = d #
-        veloInerhis[cont, 0] = tp #
+        veloinerhis[cont, 1:] = d #
+        veloinerhis[cont, 0] = tp #
 #           histórico Leme
       if saida == 'txt':
         lemehis.write('%.2f'.rjust(5)%(tp) + ' ')
@@ -1339,35 +1341,35 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       elif saida == 'mem': 
         temp = sp.hstack(sp.array(ft))
         if GrausDeLib == 4:
-          fHis[cont, :] = sp.hstack((tp, temp))
+          fhis[cont, :] = sp.hstack((tp, temp))
         elif GrausDeLib == 3:
-          fHis[cont, :3] = sp.hstack((tp, temp[:2]))
-          fHis[cont, 4] = temp[2]
+          fhis[cont, :3] = sp.hstack((tp, temp[:2]))
+          fhis[cont, 4] = temp[2]
 
-#           Histórico Propulsor
+#           histórico Propulsor
       if saida == 'txt':
-        propHis.write('%.2f'.rjust(5)%(tp) + ' ')
-        propHis.write('%.2f'.rjust(5)%self.MostraRot() + '\n')
+        prophis.write('%.2f'.rjust(5)%(tp) + ' ')
+        prophis.write('%.2f'.rjust(5)%self.MostraRot() + '\n')
       elif saida == 'mem':
-        propHis[cont, :] = sp.hstack((tp, self.MostraRot()))
-#           Histórico Eta
+        prophis[cont, :] = sp.hstack((tp, self.MostraRot()))
+#           histórico eta
       if saida == 'txt':
-        EtaHis.write('%.2f'.rjust(5)%(tp) + ' ')
-        if Eta == 'rot':
-          EtaHis.write('%.2f'.rjust(5) % (self.MostraRotCom() /
+        etahis.write('%.2f'.rjust(5)%(tp) + ' ')
+        if eta == 'rot':
+          etahis.write('%.2f'.rjust(5) % (self.MostraRotCom() /
                 self.MostraRot()) + '\n')
-        elif Eta == 'vel':   
-          EtaHis.write('%.2f'.rjust(5) % (self.MostraVelCom() /
+        elif eta == 'vel':   
+          etahis.write('%.2f'.rjust(5) % (self.MostraVelCom() /
                 self.MostraVel()[0]) + '\n')
       elif saida == 'mem':
-        if Eta== 'rot':
-          EtaHis[cont, :] = sp.hstack((tp, self.MostraRotCom() /
+        if eta== 'rot':
+          etahis[cont, :] = sp.hstack((tp, self.MostraRotCom() /
                         self.MostraRot()))
-        elif Eta == 'vel':
-          EtaHis[cont, :] = sp.hstack((tp, self.MostraVelCom() /
+        elif eta == 'vel':
+          etahis[cont, :] = sp.hstack((tp, self.MostraVelCom() /
                         self.MostraVel()[0]))
 
-#           Histórico das Acelerações 
+#           histórico das Acelerações 
       Acel = self.f2(ft, self.H(GrausDeLib))
       vetor = sp.zeros((6, 1))
       if GrausDeLib == 4:
@@ -1378,12 +1380,12 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         vetor[:2] = Acel[:2]
         vetor [5] = Acel[2]
       if saida == 'txt':
-        acelHis.write('%.2f'.rjust(5)%(tp) + ' ')
+        acelhis.write('%.2f'.rjust(5)%(tp) + ' ')
         for arg in vetor:
-          acelHis.write('%.5e'.rjust(11)%(arg[0]) + ' ')
-        acelHis.write('\n')
+          acelhis.write('%.5e'.rjust(11)%(arg[0]) + ' ')
+        acelhis.write('\n')
       elif saida == 'mem':  
-        acelHis[cont, :] = sp.hstack((tp, sp.hstack(vetor)))       
+        acelhis[cont, :] = sp.hstack((tp, sp.hstack(vetor)))       
 
   
       del vetor 
@@ -1464,14 +1466,14 @@ self.MostraPos()[:3],
       self.leme.MudaLeme(tp)
 
     if saida == 'txt':
-      arq = [veloHis, posHis, acelHis, fHis, veloInerHis, lemeHis,
-        propHis, EtaHis]
+      arq = [velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
+        prophis, etahis]
       for arg in arq:
         arg.close()
       return dados
     elif saida == 'mem':
-      return (veloHis, posHis, acelHis, fHis, veloInerHis, lemeHis,
-          propHis, EtaHis, dados)
+      return (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
+          prophis, etahis, dados)
 
   def simulaTestb(self, p, intervalo=sp.array(5.), V=None):
     """Faz  o teste.

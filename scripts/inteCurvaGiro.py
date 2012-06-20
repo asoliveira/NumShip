@@ -23,7 +23,7 @@ navio1 = navio(DicionarioDerivadas, nome = nome,  tipo = TipoModelo )
 
 b = navio1.getCurvaGiro(met = metodo, peso = p, t = tmax, t0 = tini, 
                         dt = passo, tipo = tipoc, GrausDeLib = GrausDeLib, 
-                        leme = LemeCom, rotcom = Rot, saida = saida, 
+                        leme = lemecg, rotcom = Rot, saida = saida, 
                         arqs = scgarq)
 
 

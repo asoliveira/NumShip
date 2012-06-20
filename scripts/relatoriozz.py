@@ -6,7 +6,7 @@
 ##
 ################################################
 
-f = open('./saida/relzz.tex', 'w')
+f = open(scgarq + '/relzz.tex', 'w')
 
 f.write('\chapter{Relatório da Curva Zig-Zag Navio '+ nome +' }\n\n\t')
 
@@ -109,7 +109,8 @@ f.write('\\begin{figure}[H]')
 f.write('\n\t\t')
 f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo + 'PosOri.' + formato + '}')
 f.write('\n\t')
-f.write('\caption{\\textit{Curva de Zigzag ' + str(int(LemeCom))+'/'+str(int(Proa)) +'}}')
+f.write('\caption{\\textit{Curva de Zigzag ' +
+str(int(lemezz))+'/'+str(int(proazz)) +'}}')
 f.write('\n\t')
 f.write('\end{figure}')
 f.write('\n\t')
@@ -119,9 +120,11 @@ f.write('\n\n\t')
 
 f.write('\\begin{figure}[H]')
 f.write('\n\t\t')
-f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo + 'Velo.' + formato + '}')
+f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo + 'Velo.'
++ formato + '}')
 f.write('\n\t')
-f.write('\caption{\\textit{Curva de Zigzag ' + str(int(LemeCom))+'/'+str(int(Proa)) +'}}')
+f.write('\caption{\\textit{Curva de Zigzag ' +
+str(int(lemezz))+'/'+str(int(proazz)) +'}}')
 f.write('\n\t')
 f.write('\end{figure}')
 f.write('\n\n\t')
@@ -131,9 +134,11 @@ f.write('\n\t')
 
 f.write('\\begin{figure}[H]')
 f.write('\n\t\t')
-f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo + 'Acel.' + formato + '}')
+f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo + 'Acel.'
++ formato + '}')
 f.write('\n\t')
-f.write('\caption{\\textit{Curva de Zigzag ' + str(int(LemeCom))+'/'+str(int(Proa)) +'}}')
+f.write('\caption{\\textit{Curva de Zigzag ' +
+str(int(lemezz))+'/'+str(int(proazz)) +'}}')
 f.write('\n\t')
 f.write('\end{figure}')
 f.write('\n\n\t')
@@ -143,9 +148,12 @@ f.write('\n\t')
 
 f.write('\\begin{figure}[H]')
 f.write('\n\t\t')
-f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo + 'ForMom.' + formato + '}')
+f.write('\includegraphics[scale=' + escala + ']{'+dirzz + TipoModelo +
+'ForMom.' + formato + '}')
 f.write('\n\t')
-f.write('\caption{\\textit{Curva de Zigzag ' + str(int(LemeCom))+'/'+str(int(Proa)) +'}. As forças e os mometos estão multiplicados por '+ str(ForEs) + '}')
+f.write('\caption{\\textit{Curva de Zigzag ' +
+str(int(lemezz))+'/'+str(int(proazz)) +'}. As forças e os momentos estão' +
+'multiplicados por '+ str(ForEs) + '}')
 f.write('\n\t')
 f.write('\end{figure}')
 
@@ -156,9 +164,11 @@ f.write('\n\t')
 
 f.write('\\begin{figure}[H]')
 f.write('\n\t\t')
-f.write('\includegraphics[scale=' + escala + ']{'+ dirzz + TipoModelo +'pltetat.' + formato + '}')
+f.write('\includegraphics[scale=' + escala + ']{'+ dirzz + TipoModelo
++'pltetat.' + formato + '}')
 f.write('\n\t')
-f.write('\caption{\\textit{Curva de Zigzag ' + str(int(LemeCom))+'/'+str(int(Proa)) +'}}')
+f.write('\caption{\\textit{Curva de Zigzag ' +
+str(int(lemezz))+'/'+str(int(proazz)) +'}}')
 f.write('\n\t')
 f.write('\end{figure}')
 

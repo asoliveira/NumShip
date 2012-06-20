@@ -1,61 +1,30 @@
 # -*- coding: utf-8 -*-
-   
+
+#Módulos que vem com python
 import sys
-
-sys.path.append('./source/')
-
+#Módulos de terceiros
 import scipy as sp
+import datetime
+#Módulos criados para o NumShip
 from Es import *
 from Leme import  *
 from Prop import *
 from Casco import *
 from Navio import *
+from config import * #parâmetros para configurar a simulação
 
+#Formato do arquivo de saída
+data=datetime.datetime.now()
+scgarq='./saida_' + data.strftime(fdata) + '/CurvaZigZag'
 
-nome = 'B MarAd'
-save = True
-formato = 'eps'
-passo = 0.7
-tmax = 3000
-tini =  0
-metodo = 'rk4'
-TipoModelo = 'MARAD'
-GrausDeLib = 3
-LemeCom= sp.array(20.)
-Proa = sp.array(20.)
-ForEs = 1e0
-Overshoot = 35
-Rot = sp.array(0.62)
-saida = 'txt'
-tipoc = 'starboard'
-adi = False
-escala = '0.7'
-
-####################################################
-
-
-
-
-Multbeta = 1.1*sp.array([1., 1.,1. ]) 
-Multr =  1.*sp.array([1., 1.,1. ])
-Multl = 1.*sp.array([1.,1.,1. ]) 
-Multbrl = 1.*sp.array([1.,1.,1. ])
-
-###################################################
-
-
-print  'Curva de ZigZag'
-
-execfile('./scripts/inteZigZag.py',  locals())
-
-print 'Integração Realizada'
-
-#execfile('./scripts/plotZigZag.py',  locals())
-
-#print'plotagem realizada'
-
+print 'Início da simulação da Curva de Zig-Zag ...\n'
+execfile('./scripts/inteZigZag.py',  globals())
+print 'Integração Realizada.'
+if plot:
+  execfile('./scripts/plotZigZag.py',  locals())
+  print'Plotagem realizada.'
+print'Fazendo o relatório...'
 execfile('./scripts/relatoriozz.py',  locals())
-
-print'Relatório feito'
-
-print 'Terminado a simulação da curva de ZigZag'
+print'Relatório feito.'
+print 'Simulação e relatório realizados. Dê uma olhada na pasta \
+"saida<data_hora>".\n'
