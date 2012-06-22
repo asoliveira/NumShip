@@ -28,7 +28,9 @@ under certain conditions.\n"
 #Imports
 import os
 import sys
+import datetime
 
+data = datetime.datetime.now() 
 
 r1=raw_input("aperte ENTER para continuar\n")
 
@@ -51,8 +53,9 @@ SIMULACOES=()
 #Inicio do script
 print 'Os diretórios no sys.path(não constam aqui os diretórios padrões):'
 for i in range(3):
-   print sys.path[i], '\n'
+   print sys.path[i]
 
+print '\n'
 men1='Deseja adicionar mais algum diretório?[s/n]\n'
 r1=raw_input(men1)
 
@@ -115,12 +118,12 @@ print 'Simulações=' + str(SIMULACOES), 'DIRETORIO=' + str(DIRETORIO)
 
 for i in DIRETORIO:
   print i, 
-  sys.path.insert(0,i)
+  sys.path.insert(0,i) 
 
 if '1' in SIMULACOES:
-  import simulaCurvaGiro
+  execfile('./scripts/simulaCurvaGiro.py',  globals())
 
 if '2' in SIMULACOES:
-  import simulaZigZag
+  execfile('./scripts/simulaZigZag.py',  globals())
 
 

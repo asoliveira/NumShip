@@ -14,7 +14,7 @@ from Navio import *
 from config import * #parâmetros para configurar a simulação
 
 #Formato do arquivo de saída
-data=datetime.datetime.now()
+#data=datetime.datetime.now()
 scgarq='./saida_' + data.strftime(fdata) + '/CurvaZigZag'
 
 print 'Início da simulação da Curva de Zig-Zag ...\n'
