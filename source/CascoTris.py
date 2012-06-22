@@ -23,73 +23,69 @@ import scipy as sp
 from CascoGen import *
 
 class cascoTris(casco):
-    """
-    Subclasse de casco seguindo o modelo do Paper de TrstanPerez
-
-    """
-    tipo = 'Modelo paper Tristan'
-    data = '10-10-2010'
-    autor = 'Alex'
-    
-
+    """Subclasse de casco seguindo o modelo do Paper de Tristan Perez"""
+      
     def __init__(self, DicionarioDerivadas):
-        """"
-        Construtor do casco
-        __________________________
-        Variáveis de entrada:
+        """"Cria uma instancia do casco com o modelo de `Tristan Perez`
         
-        DicionarioDerivadas (string)-- Dicionário com os coeficientes do casco e outros dados
-        ___________________________
-        Obs:
-        para o DicionarioDerivadas deve se utilizar a classe entrada e a função lerarqder
+        :param DicionarioDerivadas: Dicionário com os coeficientes do casco e
+                                    outros dados.
+        :type DicionarioDerivadas: dic
 
         """
-        casco.__init__(self)
         
+        casco.__init__(self)
         self.dic = DicionarioDerivadas
-
         
     def MudaVel(self,  Velocidade):
-        """
-        Muda a velocidade da embarcação
-        __________________________
-        Variáveis de entrada:
+        """Muda a velocidade da embarcação
         
-        Velocidade -- array de velocidades
+        :param Velocidade: Velocidade do casco a ser implementada.
+        :type Velocidade: numpy.ndarray
+        
         """
-        vel =  Velocidade.copy()
-
-        self.V = sp.sqrt(vel[0]**2+ vel[1]**2)
-
-        vel[0] = vel[0] -  self.dic['unom']
-        vel [:3]= vel[:3]/self.V
-        vel[3:]= vel[3:]*self.dic['lpp']/self.V 
+        
+        vel = Velocidade.copy()
+        self.V = sp.sqrt(vel[0] ** 2 + vel[1] ** 2)
+        vel[0] = vel[0] - self.dic['unom']
+        vel [:3]= vel[:3] / self.V
+        vel[3:]= vel[3:] * self.dic['lpp'] / self.V 
         self.vel = vel
         
-    def MudaPos(self,  Posicao):
-        """
-        Muda a posição e orientação do casco
-        __________________________
-        Variáveis de entrada:
+    def MudaPos(self, Posicao):
+        """Muda a posição e orientação do casco
         
-        Posicao -- posição
+        :param Posicao: Array de posição e orientação a ser implementada.
+        :type Posicao: numpy.ndarray
+        
         """
         
         pos = Posicao.copy()
-        pos[:3] = pos[:3]/self.dic['lpp']
+        pos[:3] = pos[:3] / self.dic['lpp']
         self.pos = pos
 
-
-    def filtrar(self,eixo):
+    def filtrar(self, eixo):
+        """Testa se todos as variáveis necessárias estão no parâmetro
+           DicionarioDerivadas.
+        
+        *Ainda não implementada*
+        
+        Com o dicionário passado na criação da classe com valores como 
+        {'xvr' = 54,...} e testa se todos os valores necessários para a
+        implementação da classe foram passados lista= ['yur', 'rtu',...] 
+        estão em dic caso não estejam devolve a uma lista *return*.
+        
+        :param eixo: Eixo a ser analisado.
+        :type eixo: str.
+        :return:
+        :rtype: list
         """
-        Recebe o dicionário dic com valores como {'xvr'= 54,...} e testa se
-        todos os valores da lita lista= ['yur', 'rtu',...]estam em dic caso não estejam devolve a
-        resposta na lista outofdic e caso os valores não sejam float devolve em notfloat
-        """
 
+        #Ainda é necessário implementar as função self.listaf* e self.listam*
+        
         outofdic = []
         
-        if eixo.lower()=='x':
+        if eixo.lower() == 'x':
             lista = list(self.listafx)
         elif eixo.lower()=='y':
             lista = list(self.listafy)
@@ -107,9 +103,7 @@ class cascoTris(casco):
         return outofdic
 
     def gz (self):
-        """
-        Calcula a função Gz
-        """
+        """Calcula a função Gz"""
 
         bm = self.dic['km']-self.dic['kb']
         
@@ -117,9 +111,7 @@ class cascoTris(casco):
 
       
     def Fx (self):
-        """
-        Forças em surge
-        """
+        """Forças em Surge"""
 
         ua = self.vel[0]
         v = self.vel[1]
@@ -128,17 +120,18 @@ class cascoTris(casco):
         #q = self.vel[4] utilizar somente no caso de visualização
         r = self.vel[5]
 
-        
-        
-        
-        X = self.dic['xu']*ua + self.dic['xuu']*ua*ua + self.dic['xuuu']*(ua**3) + self.dic['xvr']*v*r + self.dic['xrr']*(r**2) + self.dic['xv']*v + self.dic['xvv']*(v**2) + self.dic['xvroll']*v*self.pos[3] + self.dic['xroll']*self.pos[3] + self.dic['xrroll']*(self.pos[3]**2) + self.dic['xpp']*p**2 + self.dic['xppu']*(p**2)*ua
-        return X*((self.dic['rho']*(self.V*self.dic['lpp'])**2)/2)
+        X = self.dic['xu'] * ua + self.dic['xuu'] * ua * ua + \
+            self.dic['xuuu'] * (ua ** 3) + self.dic['xvr'] * v * r + \
+            self.dic['xrr'] * (r ** 2) + self.dic['xv'] * v + \
+            self.dic['xvv'] * (v ** 2) + self.dic['xvroll'] * v * \
+            self.pos[3] + self.dic['xroll'] * self.pos[3] + \
+            self.dic['xrroll'] * (self.pos[3] ** 2) + self.dic['xpp'] * \
+            p ** 2 + self.dic['xppu'] * (p ** 2) * ua
+            
+        return X * ((self.dic['rho'] * (self.V * self.dic['lpp']) ** 2) / 2)
     
     def Fy (self):
-        """
-        Forcas em sway
-        
-        """
+        """Forcas em Sway"""
 
         ua = self.vel[0]
         v = self.vel[1]
@@ -147,17 +140,23 @@ class cascoTris(casco):
         #q = self.vel[4] utilizar somente no caso de visualização
         r = self.vel[5]
         
+        Y = self.dic['yv'] * v + self.dic['yvv'] * (v ** 2) + \
+            self.dic['yv|v|'] * v * abs(v) + self.dic['yv|r|'] * v * \
+            abs(r) + self.dic['yvrr'] * v * (r ** 2) + self.dic['yr'] * \
+            r + self.dic['yr|r|'] * r * abs(r) + self.dic['yrrr'] * \
+            (r ** 3) + self.dic['yr|v|'] * r * abs(v) + self.dic['yrvv'] * \
+            r * (v ** 2) + self.dic['yp'] * p + self.dic['yppp'] * \
+            (p ** 3) + self.dic['ypu'] * p * ua + self.dic['ypu|pu|'] * p * \
+            ua * abs(p *ua) + self.dic['yroll'] * self.pos[3] + \
+            self.dic['yvroll'] * v * \
+            self.pos[3] + self.dic['yvrroll'] * v * (self.pos[3] ** 2) + \
+            self.dic['yrollvv'] * self.pos[3] * (v ** 2) + self.dic['y0'] + \
+            self.dic['y0u'] * ua
         
-        
-        Y = self.dic['yv']*v + self.dic['yvv']*(v**2) + self.dic['yv|v|']*v*abs(v) + self.dic['yv|r|']*v*abs(r) + self.dic['yvrr']*v*(r**2) + self.dic['yr']*r  + self.dic['yr|r|']*r*abs(r) + self.dic['yrrr']*(r**3)+ + self.dic['yr|v|']*r*abs(v) + self.dic['yrvv']*r*(v**2) + self.dic['yp']*p + self.dic['yppp']*(p**3) + self.dic['ypu']*p*ua + self.dic['ypu|pu|']*p*ua*abs(p*ua) + self.dic['yroll']*self.pos[3] + self.dic['yvroll']*v*self.pos[3] + self.dic['yvrroll']*v*(self.pos[3]**2) + self.dic['yrollvv']*self.pos[3]*(v**2) + self.dic['y0'] + self.dic['y0u']*ua
-        
-        return Y *((self.dic['rho']*(self.V*self.dic['lpp'])**2)/2)
+        return Y * ((self.dic['rho'] * (self.V * self.dic['lpp']) ** 2) / 2)
 
     def K (self):
-        """
-        Momento de roll        
-        
-        """
+        """Momento de Roll"""
 
         ua = self.vel[0]
         v = self.vel[1]
@@ -166,16 +165,25 @@ class cascoTris(casco):
         #q = self.vel[4] utilizar somente no caso de visualização
         r = self.vel[5]
         
+        K = self.dic['kv'] * v + self.dic['kvv'] * (v ** 2) + \
+            self.dic['kv|v|'] * v * abs(v) + self.dic['kv|r|'] * v * \
+            abs(r) + self.dic['kvrr'] * v * (r ** 2) + self.dic['kr|r|'] * \
+            r * abs(r) + self.dic['krrr'] * (r ** 3) + self.dic['krvv'] * \
+            r * (v ** 2) + self.dic['kr|v|'] * r * abs(v) + self.dic['kp'] * \
+            p + self.dic['kp|p|'] * p * abs(p) + self.dic['kppp'] * \
+            (p ** 3) + self.dic['kpu'] * p * ua + self.dic['kpu|pu|'] * \
+            abs(p * ua) * p * ua + self.dic['kvroll'] * v * self.pos[3] + \
+            self.dic['kvrroll'] * v * self.pos[3] ** 2 + \
+            self.dic['krollvv'] * self.pos[3] * v ** 2 + self.dic['k0'] + \
+            self.dic['k0u'] * ua + self.dic['kr'] * r - (self.dic['g'] * \
+            self.dic['deslo'] * self.gz()) / (((self.V * \
+            self.dic['lpp']) ** 2) / 2)
         
-
-        K = self.dic['kv']*v + self.dic['kvv']*(v**2) + self.dic['kv|v|']*v*abs(v) + self.dic['kv|r|']*v*abs(r) + self.dic['kvrr']*v*(r**2) + self.dic['kr|r|']*r*abs(r) + self.dic['krrr']*(r**3) + self.dic['krvv']*r*(v**2) + self.dic['kr|v|']*r*abs(v) + self.dic['kp']*p + self.dic['kp|p|']*p*abs(p) + self.dic['kppp']*(p**3) + self.dic['kpu']*p*ua + self.dic['kpu|pu|']*abs(p*ua)*p*ua + self.dic['kvroll']*v*self.pos[3] + self.dic['kvrroll']*v*self.pos[3]**2 +self.dic['krollvv']*self.pos[3]*v**2 + self.dic['k0'] + self.dic['k0u']*ua + self.dic['kr']*r - (self.dic['g']*self.dic['deslo']*self.gz())/(((self.V*self.dic['lpp'])**2)/2)
-        
-        return K *(self.dic['rho']*(self.V**2)*(self.dic['lpp']**3)/2)
+        return K * (self.dic['rho'] * (self.V ** 2) * (self.dic['lpp'] ** \
+                                                        3) / 2)
 
     def N (self):
-        """
-        Momento de yaw 
-        """
+        """Momento de Yaw"""
         
         ua = self.vel[0]
         v = self.vel[1]
@@ -186,6 +194,21 @@ class cascoTris(casco):
         
         #ua = (u - self.dic['unom'])/u
         
-        N = self.dic['nv']*v + self.dic['nvv']*v**2 + self.dic['nv|v|']*v*abs(v) + self.dic['nv|r|']*v*abs(r) + self.dic['nvrr']*v*r**2 + self.dic['nr']*r + self.dic['nr|r|']*r*abs(r) + self.dic['nrrr']*r**3 + self.dic['nrvv']*r*v**2 + self.dic['nr|v|']*r*abs(v) + self.dic['np']*p + self.dic['nppp']*p**3 + self.dic['npu']*p*ua + self.dic['npu|pu|']*p*ua*abs(p*ua) + self.dic['nroll']*self.pos[3] + self.dic['nvroll']*v*self.pos[3] + self.dic['nvrroll']*v*self.pos[3]**2 +self.dic['nrollvv']*self.pos[3]*v**2 + self.dic['n0'] + self.dic['n0u']*ua
+        N = self.dic['nv'] * v + self.dic['nvv'] * v ** 2 + \
+            self.dic['nv|v|'] * v * abs(v) + self.dic['nv|r|'] * v * \
+            abs(r) + self.dic['nvrr'] * v * r ** 2 + self.dic['nr'] * r + \
+            self.dic['nr|r|'] * r * abs(r) + self.dic['nrrr'] * r ** 3 + \
+            self.dic['nrvv'] * r * v ** 2 + self.dic['nr|v|'] * r * \
+            abs(v) + self.dic['np'] * p + self.dic['nppp'] * p ** 3 + \
+            self.dic['npu'] * p * ua + self.dic['npu|pu|'] * p * ua * \
+            abs(p * ua) + self.dic['nroll']    * self.pos[3] + \
+            self.dic['nvroll'] * v * self.pos[3] + self.dic['nvrroll'] * \
+            v * self.pos[3] ** 2 + self.dic['nrollvv'] * self.pos[3] * \
+            v ** 2 + self.dic['n0'] + self.dic['n0u'] * ua
         
-        return N *(self.dic['rho']*(self.V**2)*(self.dic['lpp']**3)/2)
+        return N * (self.dic['rho'] * (self.V ** 2) * \
+                (self.dic['lpp'] ** 3) / 2)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()                                    

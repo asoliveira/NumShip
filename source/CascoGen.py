@@ -22,105 +22,128 @@
 import scipy as sp
 
 class casco:
-    """
-    classe casco
-    """
-    tipo = 'Genérico'
-    data = '10-11-2010'
-    autor = 'Alex'
-    def __init__(self):
-        """
-        Construtor do cacso
-        __________________________
+    """Classe casco"""
 
-        """
+    def __init__(self):
+        """Construtor do caso"""
+        
         self.vel = sp.zeros((6, 1))
         self.pos = sp.zeros((6, 1))
 
 
     def MostraVel(self):
-        """
-        Mostra a Velocidade do casco
-        """
+        """Mostra a Velocidade do casco"""
+        
         return self.vel
         
-        
     def MostraPos(self):
-        """
-        Mostra a posição do casco
-        """
+        """Mostra a posição do casco"""
+        
         return self.pos
 
 
     def MudaVel(self,  Velocidade):
-        """
-        Muda a velocidade do casco
-        """
+        """Muda a velocidade do casco"""
+        
         self.vel = Velocidade
 
     def MudaPos(self,  Posicao):
-        """
-        Muda a posição do casco
-        """
+        """Muda a posição do casco"""
+        
         self.pos = Posicao
 
     def Ma (self,  GrausDeLib = 4):
+        """Retorna um  sp.array de  massa adicional
+        
+        :param GrausDeLib: Valor dos graus de liberdade do modelo matemático;
+        :type GrausDeLib: int
+        :return: Matriz de massa adicional. Não retorna nada se o valor dos
+                 graus de liberdade for diferente de 4 ou 3.
+        :rtype: numpy.ndarray
+        
         """
-        Retorna um  sp.array de  massa adicional
-        """
+        
         saida = None
         if GrausDeLib == 4:
-            saida= sp.array([[self.dic['xdotu'], 0, 0, 0 ],[0, self.dic['ydotv'],  self.dic['ydotp'], self.dic['ydotr']],[0, self.dic['kdotv'], self.dic['kdotp'], self.dic['kdotr']],[0, self.dic['ndotv'], self.dic['ndotp'], self.dic['ndotr']]])   
-            saida[:2, :2] = saida[:2, :2]* (self.dic['rho']*(self.dic['lpp']**3))/2
-            saida[2:,:2]= saida[2:,:2]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[:2,2:]= saida[:2,2:]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[2:, 2:] = saida[2:, 2:] * (self.dic['rho']*(self.dic['lpp']**5))/2    
+            saida= sp.array([[self.dic['xdotu'], 0, 0, 0 ],
+                   [0, self.dic['ydotv'], self.dic['ydotp'],
+                   self.dic['ydotr']], [0, self.dic['kdotv'],
+                   self.dic['kdotp'], self.dic['kdotr']], [0,
+                   self.dic['ndotv'], self.dic['ndotp'], self.dic['ndotr']]])  
+            saida[:2, :2] = saida[:2, :2] * (self.dic['rho'] * 
+                            (self.dic['lpp'] ** 3)) / 2
+            saida[2:,:2] = saida[2:,:2] * (self.dic['rho'] * 
+                           (self.dic['lpp'] ** 4)) / 2
+            saida[:2,2:] = saida[:2,2:] * (self.dic['rho'] * 
+                           (self.dic['lpp'] ** 4)) / 2
+            saida[2:, 2:] = saida[2:, 2:] * (self.dic['rho'] * 
+                            (self.dic['lpp'] ** 5)) / 2    
         elif GrausDeLib == 3:
-            saida= sp.array([[self.dic['xdotu'], 0, 0 ],[0, self.dic['ydotv'],  self.dic['ydotr']],[0, self.dic['ndotv'], self.dic['ndotr']]])   
-            saida[:2, :2] = saida[:2, :2]* (self.dic['rho']*(self.dic['lpp']**3))/2
-            saida[1,2]= saida[1,2]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[2,1]= saida[2,1]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[2, 2] = saida[2, 2] * (self.dic['rho']*(self.dic['lpp']**5))/2    
+            saida= sp.array([[self.dic['xdotu'], 0, 0 ], [0, 
+                   self.dic['ydotv'], self.dic['ydotr']], [0,
+                   self.dic['ndotv'], self.dic['ndotr']]])  
+            saida[:2, :2] = saida[:2, :2] * (self.dic['rho'] * 
+                            (self.dic['lpp'] ** 3)) / 2
+            saida[1,2] = saida[1,2] * (self.dic['rho'] * (self.dic['lpp'] **
+                        4)) / 2
+            saida[2,1] = saida[2,1] * (self.dic['rho'] * (self.dic['lpp'] **
+                         4)) / 2
+            saida[2, 2] = saida[2, 2] * (self.dic['rho'] * 
+            (self.dic['lpp'] ** 5)) / 2
+        
         return saida 
 
     def M(self,  GrausDeLib = 4):
-        """
-        Retorna um  sp.array de  massa e massa adicional
-        """
+        """Retorna um  sp.array de  massa e massa adicional"""
+        
         saida = None
         if GrausDeLib == 4:
-            saida = sp.array([   [self.dic['m'] ,  0., 0., 0. ],
-            [0., self.dic['m'],   -(self.dic['m'] *self.dic['zg']/self.dic['lpp'] ),     self.dic['m']*self.dic['xg']/self.dic['lpp']   ],  
-            [0., -(self.dic['m']*self.dic['zg']/self.dic['lpp'] ), self.dic['ixx'], 0. ],
-            [0., self.dic['m']*self.dic['xg'] /self.dic['lpp'] , 0., self.dic['izz'] ]])
-            saida[:2, :2] = saida[:2, :2]* (self.dic['rho']*(self.dic['lpp']**3))/2
-            saida[2:,:2]= saida[2:,:2]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[:2,2:]= saida[:2,2:]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[2:, 2:] = saida[2:, 2:] * (self.dic['rho']*(self.dic['lpp']**5))/2
+            saida = sp.array([[self.dic['m'] ,  0., 0., 0. ],
+                              [0., self.dic['m'], -(self.dic['m'] *
+                               self.dic['zg'] / self.dic['lpp']),   
+                               self.dic['m'] * self.dic['xg'] / 
+                               self.dic['lpp']],
+                              [0., -(self.dic['m'] * self.dic['zg'] /
+                               self.dic['lpp']), self.dic['ixx'], 0.],
+                              [0., self.dic['m'] * self.dic['xg'] /
+                               self.dic['lpp'] , 0., self.dic['izz']]])
+            saida[:2, :2] = saida[:2, :2] * \
+                            (self.dic['rho'] * (self.dic['lpp'] ** 3)) / 2
+            saida[2:,:2]= saida[2:, :2] * \
+                          (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
+            saida[:2,2:]= saida[:2,2:] * \
+                          (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
+            saida[2:, 2:] = saida[2:, 2:] * \
+                            (self.dic['rho'] * (self.dic['lpp'] ** 5)) / 2
         elif GrausDeLib == 3:
-            saida = sp.array([   [self.dic['m'] ,  0., 0.],
-            [0., self.dic['m'],  self.dic['m']*(self.dic['xg']/self.dic['lpp'])   ],  
-            [0., self.dic['m']*(self.dic['xg']/self.dic['lpp'])  , self.dic['izz']]])
-            saida[:2, :2] = saida[:2, :2]* (self.dic['rho']*(self.dic['lpp']**3))/2
-            saida[1, 2] = saida[1, 2]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[2, 1] = saida[2, 1]* (self.dic['rho']*(self.dic['lpp']**4))/2
-            saida[2, 2] = saida[2, 2]* (self.dic['rho']*(self.dic['lpp']**5))/2
+            saida = sp.array([[self.dic['m'] ,  0., 0.],
+                             [0., self.dic['m'], self.dic['m'] *
+                              (self.dic['xg'] / self.dic['lpp'])],
+                             [0., self.dic['m'] * (self.dic['xg'] /
+                              self.dic['lpp']), self.dic['izz']]])
+            saida[:2, :2] = saida[:2, :2] * \
+                            (self.dic['rho'] * (self.dic['lpp'] ** 3)) / 2
+            saida[1, 2] = saida[1, 2] * \
+                          (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
+            saida[2, 1] = saida[2, 1] * \
+                          (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
+            saida[2, 2] = saida[2, 2] * \
+                          (self.dic['rho'] * (self.dic['lpp'] ** 5)) / 2
+        
         return saida
    
     def Fx(self):
-        """
-        Devolve a força em surge
-        """
+        """Devolve a força em Surge"""
+        
     def Fy(self):
-        """
-        Devolve a força em sway
-        """
+        """Devolve a força em Sway"""
+        
     def K(self):
-        """
-        Devolve o momento de roll
-        """
+        """Devolve o momento de Roll"""
 
     def N(self):
-        """
-        Devolve o momento de yaw
-        """
+        """Devolve o momento de Yaw"""
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()                        

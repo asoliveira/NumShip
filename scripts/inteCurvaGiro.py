@@ -46,12 +46,6 @@ else:
     velHis, posHis, acelHis, forHis, velinHis, lemeHis, propHis, EtaHis, \
     listacg, betaHis = b
     del b
-try:
-  dircg = scgarq + '/figuras/Curva_de_Giro/' 
-  os.makedirs(dircg)
-except NameError:
-  print 'houve algum problema na criação do diretório' + dircg
-
 
 if adi :
     cont = 0

@@ -156,13 +156,14 @@ class navio:
     
     pass
 
-  def MudaLemeCom (self, lemeeme):
+  def MudaLemeCom (self, leme):
     """Muda o leme comandado da embarcação
     
     :param leme:
     
     """
-    temp = lemeeme.copy()
+    
+    temp = leme.copy()
     self.leme.MudaLemeCom(temp)        
     
     pass
@@ -173,6 +174,7 @@ class navio:
     :param velocidade: velocidade (m/s)
     
     """
+    
     temp = velocidade.copy()
     
     self.vel = temp        
@@ -249,6 +251,7 @@ class navio:
 
   def CalcK (self):
     """ Calcula o momento de Roll"""
+    
     m = self.dic['m']*(self.dic['rho']*(self.dic['lpp']**3)/2)
     u = self.MostraVel()[0] 
     v = self.MostraVel()[1]
@@ -310,8 +313,8 @@ class navio:
               * p[0] (int) -- Termo que determina quantos graus de liberdade
                               possui o modelo matemático;
               * p[1] (tupla) -- Pesos Com os fatores multiplicadores das
-                     forças. Tomando :math:`p\left[1\right] = 
-                     \left[p_a \ p_b \ p_c \ p_d\right]`,então,
+                                forças. Tomando :math:`p\left[1\right] = 
+                                \left[p_a \ p_b \ p_c \ p_d\right]`,então,
                      
                      .. math::
                      
@@ -360,9 +363,7 @@ class navio:
         [[        0.        ]
          [    78315.9850437 ]
          [-14403055.51605981]]
-
-
-        
+     
     """
     
     if p == None:
@@ -481,17 +482,19 @@ class navio:
       pitch = p[1]
       yaw = p[2]
       
-    Rot = sp.array([[sp.cos(yaw)*sp.cos(pitch), 
-    -sp.sin(yaw)*sp.cos(roll) +
-sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll), 
-    sp.sin(yaw)*sp.sin(roll) + sp.cos(yaw)*sp.cos(roll)*sp.sin(pitch)
-], 
-    [sp.sin(yaw)*sp.cos(pitch), 
-    sp.cos(yaw)*sp.cos(roll) + sp.sin(roll)*sp.sin(pitch)*sp.sin(yaw), 
-    -sp.cos(yaw)*sp.sin(roll) + sp.sin(yaw)*sp.cos(roll)*sp.sin(pitch)
-], 
-    [-sp.sin(pitch), sp.cos(pitch)*sp.sin(roll), 
-    sp.cos(pitch)*sp.cos(roll)] ])
+    Rot = sp.array([[sp.cos(yaw) * sp.cos(pitch), 
+                    -sp.sin(yaw) * sp.cos(roll) +
+                     sp.cos(yaw) * sp.sin(pitch) * sp.sin(roll), 
+                     sp.sin(yaw) * sp.sin(roll) + sp.cos(yaw) * sp.cos(roll)
+                    * sp.sin(pitch)], [sp.sin(yaw) * sp.cos(pitch), 
+                    sp.cos(yaw) * sp.cos(roll) + sp.sin(roll) * 
+                    sp.sin(pitch) * sp.sin(yaw), -sp.cos(yaw) * 
+                    sp.sin(roll) + sp.sin(yaw) * sp.cos(roll) *
+                    sp.sin(pitch)],                           
+    
+    
+    [-sp.sin(pitch), sp.cos(pitch) * sp.sin(roll), 
+    sp.cos(pitch) * sp.cos(roll)]])
     
     Rot.shape  = (3, 3)
     Rot= sp.matrix(Rot)
@@ -499,11 +502,12 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     return Rot
 
   def f2 (self, VetF, H):
-    """Calcula o valor de f(x) na equação x' = f(x) onde x são é  o vetor de
-    velocidades no sistema solidário
+    r"""Calcula o valor de f(x) na equação :math:`\dot x = f(x)` onde x são é 
+    o vetor de velocidades no sistema solidário.
     
     :param VetF:
     :param H:
+    
     """
     
     GrausDeLib = len(VetF)
@@ -581,8 +585,10 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     
   def fvein (self, x, t, p):
     """
-    x = sp.array(u, v , w)
-    p = (  roll, pitch, yaw)
+    :param x: sp.array(u, v , w)
+    :param t:
+    :param p: (  roll, pitch, yaw)
+    
     """
     
     return sp.array(self.MatRot(p[0])*p[1])
@@ -675,11 +681,10 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     elif tipo == 'starboard':
       self.MudaLemeCom(sp.array(-leme*sp.pi/180))
 
-    #Criando espaço na memória para armazenar os parâmetros da curva
-    nlin = len(sp.arange(t0, t, dt)) #Número de linhas das colunas a serem
-    #criadas
     if saida == 'mem':
-      lemehis = sp.zeros((nlin, 2)) #historico do leme
+       #Número de linhas das colunas a serem criadas
+      nlin = len(sp.arange(t0, t, dt)) 
+      lemehis = sp.zeros((nlin, 2)) #histórico do leme
       velohis = sp.zeros((nlin, 7)) #histórico da velocidade
       veloinerhis = sp.zeros((nlin, 4))#histórico da velocidade no
       #sistema inercial. Verificar depois a necessidade
@@ -690,6 +695,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       prophis = sp.zeros((nlin, 2)) #histórico Máquina
       etahis = sp.zeros((nlin, 2)) #histórico eta
       betahis =  sp.zeros((nlin, 2)) #histórico beta
+      del nlin #não preciso mais
     elif saida == 'txt':
       if os.path.exists(arqs):
         os.rename(arqs, arqs + '2')
@@ -766,14 +772,11 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       betahis.write('#Beta \n#\n')
       betahis.write('#temp'.center(5) + ' ' + 'rot'.rjust(8) + ' ' + '\n')
       
-      os.chdir('..')
-      os.chdir('..')
+      os.chdir('../..')
     
     dados = []
     dic = {}
-    posini = self.MostraPos().copy()           
-
-    del nlin #não preciso mais
+    posini = self.MostraPos().copy()          
     cont =0 #Contador
     
     #iteração
@@ -809,8 +812,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         if  not log:
           if (abs(abs(self.MostraPos()[5] - posini[5]) - 
               (sp.pi/2)) <= errotf):
-            errotf = (abs(abs(self.MostraPos()[5] - posini[5]) -
-                  (sp.pi/2)))
+            errotf = (abs(abs(self.MostraPos()[5] - posini[5]) - (sp.pi/2)))
             dic['transfer'] = abs(self.MostraPos()[1] - posini[1])
             dic['advance'] = abs(self.MostraPos()[0] - posini[0])
           if (abs(abs(self.MostraPos()[5] - posini[5]) - sp.pi) <= errotd):
@@ -1011,11 +1013,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       return dados
     elif saida == 'mem':
       return (velohis, poshis, acelhis, fhis, veloinerhis, lemehis, prophis,
-              etahis, dados, betahis)
-  def usr ():
-      """teste"""
-      pass
-      
+              etahis, betahis, dados)
 
   def getCurvaZigZag (self, peso=None, met='euler', t0=0., dt=0.5, t=100.,
                       GrausDeLib=3, tipo='port', leme=sp.array(20.),
@@ -1023,7 +1021,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
                       eta='vel', posine=None, osa=sp.array(0.0),
                       ospath=sp.array(0.0), erro=sp.array(0.005),
                       saida='txt', arqs='./saida/zz'):
-    """Simula manobras de Zig Zag
+    r"""Simula manobras de Zig Zag.
     
     :param GrausDeLib: Graus de liberdade de modelo matemático;
     :param met: Método de integração. (default = euler);
@@ -1045,7 +1043,11 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     :param velcom: Comando de velocidade da embarcação[opcional];
     :param vel: velocidade da embarcação[opcional];
     :return: (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
-             prophis, etahis, dados, betahis)
+             prophis, etahis). Caso o valor do parâmetro *saida* seja 'txt' 
+             retorna estes valores como arquivos de texto no diretório 
+             indicado pelo parâmetro *arqs*. Mesmo nesse caso a função
+             retorna uma lista que contém dicionários com parâmetros com
+             overshoot da proa *'osa'* e overshoot lateral linear *'ospath'*.
              Em cada elemento da tupla a primeira coluna é o passo de tempo e
              as demais são as variáveis:
              * velohis -- histórico de velocidades;
@@ -1091,7 +1093,9 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
     self.MudaRotCom(rotcom)
     self.MudaVelCom(velcom)
 
-
+    #A variável exe é utilizada mais tarde como parâmetro para contar o 
+    #número de execuções do leme. Este valo sinalizará o memento em que
+    #devemos inverter o valor do leme comandado
     if tipo == 'port':
       self.MudaLemeCom(sp.array(leme*sp.pi/180))
       exe = 0
@@ -1100,10 +1104,10 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       exe = 1
 
     #Criando espaço na memória para armazenar os parâmetros da curva
-    nlin = len(sp.arange(t0, t, dt)) 
 
     if saida == 'mem':
-      lemehis = sp.zeros((nlin, 2)) #historico do leme
+      nlin = len(sp.arange(t0, t, dt)) 
+      lemehis = sp.zeros((nlin, 2)) #histórico do leme
       velohis = sp.zeros((nlin, 7)) #histórico da velocidade
       veloinerhis = sp.zeros((nlin, 4))#histórico da velocidade no
       #sistema inercial Verificar depois a necessidade
@@ -1112,198 +1116,164 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
       acelhis = sp.zeros((nlin, 7)) #histórico de acelerações
       prophis = sp.zeros((nlin, 2)) #histórico Máquina
       etahis = sp.zeros((nlin, 2)) #histórico eta
+      del nlin #não preciso mais
     elif saida == 'txt':
       if os.path.exists(arqs):
         os.rename(arqs, arqs + '2')        
       os.makedirs(arqs)
       os.chdir(arqs)
       
-      lemehis = open('leme.dat', 'w')#historico do leme
+      lemehis = open('leme.dat', 'w')#histórico do leme
       lemehis.write('#Navio ' + self.nome + '\n' +  '#Manobra de Curva \
-            de Zig-Zag\n#\n')
+                    de Zig-Zag\n#\n')
       lemehis.write('#Valor do leme em rad\n')
-      lemehis.write('#temp'.center(5) + ' ' + 'leme'.rjust(8) + ' ' +
-            '\n')
+      lemehis.write('#temp'.center(5) + ' ' + 'leme'.rjust(8) + ' ' + '\n')
       
       velohis = open('velo.dat', 'w') #histórico da velocidade
       velohis.write('#Navio ' + self.nome + '\n' +  '#Manobra de Curva \
-            de Zig-Zag\n#\n')
-      velohis.write('#velocidade Sistema Solidário \n#\n')
+                    de Zig-Zag\n#\n')
+      velohis.write('#velocidade no Sistema Solidário \n#\n')
       velohis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
-              'v'.rjust(11)  + ' ' + 'w'.rjust(11)  + ' ' + 'dot \
-              roll'.rjust(11) + ' ' + ' dot pitch'.rjust(11)  + 
-              ' ' + 'dot yaw'.rjust(11) + ' ' + '\n') 
+                    'v'.rjust(11)  + ' ' + 'w'.rjust(11)  + ' ' + 'dot \
+                    roll'.rjust(11) + ' ' + ' dot pitch'.rjust(11)  + 
+                    ' ' + 'dot yaw'.rjust(11) + ' ' + '\n') 
       
-      veloinerhis = open('veloiner.dat', 'w')#histórico da velocidade no
-#sistema inercial Verificar depois a necessidade
+      #histórico da velocidade no sistema inercial Verificar depois a
+      #necessidade.
+      veloinerhis = open('veloiner.dat', 'w')
       veloinerhis.write('#Navio ' + self.nome + '\n' +  '#Manobra de \
-              Curva de Zig-Zag\n#\n')
+                        Curva de Zig-Zag\n#\n')
       veloinerhis.write('#velocidade Inercial\n#\n')
       veloinerhis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
-              'v'.rjust(11)  + ' '  + 'r'.rjust(11) + '\n') 
+                        'v'.rjust(11)  + ' '  + 'r'.rjust(11) + '\n') 
 
-      poshis =  open('pos.dat', 'w')#histórico da posição no sistema
-#inercial
+      #histórico da posição no sistema inercial
+      poshis =  open('pos.dat', 'w')
       poshis.write('#Navio ' + self.nome + '\n' +  '#Manobra de Curva \
-            de Zig-Zag\n#\n')
+                   de Zig-Zag\n#\n')
       poshis.write('#Posição e Orientação\n#\n')
       poshis.write('#temp'.center(5) + ' ' + 'x'.rjust(11)  + ' ' +
-            'y'.rjust(11)  + ' ' + 'z'.rjust(11)  + ' ' +
-            'roll'.rjust(11) + ' ' + 'pitch'.rjust(11)  + ' ' +
-            'yaw'.rjust(11) + ' ' + '\n') 
+                   'y'.rjust(11)  + ' ' + 'z'.rjust(11)  + ' ' +
+                   'roll'.rjust(11) + ' ' + 'pitch'.rjust(11)  + ' ' +
+                   'yaw'.rjust(11) + ' ' + '\n') 
 
-      fhis = open('forcas.dat', 'w') #histórico de forças
+      #histórico de forças
+      fhis = open('forcas.dat', 'w') 
       fhis.write('#Navio ' + self.nome + '\n' + '#Manobra de Curva de \
-            Zig-Zag\n#\n')
+                  Zig-Zag\n#\n')
       fhis.write('#Forças e Momentos\n#\n')
       fhis.write('#temp'.center(5) + ' ' + 'X'.rjust(11)  + ' ' +
-          'Y'.rjust(11)  + ' ' + 'K'.rjust(11)  + ' ' +
-          'N'.rjust(11) + ' ' + '\n') 
+                 'Y'.rjust(11)  + ' ' + 'K'.rjust(11)  + ' ' +
+                 'N'.rjust(11) + ' ' + '\n') 
       
-      acelhis = open('acel.dat', 'w') #histórico de acelerações
+      #histórico de acelerações
+      acelhis = open('acel.dat', 'w') 
       acelhis.write('#Navio ' + self.nome + '\n' + '#Manobra de Curva \
-            de Zig-Zag\n#\n')
+                    de Zig-Zag\n#\n')
       acelhis.write('#Aceleração\n#\n')
       acelhis.write('#temp'.center(5) + ' ' + 'u'.rjust(11)  + ' ' +
-            'v'.rjust(11)  + ' ' + 'w'.rjust(11)  + ' ' +
-            'ddotroll'.rjust(11) + ' ' + ' ddotpitch'.rjust(11)
-            + ' ' + 'ddotyaw'.rjust(11)  + ' ' + '\n') 
+                    'v'.rjust(11)  + ' ' + 'w'.rjust(11)  + ' ' +
+                    'ddotroll'.rjust(11) + ' ' + ' ddotpitch'.rjust(11)
+                    + ' ' + 'ddotyaw'.rjust(11)  + ' ' + '\n') 
 
-      prophis = open('propulsor.dat', 'w') #histórico Máquina
+      #histórico Máquina
+      prophis = open('propulsor.dat', 'w') 
       prophis.write('#Navio ' + self.nome + '\n' + '#Manobra de Curva \
-            de Zig-Zag\n#\n')
+                    de Zig-Zag\n#\n')
       prophis.write('#Rotações do propulsor\n#\n')
       prophis.write('#temp'.center(5) + ' ' + 'rot'.rjust(8) + '\n')
       
-      etahis = open('eta.dat', 'w') #histórico eta
+      #histórico eta
+      etahis = open('eta.dat', 'w') 
       etahis.write('#Navio ' + self.nome + '\n' +  '#Manobra de Curva \
             de Zig-Zag\n#\n')
       etahis.write('#eta \n#\n')
-      etahis.write('#temp'.center(5) + ' ' + 'rot'.rjust(8) + ' ' + 
-            '\n')
-      
-      os.chdir('..')
-      os.chdir('..')
-      
+      etahis.write('#temp'.center(5) + ' ' + 'rot'.rjust(8) + ' ' +  '\n')
+      #Voltando ao diretório de trabalho
+      os.chdir('../..')
     dados = []
     dic = {}
-    PosIni = self.MostraPos().copy()           
-
-    del nlin #não preciso mais
-    cont =0 #Contador
-    
+    posini = self.MostraPos().copy()          
+    cont = 0 #Contador
+   
     if peso == None:   
       par =   (GrausDeLib, )
     else:
       par = (GrausDeLib, peso)
     
-
-#
-#   Iteração
-#
-
+    #Início da iteração
     for tp in sp.arange(t0, t, dt):
-
-###############################
-##
-##   Verificando o momento em que será realizada a mudança do leme
-##
-###############################
-      if (((exe%2 == 0) and self.MostraPos()[5] <= 
-        -(proa * sp.pi / 180)) or (exe%2 != 0 and 
-        self.MostraPos()[5] >= (proa * sp.pi / 180))):
+    #Verificando o momento em que será realizada a mudança do leme.
+    #Quando guinando para  bombordo o valor de exe%2 = True e para boreste o
+    #contrario.
+      if (((exe%2 == 0) and self.MostraPos()[5] <= -(proa * sp.pi / 180)) or
+         (exe%2 != 0 and self.MostraPos()[5] >= (proa * sp.pi / 180))):
           self.MudaLemeCom(self.MostraLeme() * (-1))
-          if ((exe != 0 and tipo == 'port') or (exe != 1
-            and tipo == 'starboard')):
-              dic['reach'] = erro
-              dic['ospath'] = ospath
-              dic['osangle'] = osa
-              dados.append(dic.copy())
-        
+          if ((exe != 0 and tipo == 'port') or 
+              (exe != 1 and tipo == 'starboard')):
+            dic['reach'] = erro
+            dic['ospath'] = ospath
+            dic['osangle'] = osa
+            dados.append(dic.copy())
           osa = sp.array(0.0)
           ospath = sp.array(0)
           erro = sp.array(0.05)
           logospath = False
           logosa = False
-          exe += 1
-          if tipo =='port':
-            dic['exeNummber'] = exe
-          elif tipo=='starboard':
-            dic['exeNummber'] = exe - 1
+          if tipo == 'port':
+            dic['exeNumber'] = exe
+          elif tipo =='starboard':
+            dic['exeNumber'] = exe - 1
           dic['time'] = tp - sp.array(dt)
           dic['path'] = self.MostraPos()[1]
           dic['proa'] = self.MostraPos()[5]
-
-###############################
-##
-##   Atualizando os parâmetros
-##
-###############################
-      
-      if ((exe!=0 and tipo == 'port') or (exe!=1 and tipo ==
-        'starboard')):
+          exe += 1
+      #Atualizando os parâmetros.
+      #Este if pergunta se está é a primeira execução
+      if ((exe != 0 and tipo == 'port') or 
+          (exe != 1 and tipo == 'starboard')):
+        #Já atingi o maior valor de overshoot da distancia e armazenei este
+        #valor?
         if ((logospath == False) and
-          (abs(self.MostraPos()[1] - dic['path']) >= ospath)):
-#(sp.sign(self.MostraPos()[1])== sp.sign(dic['path'])) and
+            (abs(self.MostraPos()[1] - dic['path']) >= ospath)):
           ospath = abs(self.MostraPos()[1] - dic['path'])
         else:
           logospath = True
-        
+        #Já atingi o maior valor de overshoot do proamento e armazenei este
+        #valor?
         if ((logosa == False) and (abs(self.MostraPos()[5] - 
-          dic['proa']) >= osa)): #(sp.sign(self.MostraPos()[5])==
-#sp.sign(dic['proa'])) and 
+          dic['proa']) >= osa)):
           osa = abs(self.MostraPos()[5] - dic['proa'])
         else:
           logosa = True
           
-        if abs(abs(self.MostraPos()[5]) - abs(PosIni[5])) < erro:
-          erro = abs(self.MostraPos()[5] - PosIni[5])            
-
-      
-  
-      
-      
-#
-#                inc = velocidades Lineares no Sistema Inecial
-#
+        if abs(abs(self.MostraPos()[5]) - abs(posini[5])) < erro:
+          erro = abs(self.MostraPos()[5] - posini[5])
+          
       MatRot = self.MatRot()
-      velIn = MatRot * sp.matrix(self.vel[0:3])
-
+      velin = MatRot * sp.matrix(self.vel[0:3])
       posine = self.MostraPos()[0:3]
-
-###################################
-
-#################################
-##
-##  Cálculo das forças de Maneira Modular
-##
-###################################
-      ft = self.VetF(par)
-
-##################################
-##################################
-##                
-##                       Guardando os parâmetros
-##                
-##################################                
-#          velocidade Inercial
+      #Cálculo de forças
+      ft = self.VetF(par)            
+      #Guardando os parâmetros.
+      #velocidade Inercial
       if saida == 'txt':
         veloinerhis.write('%.2f'.rjust(5)%(tp) + ' ')
-        for arg in velIn:
+        for arg in velin:
           veloinerhis.write('%.5e'.rjust(11)%(arg) + ' ')
         veloinerhis.write('\n')
       elif saida == 'mem':
-        d = sp.hstack(velIn)
-        veloinerhis[cont, 1:] = d #
-        veloinerhis[cont, 0] = tp #
-#           histórico Leme
+        d = sp.hstack(velin)
+        veloinerhis[cont, 1:] = d 
+        veloinerhis[cont, 0] = tp 
+      #Guardando o histórico do Leme
       if saida == 'txt':
         lemehis.write('%.2f'.rjust(5)%(tp) + ' ')
         lemehis.write('%.2f'.rjust(5)%(self.MostraLeme()) + '\n')
       elif saida == 'mem':
         lemehis[cont, 0] = tp
         lemehis[cont, 1] = self.MostraLeme()
-#           histórico da posição
+      #histórico da posição
       if saida == 'txt':
         poshis.write('%.2f'.rjust(5)%(tp) + ' ')
         for arg in self.MostraPos():
@@ -1313,7 +1283,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         temp = sp.hstack(self.MostraPos())
         poshis[cont, :] = sp.hstack((tp, temp))
         del temp
-#           histórico da velocidade
+      #histórico da velocidade
       if saida == 'txt':
         velohis.write('%.2f'.rjust(5)%(tp) + ' ')
         for arg in self.MostraVel():
@@ -1323,7 +1293,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         temp = sp.hstack(self.MostraVel())
         velohis[cont, :] = sp.hstack((tp, temp))
         del temp
-#           histórico das Forças 
+      #histórico das Forças 
       if saida == 'txt':
         temp = sp.zeros((4, 1))
         if GrausDeLib == 4:
@@ -1334,10 +1304,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         fhis.write('%.2f'.rjust(5)%(tp) + ' ')
         for arg in temp:
           fhis.write('%.5e'.rjust(11)%(arg) + ' ')
-        fhis.write('\n')  #def init(self):
-
-
-
+        fhis.write('\n')
       elif saida == 'mem': 
         temp = sp.hstack(sp.array(ft))
         if GrausDeLib == 4:
@@ -1346,13 +1313,14 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
           fhis[cont, :3] = sp.hstack((tp, temp[:2]))
           fhis[cont, 4] = temp[2]
 
-#           histórico Propulsor
+      #histórico Propulsor
       if saida == 'txt':
         prophis.write('%.2f'.rjust(5)%(tp) + ' ')
         prophis.write('%.2f'.rjust(5)%self.MostraRot() + '\n')
       elif saida == 'mem':
         prophis[cont, :] = sp.hstack((tp, self.MostraRot()))
-#           histórico eta
+      
+      #histórico eta
       if saida == 'txt':
         etahis.write('%.2f'.rjust(5)%(tp) + ' ')
         if eta == 'rot':
@@ -1369,7 +1337,7 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
           etahis[cont, :] = sp.hstack((tp, self.MostraVelCom() /
                         self.MostraVel()[0]))
 
-#           histórico das Acelerações 
+      #histórico das Acelerações 
       Acel = self.f2(ft, self.H(GrausDeLib))
       vetor = sp.zeros((6, 1))
       if GrausDeLib == 4:
@@ -1386,18 +1354,11 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         acelhis.write('\n')
       elif saida == 'mem':  
         acelhis[cont, :] = sp.hstack((tp, sp.hstack(vetor)))       
-
-  
       del vetor 
 
-##############################
-##
-##    Criação de vetor de graus de liberdade
-##
-##############################
+      #Criação de vetor de graus de liberdade
       if GrausDeLib == 4:
         vt = sp.zeros([6, 1])
-        
         vt [0] = self.MostraVel()[0]
         vt [1] = self.MostraVel()[1]
         vt [2] = self.MostraVel()[3]
@@ -1409,18 +1370,14 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         vt [0] = self.MostraVel()[0]
         vt [1] = self.MostraVel()[1]
         vt [2] = self.MostraVel()[5]
-        vt [3] = self.MostraPos()[5]         
-##################################
-##                
-##                      Integração da Aceleração solidária
-##                
-##################################
+        vt [3] = self.MostraPos()[5]
+        
+      #Integração da Aceleração solidária
       if met == 'euler':
         vt =  self.integrador.euler(self.f, vt, tp, dt ,par  )
       elif met =='rk4':
         vt = self.integrador.rk4(self.f, vt, tp, dt, par)
-      
-##################################
+      #Preparando a saída da integração
       if GrausDeLib == 4:
         v = sp.zeros((6, 1))
         v[0] = vt[0] 
@@ -1432,71 +1389,81 @@ sp.cos(yaw)*sp.sin(pitch)*sp.sin(roll),
         v[0] = vt[0] 
         v[1] = vt[1] 
         v[5] = vt[2]                
-      self.MudaVel(v)               
-
+      self.MudaVel(v)              
       del v
-##################################
-##                
-##                       Integração da velocidade inercial
-##                
-###################################
+
+      #Integração da velocidade inercial
       x = sp.zeros((6, 1))
       if met == 'euler':
-        x[:3] = self.integrador.euler(self.fvein,
-self.MostraPos()[:3],
-                      tp, dt, (self.MostraPos()[3:],
-                      self.MostraVel()[:3]))
+        x[:3] = self.integrador.euler(self.fvein, self.MostraPos()[:3],
+                                      tp, dt, (self.MostraPos()[3:],
+                                      self.MostraVel()[:3]))
       elif met == 'rk4':
-        x[:3] = self.integrador.rk4(self.fvein,
-self.MostraPos()[:3],
-                      tp, dt, (self.MostraPos()[3:],
-                      self.MostraVel()[:3]))
-##################################
+        x[:3] = self.integrador.rk4(self.fvein, self.MostraPos()[:3],
+                                    tp, dt, (self.MostraPos()[3:],
+                                    self.MostraVel()[:3]))
+      #Preparando a saída da integração
       if GrausDeLib == 4:
         x[3] = vt[4]
         x[5] = vt[5]
       elif GrausDeLib == 3:
         x[5] = vt[3]
-        
+      
+      #Preparando os parâmetros para o próximo passo de integração
       self.MudaPos(x)
       cont += 1
       del x
-      
       self.prop.MudaRot(tp)
       self.leme.MudaLeme(tp)
 
     if saida == 'txt':
-      arq = [velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
-        prophis, etahis]
+      arq = (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
+             prophis, etahis)
       for arg in arq:
         arg.close()
       return dados
     elif saida == 'mem':
       return (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
-          prophis, etahis, dados)
+              prophis, etahis, dados)
 
   def simulaTestb(self, p, intervalo=sp.array(5.), V=None):
-    """Faz  o teste.
+    r"""Gera uma tabela de forças variando com o ângulo :math:`\beta`
     
-    :param p:
-    :param intervalo:
-    :param V: 
+    :param p: Mesmo parâmetro utilizado para chamar a função :ref: `VetF`;
+    :param intervalo: Intervalo de variação do ângulo :math:`\beta`;
+    :param V: Velocidade da embarcação.
     :return: Retorna uma matriz com o valor das forças variando de acordo com a
              velocidade.
     :type intervalo: numpy.ndarray
          
+    :Example:
+        >>> import scipy as sp
+        >>> import matplotlib.pyplot as plt
+        >>> import Es
+        >>> import Navio
+        >>> entrada = ('NavioTeste', '../dados/bemformatado.dat',
+        ... 'inputtab.dat')
+        >>> en = Es.es(entrada)
+        >>> nav = Navio.navio(en.lerarqder())
+        >>> pa = (1, 1, 1)
+        >>> pb = (1, 1, 1)
+        >>> pc = (1, 1, 1)
+        >>> pd = (1, 1, 1)
+        >>> p = (pa, pb, pc, pd)
+        >>> print nav.simulaTestb(p)[:2,]
+        [[ 0.          0.          0.02576571  0.         -0.01349632]
+         [ 0.08726646  0.00765429  0.46717178  0.          0.20968975]]
+
     """
     
     if V == None:
       V = self.dic['unom']
       
     Velocidade = sp.zeros((6, 1))
-    saida = sp.zeros([len( sp.arange(0., sp.pi, intervalo * sp.pi /
-180)),
-            5])
-    contlinha = 0
-    
-    for beta in sp.arange(0., sp.pi, intervalo * sp.pi / 180):
+    saida = sp.zeros([len( sp.arange(0., sp.pi, intervalo * sp.pi / 180)),
+                                     5])
+    contlinha = 0   
+    for beta in sp.arange(0., sp.pi/2, intervalo * sp.pi / 180):
       Velocidade[0] = sp.array(V) * sp.cos(beta)
       Velocidade[1] = -sp.array(V) * sp.sin(beta)
       self.MudaVelCom(Velocidade[0]) #condição que força \eta=1
@@ -1505,15 +1472,12 @@ self.MostraPos()[:3],
       rho = self.dic['rho']
       lpp = self.dic['lpp']
       vetF = self.VetF((4, p))
-#            vetF = sp.hstack(vetF)
-      saida[contlinha, :] = sp.hstack([beta, vetF[0] * (2 / (rho *
-(lpp *
-                      (v ** 2)))), vetF[1] * (2 /
-(rho *
-                      (lpp* (v ** 2)))), vetF[2] *
+      saida[contlinha, :] = sp.hstack([beta, vetF[0] * (2 / 
+                      (rho * (lpp * (v ** 2)))), vetF[1] * 
+                      (2 / (rho * (lpp* (v ** 2)))), vetF[2] *
                       (2 / (rho * ((lpp * v) ** 2))),
                       vetF[3] * (2 / (rho * ((lpp * v) **
-                      2)))])
+                                             2)))])
       contlinha += 1
     
     return saida

@@ -42,8 +42,6 @@ else:
     velhis, poshis, acelhis, forhis, velinhis, lemehis, prophis, \
     etahis, listaz = a 
     del a
-dirzz = scgarq + '/figuras'
-os.makedirs(dirzz)
 
 if adi :
     cont = 0
