@@ -31,22 +31,25 @@ f.write('\n\t')
 
 f.write('\subsection{Dados}')
 f.write('\n\t')
+
 f.write('\\begin{center}')
 f.write('\n\t')
 f.write('\\begin{tabular}{ll}')
 f.write('\\ \n\t\t')
 
-f.write('Diâmetro tático  = & ' + '%f'.rjust(6)%(listacg[0]['taticalDiameter']))
+f.write('Diâmetro tático  = & ' +
+'%.f'.rjust(6)%(listacg[0]['taticalDiameter']))
 f.write('\\\ \n\t\t')
 
-f.write('Avanço  = & ' + '%f'.rjust(4)%(listacg[0]['advance']) )
+f.write('Avanço  = & ' + '%.f'.rjust(4)%(listacg[0]['advance']) )
 f.write('\\\ \n\t\t')
 
-f.write('Transferência  = & '+ '%f'.rjust(4)%(listacg[0]['transfer']))
+f.write('Transferência  = & '+ '%.f'.rjust(4)%(listacg[0]['transfer']))
 f.write('\\\ \n\t\t')
 
-f.write('Raio da curva de equilíbrio = & '+ '%f'.rjust(4)%(listacg[0]['steadytr']))
-f.write('\\\ \n\t\t')
+f.write('Raio da curva de equilíbrio = & '+
+'%.f'.rjust(4)%(listacg[0]['steadytr']))
+f.write('\\\ \n\t')
 
 f.write('\end{tabular}')
 f.write('\n\t')

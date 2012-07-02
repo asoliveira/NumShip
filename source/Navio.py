@@ -42,7 +42,7 @@ class inte(object):
   Classe que realiza a integração no tempo
   
   :version:0.0
-  :author: Alex
+  :author: Alex S. Oliveira
   
   """
   

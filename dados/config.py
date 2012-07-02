@@ -7,11 +7,11 @@ import scipy as sp
 
 nome = 'B MarAd'
 save = True
-formato = 'eps'
+formato = 'jpg'
 passo = 0.7
 tmax = 4000
 tini =  0
-metodo = 'rk4'
+metodo = 'euler'
 TipoModelo = 'MARAD'
 GrausDeLib = 3
 #multiplicador da força
@@ -24,9 +24,9 @@ tipoc = 'starboard'
 #leme utilizado na curva de Giro
 lemecg = sp.array(35) 
 #Proa que inicia o comando de leme utilizado na curva de Zig Zag
-proazz = sp.array(10) 
+proazz = sp.array(20) 
 #leme utilizado na curva de Zig Zag
-lemezz = sp.array(10) 
+lemezz = sp.array(20) 
 #Final do arquivo de saída
 saida = 'txt'
 #Valor booleano. Dados de entrada Adimensionais ou não

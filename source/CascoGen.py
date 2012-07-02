@@ -53,8 +53,19 @@ class casco:
         self.pos = Posicao
 
     def Ma (self,  GrausDeLib = 4):
-        """Retorna um  sp.array de  massa adicional
+        r"""Retorna um  sp.array de  massa adicional.
         
+        No caso do modelo matemático escolhido ser o 'MARAD' 
+        retorna a matriz:
+        
+        .. math::
+      
+            M = \begin{bmatrix}
+            \dfrac{\rho L^3}{2}X_{\dot u} &0 &0 \\
+            0 &\dfrac{\rho L^3}{2}Y_{\dot v} &\dfrac{\rho L^4}{2}Y_{\dot r}\\
+            0 &\dfrac{\rho L^4}{2}N_{\dot v} & \dfrac{\rho L^5}{2}N_{\dot r}
+            \end{bmatrix}
+       
         :param GrausDeLib: Valor dos graus de liberdade do modelo matemático;
         :type GrausDeLib: int
         :return: Matriz de massa adicional. Não retorna nada se o valor dos
@@ -79,9 +90,9 @@ class casco:
             saida[2:, 2:] = saida[2:, 2:] * (self.dic['rho'] * 
                             (self.dic['lpp'] ** 5)) / 2    
         elif GrausDeLib == 3:
-            saida= sp.array([[self.dic['xdotu'], 0, 0 ], [0, 
-                   self.dic['ydotv'], self.dic['ydotr']], [0,
-                   self.dic['ndotv'], self.dic['ndotr']]])  
+            saida= sp.array([[self.dic['xdotu'], 0, 0 ], 
+                    [0, self.dic['ydotv'], self.dic['ydotr']], 
+                    [0, self.dic['ndotv'], self.dic['ndotr']]])  
             saida[:2, :2] = saida[:2, :2] * (self.dic['rho'] * 
                             (self.dic['lpp'] ** 3)) / 2
             saida[1,2] = saida[1,2] * (self.dic['rho'] * (self.dic['lpp'] **
@@ -89,12 +100,12 @@ class casco:
             saida[2,1] = saida[2,1] * (self.dic['rho'] * (self.dic['lpp'] **
                          4)) / 2
             saida[2, 2] = saida[2, 2] * (self.dic['rho'] * 
-            (self.dic['lpp'] ** 5)) / 2
+                          (self.dic['lpp'] ** 5)) / 2
         
         return saida 
 
     def M(self,  GrausDeLib = 4):
-        """Retorna um  sp.array de  massa e massa adicional"""
+        """Retorna um  sp.array de  massa e massa"""
         
         saida = None
         if GrausDeLib == 4:

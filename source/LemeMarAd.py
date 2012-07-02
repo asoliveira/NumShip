@@ -61,7 +61,7 @@ class lemeMarAd(leme):
         """
         self.leme = leme.copy()
 
-    def Fx (self,  rot= None,  eta =None):
+    def Fx (self,  rot= None,  eta=None):
         """Retorna  a força em surge.
         
         :param rot: rotação do propulsor da embarcação;

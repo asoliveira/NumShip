@@ -39,7 +39,14 @@ class cascoMarAd(casco):
         self.vel = Velocidade.copy()
 
     def Fx (self):
-        """Retorna a força em Surge"""
+        r"""Retorna a força em surge
+        
+        Aqui estão contabilizadas algumas forças relacionadas ao resíduo
+        tudo de dimensional.
+        
+        :return: :math:`X(\beta) + X(r) + X_{res}`
+        
+        """
         
         u = self.MostraVel()[0] 
         v = self.MostraVel()[1]
@@ -54,7 +61,7 @@ class cascoMarAd(casco):
         return X
     
     def Fy (self):
-        """Retorna a força de Sway"""
+        """Retorna a força de sway"""
         
         u = self.MostraVel()[0]
         v = self.MostraVel()[1]
@@ -71,7 +78,7 @@ class cascoMarAd(casco):
         return Y
       
     def K (self):
-        """Retorna o momento de Roll
+        """Retorna o momento de roll
         
         O modelo matemático é de 3 graus de liberdade, assim o momento de
         Roll não é calculado. Esta função retorna um array de valor *zero*
@@ -80,7 +87,7 @@ class cascoMarAd(casco):
         return sp.array([0.])
     
     def N (self):
-        """Retorna o momento de Yaw """
+        """Retorna o momento de yaw """
         
         u = self.MostraVel()[0]
         v = self.MostraVel()[1]
