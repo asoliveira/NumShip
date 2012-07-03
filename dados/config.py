@@ -18,7 +18,7 @@ GrausDeLib = 3
 ForEs = 1e0 
 Overshoot = 35 #em graus
 escala = '0.7'
-Rot = sp.array(0.62)
+Rot = sp.array(1.42)
 #tipo  de curva que será realizada 'starboard' ou 'port'
 tipoc = 'starboard' 
 #leme utilizado na curva de Giro

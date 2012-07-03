@@ -662,8 +662,7 @@ class navio:
       vel = sp.zeros((6,1))
       vel[0] = self.dic['unom']
     if posine == None:
-      posine = sp.zeros((6,1))
-        
+      posine = sp.zeros((6,1)) 
     
     self.MudaPos(posine)
     self.MudaVel(vel)
@@ -672,10 +671,9 @@ class navio:
 
     #log é o parâmetro que indica quando a simulação armazenou os dados do
     #relatório.
-    #log é o parâmetro que indica quando a simulação armazenou os dados do
     #o valor de r adimensional.
     log = False
-    log1 = False
+    equi = False
     if tipo == 'port':
       self.MudaLemeCom(sp.array(leme*sp.pi/180))
     elif tipo == 'starboard':
@@ -687,7 +685,6 @@ class navio:
       lemehis = sp.zeros((nlin, 2)) #histórico do leme
       velohis = sp.zeros((nlin, 7)) #histórico da velocidade
       veloinerhis = sp.zeros((nlin, 4))#histórico da velocidade no
-      #sistema inercial. Verificar depois a necessidade
       poshis =  sp.zeros((nlin, 7)) #histórico da posição no sistema
       #inercial
       fhis     = sp.zeros((nlin, 5)) #histórico de forças
@@ -801,8 +798,9 @@ class navio:
           V4 = sp.sqrt(self.MostraVel()[0]**2 +
                 self.MostraVel()[1]**2)                
         if log:
+            #Calcula o desvio padrão das últimas 4 velocidades se for abaixo 
+            #de 'errosr' armazema o raio de equilíbrio da curva como v/r
           if stats.tstd((V1, V2, V3, V4)) < errosr:
-            #valor de r adimencional
             dic['steadytr'] = (sp.sqrt(self.MostraVel()[0] ** 2 +
                                              self.MostraVel()[1] ** 2) / 
                                      self.MostraVel()[5])
@@ -1196,7 +1194,7 @@ class navio:
     posini = self.MostraPos().copy()          
     cont = 0 #Contador
    
-    if peso == None:   
+    if peso == None:
       par =   (GrausDeLib, )
     else:
       par = (GrausDeLib, peso)

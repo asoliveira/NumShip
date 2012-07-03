@@ -94,5 +94,5 @@ zg = 0.0,
 dp = 10.05, #Diâmetro do propulsor 32.96ft
 lambdaprop = 1, #Coeficiente de decaimento propulsor
 lambdaleme = 40, #Coeficiente de decaimento leme
-rotnom = 0.62,#1.42,
-unom = 4.11, #Velocidade nominal em 4.11 m/s = 8 knot e 8.23 = 16 knot
+rotnom = 1.42, #0.62,#1.42,
+unom = 8.23, #Velocidade nominal em 4.11 m/s = 8 knot e 8.23 = 16 knot

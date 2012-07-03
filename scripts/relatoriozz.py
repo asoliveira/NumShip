@@ -17,25 +17,28 @@ f.write('\section{Primera Execução}')
 f.write('\n\t')
 f.write('\\begin{center}')
 f.write('\n\t')
-f.write('\\begin{tabular}{ll}')
-f.write('\\ \n\t\t')
+f.write('\begin{tabular}{l|l|l}')
+f.write('\n\t\t')
+f.write('&Simulado &MarAd \\')
+f.write('\n\t\t')
+f.write('Execução' + 2*(' &' +'%.0f'.rjust(4)%(listaz[0]['exeNumber'])) + '\\')
+f.write('\\\\n\t\t')
 
-f.write('Execução = & ' + '%.2f'.rjust(4)%(listaz[0]['exeNumber']))
-f.write('\\\ \n\t\t')
+f.write('Tempo até a execução (segundos) &' +
+'%.2e'.rjust(4)%(listaz[0]['time']) +' &')
+f.write('\\\\n\t\t')
 
-f.write('Tempo até a execução (segundos) = & ' +
-'%.2e'.rjust(4)%(listaz[0]['time']))
-f.write('\\\ \n\t\t')
+f.write('Ângulo de overshoot (graus) &'+
+'%.2f'.rjust(4)%(listaz[0]['osangle']*(180/sp.pi)) +' &')
+f.write('\\\\n\t\t')
 
-f.write('Ângulo de \emph{overshoot} = & '+
-'%.2f'.rjust(4)%(listaz[0]['osangle']*(180/sp.pi)))
-f.write('\\\ \n\t\t')
+f.write('\Overshoot path (metros)&'+ '%.2e'.rjust(4)%(listaz[0]['ospath']) + 
+'&')
+f.write('\\\\n\t\t')
 
-f.write('\emph{Overshoot path}= & '+ '%.2e'.rjust(4)%(listaz[0]['ospath']))
-f.write('\\\ \n\t\t')
-
-f.write('\emph{Reach} = & '+ '%.2e'.rjust(4)%(listaz[0]['reach']*(180/sp.pi)))
-f.write('\\\ \n\t')
+f.write('Reach &'+ '%.2e'.rjust(4)%(listaz[0]['reach']*(180/sp.pi)) + 
+'&')
+f.write('\\\\n\t')
 
 f.write('\end{tabular}')
 f.write('\n\t')
@@ -50,25 +53,30 @@ f.write('\section{Segunda Execução}')
 f.write('\n\t')
 f.write('\\begin{center}')
 f.write('\n\t')
-f.write('\\begin{tabular}{ll}')
-f.write('\\ \n\t\t')
+f.write('\begin{tabular}{l|l|l}')
+f.write('\\\n\t\t')
 
-f.write('Execução = & ' + '%.0f'.rjust(4)%(listaz[1]['exeNumber']))
-f.write('\\\ \n\t\t')
+f.write('&Simulado &MarAd\\')
+f.write('\n\t\t')
 
-f.write('Tempo até a execução (segundos) = & ' +
-'%.2e'.rjust(4)%(listaz[1]['time']))
-f.write('\\\ \n\t\t')
+f.write('Execução' + 2*(' &' +'%.0f'.rjust(4)%(listaz[0]['exeNumber'])) + 
+'\\')
+f.write('\n\t\t')
 
-f.write('Ângulo de \emph{overshoot} = & '+
-'%.2f'.rjust(4)%(listaz[1]['osangle']*(180/sp.pi)))
-f.write('\\\ \n\t\t')
+f.write('Tempo até a execução (segundos) &' +
+'%.2e'.rjust(4)%(listaz[1]['time']) + '&')
+f.write('\\\\n\t\t')
 
-f.write('\emph{Overshoot path}= & '+ '%.2e'.rjust(4)%(listaz[1]['ospath']))
-f.write('\\\ \n\t\t')
+f.write('Ângulo de overshoot (graus) &'+
+'%.2f'.rjust(4)%(listaz[1]['osangle']*(180/sp.pi)) + '&')
+f.write('\\\\n\t\t')
 
-f.write('\emph{Reach} = & '+ '%.2e'.rjust(4)%(listaz[1]['reach']*(180/sp.pi)))
-f.write('\\\ \n\t')
+f.write('Overshoot path (metros)&'+ '%.2e'.rjust(4)%(listaz[1]['ospath']) +
+'&')
+f.write('\\\\n\t\t')
+
+f.write('Reach &'+ '%.2e'.rjust(4)%(listaz[1]['reach']*(180/sp.pi)) + '&')
+f.write('\\\\n\t')
 
 f.write('\end{tabular}')
 f.write('\n\t')
@@ -83,23 +91,30 @@ f.write('\section{Terceira Execução}')
 f.write('\n\t')
 f.write('\\begin{center}')
 f.write('\n\t')
-f.write('\\begin{tabular}{ll}')
-f.write('\\ \n\t\t')
+f.write('\begin{tabular}{l|l|l}')
+f.write('\\\n\t\t')
 
-f.write('Execução = & ' + '%.2f'.rjust(4)%(listaz[2]['exeNumber']))
-f.write('\\\ \n\t\t')
+f.write('&Simulado &MarAd\\')
+f.write('\n\t\t')
 
-f.write('Tempo até a execução (segundos) = & ' + '%.2e'.rjust(4)%(listaz[2]['time']))
-f.write('\\\ \n\t\t')
+f.write('Execução' + 2*(' &' +'%.0f'.rjust(4)%(listaz[0]['exeNumber'])) + 
+'\\')
+f.write('\n\t\t')
 
-f.write('Ângulo de \emph{overshoot} = & '+ '%.2f'.rjust(4)%(listaz[2]['osangle']*(180/sp.pi)))
-f.write('\\\ \n\t\t')
+f.write('Tempo até a execução (segundos) &' +
+'%.2e'.rjust(4)%(listaz[2]['time']))
+f.write('\\\\n\t\t')
 
-f.write('\emph{Overshoot path}= & '+ '%.2e'.rjust(4)%(listaz[2]['ospath']))
-f.write('\\\ \n\t\t')
+f.write('Ângulo de overshoot (graus) &'+
+'%.2f'.rjust(4)%(listaz[2]['osangle']*(180/sp.pi)) + '&')
+f.write('\\\\n\t\t')
 
-f.write('\emph{Reach} = & '+ '%.2e'.rjust(4)%(listaz[2]['reach']*(180/sp.pi)))
-f.write('\\\ \n\t')
+f.write('Overshoot path (metros)&'+ '%.2e'.rjust(4)%(listaz[2]['ospath']) +
+'&')
+f.write('\\\\n\t\t')
+
+f.write('Reach &'+ '%.2e'.rjust(4)%(listaz[2]['reach']*(180/sp.pi)) + '&')
+f.write('\\\\n\t')
 
 f.write('\end{tabular}')
 f.write('\n\t')
@@ -175,8 +190,6 @@ f.write('\caption{\\textit{Curva de Zigzag ' +
 str(int(lemezz))+'/'+str(int(proazz)) +'}}')
 f.write('\n\t')
 f.write('\end{figure}')
-
 f.write('\n\n\t')
-
 
 f.close()
