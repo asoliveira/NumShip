@@ -407,7 +407,7 @@ class navio:
       self.MudaVel(veltemp)
       # leme = 0 e eta = 1
       fbeta = self.VetF((GrausDeLib, )) - fu
-      
+      fbeta2 = fbeta.copy()
       it = 0
       for arg in peso[0]:
         fbeta[it] = arg* fbeta[it]
@@ -420,6 +420,7 @@ class navio:
       self.MudaVel(veltemp)
       # leme = 0 e eta = 1
       fr = self.VetF((GrausDeLib, )) - fu
+      fr2 = fr.copy()
       
       it = 0
       for arg in peso[1]:
@@ -433,6 +434,7 @@ class navio:
       veltemp[0] = velarq[0]
       self.MudaVel(veltemp)      
       fleme = self.VetF((GrausDeLib, ))  - fu
+      fleme2 = fleme.copy()
       
       it = 0            
       for arg in peso[2]:
@@ -444,7 +446,7 @@ class navio:
       #ao resíduo
       self.MudaVel(velarq)
       self.MudaVelCom(uc)
-      fbetarl = self.VetF((GrausDeLib, )) - (fbeta + fr + fleme)
+      fbetarl = self.VetF((GrausDeLib, )) - (fbeta2 + fr2 + fleme2)
       it = 0
       for arg in peso[3]:
         fbetarl[it] = arg* fbetarl[it]
@@ -535,16 +537,16 @@ class navio:
 
     return saida
     
-  def f (self, velocidade=None, t=None, p=(4, )):
+  def f (self, velocidade=None, t=None, p=(4,)):
     """O p é uma tupla com o valor dos graus de liberdade"""
     
     GrausDeLib = p[0]
-    if velocidade !=None:
+    if velocidade != None:
       velarq = self.MostraVel()
       posarq = self.MostraPos()
       veltemp = sp.zeros((6, 1))
       postemp =  sp.zeros((6, 1))
-      if GrausDeLib==3:
+      if GrausDeLib == 3:
         veltemp[:2] = velocidade[:2]
         veltemp[5] = velocidade[2]
         postemp[5] = velocidade[3]
@@ -558,19 +560,19 @@ class navio:
       self.MudaPos(postemp)
     
     if GrausDeLib == 4:
-      a=  sp.zeros((6, 6))
+      a = sp.zeros((6, 6))
       a[5, 5] = 1.
       a[4, 4] = 1.
       a[:4, :4]= self.H(GrausDeLib)
 
-      b=  sp.zeros((6, 1))
+      b = sp.zeros((6, 1))
       b [4, 0] = self.vel[3]
-      b [5, 0] = self.vel[5]*sp.cos(self.MostraPos()[3])
+      b [5, 0] = self.vel[5] * sp.cos(self.MostraPos()[3])
       b[:4, :]= self.VetF(p)
     elif GrausDeLib == 3:
       a=  sp.zeros((4, 4))
       a[3, 3] = 1.
-      a[:3, :3]= self.H(GrausDeLib)
+      a[:3, :3] = self.H(GrausDeLib)
 
       b=  sp.zeros((4, 1))
       b[:3, :]= self.VetF(p) 
@@ -578,16 +580,17 @@ class navio:
     
     saida = linalg.solve(a, b) 
     
-    if velocidade !=None:
+    if velocidade != None:
       self.MudaVel(velarq)
       self.MudaPos(posarq)
+    
     return saida
     
   def fvein (self, x, t, p):
     """
     :param x: sp.array(u, v , w)
     :param t:
-    :param p: (  roll, pitch, yaw)
+    :param p: ((roll, pitch, yaw), (u, v, r))
     
     """
     
@@ -673,6 +676,7 @@ class navio:
     #relatório.
     #o valor de r adimensional.
     log = False
+    #Indica quando foi armazenado o raio da curva de equilíbrio
     equi = False
     if tipo == 'port':
       self.MudaLemeCom(sp.array(leme*sp.pi/180))
@@ -778,60 +782,57 @@ class navio:
     
     #iteração
     for tp in sp.arange(t0, t, dt):
-      if not log1:
-        if cont == 0:
-          V1 = sp.sqrt(self.MostraVel()[0]**2 +
-                self.MostraVel()[1]**2)
-        elif cont == 1:
-          V2 = sp.sqrt(self.MostraVel()[0]**2 +
-                self.MostraVel()[1]**2)
-        elif cont == 2:
-          V3 = sp.sqrt(self.MostraVel()[0]**2 +
-                self.MostraVel()[1]**2)
-        elif cont == 3:
-          V4 = sp.sqrt(self.MostraVel()[0]**2 +
-                self.MostraVel()[1]**2)
-        else:
-          V1 = V2
-          V2 = V3
-          V3 = V4
-          V4 = sp.sqrt(self.MostraVel()[0]**2 +
-                self.MostraVel()[1]**2)                
-        if log:
-            #Calcula o desvio padrão das últimas 4 velocidades se for abaixo 
-            #de 'errosr' armazema o raio de equilíbrio da curva como v/r
-          if stats.tstd((V1, V2, V3, V4)) < errosr:
-            dic['steadytr'] = (sp.sqrt(self.MostraVel()[0] ** 2 +
-                                             self.MostraVel()[1] ** 2) / 
-                                     self.MostraVel()[5])
-            dados.append(dic.copy())
-            log1 = True
-          
-        if  not log:
-          if (abs(abs(self.MostraPos()[5] - posini[5]) - 
-              (sp.pi/2)) <= errotf):
-            errotf = (abs(abs(self.MostraPos()[5] - posini[5]) - (sp.pi/2)))
-            dic['transfer'] = abs(self.MostraPos()[1] - posini[1])
-            dic['advance'] = abs(self.MostraPos()[0] - posini[0])
-          if (abs(abs(self.MostraPos()[5] - posini[5]) - sp.pi) <= errotd):
-            errotd = abs(abs(self.MostraPos()[5] - posini[5]) - sp.pi)
-            dic['taticalDiameter'] = abs(self.MostraPos()[1] - posini[1])
-          if abs(self.MostraPos()[5] - posini[5]) > sp.pi:
-            log = True
+      if cont == 0:
+        V1 = sp.sqrt(self.MostraVel()[0]**2 +
+              self.MostraVel()[1]**2)
+      elif cont == 1:
+        V2 = sp.sqrt(self.MostraVel()[0]**2 +
+              self.MostraVel()[1]**2)
+      elif cont == 2:
+        V3 = sp.sqrt(self.MostraVel()[0]**2 +
+              self.MostraVel()[1]**2)
+      elif cont == 3:
+        V4 = sp.sqrt(self.MostraVel()[0]**2 +
+              self.MostraVel()[1]**2)
+      else:
+        V1 = V2
+        V2 = V3
+        V3 = V4
+        V4 = sp.sqrt(self.MostraVel()[0]**2 +
+              self.MostraVel()[1]**2)
+      if (log) and (not equi):
+          #Calcula o desvio padrão das últimas 4 velocidades se for abaixo 
+          #de 'errosr' armazema o raio de equilíbrio da curva como v/r
+        if stats.tstd((V1, V2, V3, V4)) < errosr:
+          dic['steadytr'] = (sp.sqrt(self.MostraVel()[0] ** 2 +
+                                            self.MostraVel()[1] ** 2) / 
+                                    self.MostraVel()[5])
+          dados.append(dic.copy())
+          equi = True
+        
+      if  not log:
+        if (abs(abs(self.MostraPos()[5] - posini[5]) - 
+            (sp.pi/2)) <= errotf):
+          errotf = (abs(abs(self.MostraPos()[5] - posini[5]) - (sp.pi/2)))
+          dic['transfer'] = abs(self.MostraPos()[1] - posini[1])
+          dic['advance'] = abs(self.MostraPos()[0] - posini[0])
+        if (abs(abs(self.MostraPos()[5] - posini[5]) - sp.pi) <= errotd):
+          errotd = abs(abs(self.MostraPos()[5] - posini[5]) - sp.pi)
+          dic['taticalDiameter'] = abs(self.MostraPos()[1] - posini[1])
+        if abs(self.MostraPos()[5] - posini[5]) > sp.pi:
+          log = True
       
       if peso == None:
         par =   (GrausDeLib, )
       else:
         par = (GrausDeLib, peso)
-      ft = self.VetF(par) 
-
+      ft = self.VetF(par)
       MatRot = self.MatRot()
       VelIn = sp.array(MatRot*self.MostraVel()[0:3])
       posine = self.MostraPos()[0:3]
       vel = self.MostraVel()
 
       #Guardando os parâmetros
-      
       #Velocidade Inercial
       if saida == 'txt':
         veloinerhis.write('%.2f'.rjust(5)%(tp) + ' ')
@@ -961,7 +962,7 @@ class navio:
         vt [3] = self.MostraPos()[5]         
       #integração da aceleração solidária
       if met == 'euler':
-        vt =  self.integrador.euler(self.f, vt, tp, dt ,par  )
+        vt = self.integrador.euler(self.f, vt, tp, dt, par)
       elif met =='rk4':
         vt = self.integrador.rk4(self.f, vt, tp, dt, par)
       
@@ -974,7 +975,7 @@ class navio:
       elif GrausDeLib == 3:
         v = sp.zeros((6, 1))
         v[0] = vt[0] 
-        v[1] = vt[1] 
+        v[1] = vt[1]
         v[5] = vt[2]                
       self.MudaVel(v)               
 
@@ -985,7 +986,7 @@ class navio:
         x[:3] = self.integrador.euler(self.fvein ,
                       self.MostraPos()[:3], tp, dt ,
                       (self.MostraPos()[3:] ,
-                      self.MostraVel()[:3]))	
+                      self.MostraVel()[:3]))
       elif met == 'rk4':
         x[:3] = self.integrador.rk4(self.fvein, self.MostraPos()[:3],
                       tp, dt, (self.MostraPos()[3:],

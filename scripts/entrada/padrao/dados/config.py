@@ -38,6 +38,6 @@ plot = True #plotar?
 
 #Fator multiplicador da força
 Multbeta= 1. * sp.array([1., 1.,1.]) 
-Multr=1. * sp.array([1., 1.,1. ])
-Multl=1. * sp.array([1.,1.,1. ]) 
-Multbrl= 1. * sp.array([1.,1.,1. ])
+Multr=1.*sp.array([1., 1.,1. ])
+Multl=1.*sp.array([1.,1.,1. ]) 
+Multbrl= 1.*sp.array([1.,1.,1. ])

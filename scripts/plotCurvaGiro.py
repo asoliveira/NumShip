@@ -289,7 +289,7 @@ else:
     ylabel = r'$\dot r \quad m\times s^{-2}$'
 
 
-plt.plot(acelHis[:, 0],  acelHis[:, 6]*(180/sp.pi),  'b--')
+plt.plot(acelHis[:, 0],  acelHis[:, 6]*(180/sp.pi),  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
