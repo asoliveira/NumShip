@@ -11,42 +11,39 @@ formato = 'jpg'
 dircg = 'fig-sen'
 #Caso seja para salvar, qual é o nome do arquivo?
 nome = 'cg'
+#Qual o titulo
+titulo = 'Curva de Zig Zag'
 
 import os
 
 import scipy as sp
 import matplotlib.pyplot as plt
-
-
         
-poshis = sp.genfromtxt('entrada/padrao/CurvaGiro/pos.dat')
-poshis2 = sp.genfromtxt('entrada/beta/saida1.2/CurvaGiro/pos.dat')
-poshis3 = sp.genfromtxt('entrada/r/saida1.2/CurvaGiro/pos.dat')
-poshis4 = sp.genfromtxt('entrada/leme/saida1.2/CurvaGiro/pos.dat')
-poshis5 = sp.genfromtxt('entrada/brl/saida1.2/CurvaGiro/pos.dat')
+poshis = sp.genfromtxt('entrada/padrao/CurvaZigZag/pos.dat')
+poshis2 = sp.genfromtxt('entrada/r/saida1.1/CurvaZigZag/pos.dat')
+poshis3 = sp.genfromtxt('entrada/r/saida1.2/CurvaZigZag/pos.dat')
+poshis4 = sp.genfromtxt('entrada/r/saida1.3/CurvaZigZag/pos.dat')
 
-axl = [-10, 1100, 0, 1000]
+axl = [0, 1000, -40, 40]
 
 #Plotando a Curva de Giro      
 if adi:
-    ylabel = r'$x\prime$'
-    xposlabel = r'$y\prime$'
+    ylabel = r'$\psi$'
+    xposlabel = r'$t$'
 else:
-    ylabel = r'$x \quad m$'    
-    xposlabel = r'$y \quad m$'    
+    ylabel = r'$\psi$'
+    xposlabel = r'$t$'    
 
 plt.subplot2grid((1,4),(0,0), colspan=3)
-plt.plot(poshis[:, 2],  poshis[:, 1],  'b-', 
+p1, = plt.plot(poshis[:, 0],  poshis[:, 6] * (180 / sp.pi),  'b-', 
 label=ur'padrão')
-plt.plot(poshis2[:, 2],  poshis2[:, 1],  'g-',
-label=ur'1.2beta')
-plt.plot(poshis3[:, 2],  poshis3[:, 1],  'r-',
+p2, = plt.plot(poshis2[:, 0],  poshis2[:, 6] * (180 / sp.pi),  'g-',
+label=ur'1.1r')
+p2, = plt.plot(poshis3[:, 0],  poshis3[:, 6] * (180 / sp.pi),  'r-',
 label=ur'1.2r')
-plt.plot(poshis4[:, 2],  poshis4[:, 1],  'k-',
-label=ur'1.2leme')
-plt.plot(poshis5[:, 2],  poshis5[:, 1],  'm-',
-label=ur'1.2brl')
-plt.title('Curva de Giro')
+p2, = plt.plot(poshis4[:, 0],  poshis4[:, 6] * (180 / sp.pi),  'k-',
+label=ur'1.3r')
+plt.title(titulo)
 plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 plt.ylabel(ylabel)
 plt.xlabel(xposlabel)
