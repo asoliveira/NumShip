@@ -26,6 +26,73 @@ alex
 
 524cab38-f117-4300-b705-27ac2e01e2ab
 
+scripts
+dir
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+file:///home/alex/.repos-svn/AnalisaNavio/branches/script
+15
+
+COPYING
+file
+0
+
+
+add
+
+leia-me
+file
+
+
+
+delete
+2012-02-02T23:00:23.611801Z
+8cb737657fabaaccace167b8bde7539f
+2012-02-02T22:51:27.518679Z
+15
+alex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1733
+
+dados
+dir
+
 LEIAME
 file
 
@@ -48,6 +115,13 @@ add
 copied
 file:///home/alex/.repos-svn/AnalisaNavio/branches/leia-me
 15
+
+README.md
+file
+0
+
+
+add
 
 source
 dir
@@ -105,7 +179,24 @@ dir
 
 
 
-delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+deleted
 
 main
 file
@@ -127,64 +218,4 @@ dir
 
 
 add
-
-scripts
-dir
-
-
-
-add
-
-
-
-
-
-
-
-
-
-
-
-
-
-copied
-file:///home/alex/.repos-svn/AnalisaNavio/branches/script
-15
-
-leia-me
-file
-
-
-
-delete
-2012-02-02T23:00:23.611801Z
-8cb737657fabaaccace167b8bde7539f
-2012-02-02T22:51:27.518679Z
-15
-alex
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1733
-
-dados
-dir
 

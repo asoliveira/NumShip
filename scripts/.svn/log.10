@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/Dinaleme2D.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="Dinaleme2D.py"
+   checksum="1be15bd6b3dea1907facc9a3f6718486"
+   last-author="alex"/>
+<delete-changelist
+   name="Dinaleme2D.py"/>
+<committed
+   revision="22"
+   name="Dinaleme2D.py"/>

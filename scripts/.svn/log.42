@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/leme-zz-plt.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="leme-zz-plt.py"
+   checksum="138b02330c0efd612a19a1a786cbbe1e"
+   last-author="alex"/>
+<delete-changelist
+   name="leme-zz-plt.py"/>
+<committed
+   name="leme-zz-plt.py"
+   revision="22"/>

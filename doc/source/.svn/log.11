@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/Prop.rst.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="Prop.rst"
+   checksum="5d93c2e9c0fde7facbd900373524e7c9"
+   last-author="alex"/>
+<delete-changelist
+   name="Prop.rst"/>
+<committed
+   revision="22"
+   name="Prop.rst"/>

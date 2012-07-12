@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/uml.xmi.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="uml.xmi"
+   checksum="adf4f73500b57554b826a4e57033129c"
+   last-author="alex"/>
+<delete-changelist
+   name="uml.xmi"/>
+<committed
+   revision="22"
+   name="uml.xmi"/>

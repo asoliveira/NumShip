@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/inteCurvaGiro.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="inteCurvaGiro.py"
+   checksum="f00781a2a21a2d7e0ea8690c44f6fe87"
+   last-author="alex"/>
+<delete-changelist
+   name="inteCurvaGiro.py"/>
+<committed
+   name="inteCurvaGiro.py"
+   revision="22"/>

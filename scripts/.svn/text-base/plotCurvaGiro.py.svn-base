@@ -1,5 +1,18 @@
 # -*- coding: utf-8 -*-
 
+#Variáveis de entrada:
+#dircg -- Diretório onde será salvo as gráfico;
+#TipoModelo -- Também ficará como o nome de cada gráfico;
+#velHis -- 
+#posHis
+
+
+try:
+  dircg = scgarq + '/figuras/' 
+  os.makedirs(dircg)
+except NameError:
+  print 'houve algum problema na criação do diretório ' + dircg
+
 if adi:
     xlabel = r't'
     tini = velHis[0, 0]
@@ -82,7 +95,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg + 5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 
 
@@ -110,7 +123,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 
 ####################################
@@ -137,7 +150,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom + 5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg + 5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')    
 
 ####################################
@@ -161,7 +174,7 @@ if GrausDeLib == 4:
     
     plt.twinx()
     plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
     plt.ylabel(r'$\delta_r$')
     
 
@@ -189,7 +202,7 @@ if GrausDeLib == 4:
     
     plt.twinx()
     plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
     plt.ylabel(r'$\delta_r$')   
     
     
@@ -228,7 +241,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 #####################################
 ###
@@ -255,7 +268,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -276,13 +289,13 @@ else:
     ylabel = r'$\dot r \quad m\times s^{-2}$'
 
 
-plt.plot(acelHis[:, 0],  acelHis[:, 6]*(180/sp.pi),  'b--')
+plt.plot(acelHis[:, 0],  acelHis[:, 6]*(180/sp.pi),  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -304,7 +317,7 @@ if GrausDeLib == 4:
     
     plt.twinx()
     plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
     plt.ylabel(r'$\delta_r$')
 
 
@@ -344,7 +357,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 #####################################
 ###
@@ -368,7 +381,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -393,7 +406,7 @@ plt.xlabel(xlabel)
 
 plt.twinx()
 plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -415,7 +428,7 @@ if GrausDeLib == 4:
     
     plt.twinx()
     plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.axis([tini,  tmax,  -abs(lemecg +5),  abs(lemecg +5) ])
     plt.ylabel(r'$\delta_r$')
 
 

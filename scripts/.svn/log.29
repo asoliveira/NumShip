@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/plotCurvaGiro.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="plotCurvaGiro.py"
+   checksum="d39a28219399b77b6287362ae84fa2c4"
+   last-author="alex"/>
+<delete-changelist
+   name="plotCurvaGiro.py"/>
+<committed
+   revision="22"
+   name="plotCurvaGiro.py"/>

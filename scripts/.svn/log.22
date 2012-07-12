@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/sen.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="sen.py"
+   checksum="446be87d727cd336daf1dac709183641"
+   last-author="alex"/>
+<delete-changelist
+   name="sen.py"/>
+<committed
+   name="sen.py"
+   revision="22"/>

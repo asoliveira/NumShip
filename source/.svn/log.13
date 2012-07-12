@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/twinx.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="twinx.py"
+   checksum="15ab09c8382ccadf17b10c769134508f"
+   last-author="alex"/>
+<delete-changelist
+   name="twinx.py"/>
+<committed
+   revision="22"
+   name="twinx.py"/>

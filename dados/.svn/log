@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/bemformatado.dat.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="bemformatado.dat"
+   checksum="100a8455982665dfdd515f7652a6bbbf"
+   last-author="alex"/>
+<delete-changelist
+   name="bemformatado.dat"/>
+<committed
+   name="bemformatado.dat"
+   revision="22"/>

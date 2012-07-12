@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 
-####################################
-##
-##       Velocidade em Surge
-##
-####################################        
+#Variáveis de entrada:
+#dircg -- Diretório onde será salvo as gráfico;
+#TipoModelo -- Também ficará como o nome de cada gráfico;
+#velHis -- 
+#posHis
 
+dirzz = scgarq + '/figuras/'
+os.makedirs(dirzz)
+
+#Velocidade em Surge
 if adi:
     xlabel = r'$t\prime$'
-    tini = velHis[0, 0]
-    tmax = velHis[-1, 0]    
+    tini = velhis[0, 0]
+    tmax = velhis[-1, 0]    
 else:
     xlabel = r't \ seg'
     
@@ -21,7 +25,7 @@ if GrausDeLib == 4:
 elif GrausDeLib == 3:
     plt.subplot(3, 1, 1)
 
-plt.plot(velHis[:, 0],  velHis[:, 1],  'b-')
+plt.plot(velhis[:, 0],  velhis[:, 1],  'b-')
 if adi:
     ylabel = r'$u\prime$'
 else:
@@ -31,8 +35,8 @@ plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 
 
@@ -48,7 +52,7 @@ if GrausDeLib == 4:
 elif GrausDeLib == 3:
     plt.subplot(3, 1, 2)
     
-plt.plot(velHis[:, 0],  velHis[:, 2],  'b-')
+plt.plot(velhis[:, 0],  velhis[:, 2],  'b-')
 
 if adi:
     ylabel = r'$v\prime$'
@@ -59,8 +63,8 @@ plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 
 ####################################
@@ -74,7 +78,7 @@ if GrausDeLib == 4:
 elif GrausDeLib == 3:
     plt.subplot(3, 1, 3)
     
-plt.plot(velHis[:, 0],  velHis[:, 6]*(180/sp.pi),  'b-')
+plt.plot(velhis[:, 0],  velhis[:, 6]*(180/sp.pi),  'b-')
 if adi:
     ylabel = r'$r\prime$'
 
@@ -86,8 +90,8 @@ plt.xlabel(xlabel)
 
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom + 5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz + 5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')    
 
 ####################################
@@ -98,7 +102,7 @@ plt.ylabel(r'$\delta_r$')
 if GrausDeLib == 4:
     plt.subplot(4, 1, 4)
     
-    plt.plot(velHis[:, 0],  velHis[:, 4],  'b-')
+    plt.plot(velhis[:, 0],  velhis[:, 4],  'b-')
     
     if adi:
         ylabel = r'$ p\prime$'
@@ -110,8 +114,8 @@ if GrausDeLib == 4:
     plt.xlabel(xlabel)
     
     plt.twinx()
-    plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+    plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
     plt.ylabel(r'$\delta_r$')
     
 
@@ -142,7 +146,7 @@ if adi:
 else:
     ylabel = r'$y \quad m$'    
     xposlabel = r'$x \quad m$'
-plt.plot(posHis[:, 1],  posHis[:, 2],  'b-')
+plt.plot(poshis[:, 1],  poshis[:, 2],  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xposlabel)
  
@@ -158,13 +162,13 @@ if GrausDeLib == 4:
 elif GrausDeLib == 3:
     plt.subplot(2, 1, 2)
     
-plt.plot(posHis[:, 0],  posHis[:, 6]*(-180/sp.pi),   'b-')
+plt.plot(poshis[:, 0],  poshis[:, 6]*(-180/sp.pi),   'b-')
 plt.ylabel(r'$-\psi$')
 plt.xlabel(xlabel)
 plt.axis([tini,  tmax,  -abs(Overshoot +5),  abs(Overshoot +5) ])
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
 plt.axis([tini,  tmax,  -abs(Overshoot +5),  abs(Overshoot +5) ])
 plt.ylabel(r'$\delta_r$')   
 ### ###################################
@@ -174,14 +178,14 @@ plt.ylabel(r'$\delta_r$')
 ######################################   
 if GrausDeLib == 4:
     plt.subplot(3, 1, 3)
-    plt.plot(posHis[:, 0],  posHis[:, 4],   'b-')
+    plt.plot(poshis[:, 0],  poshis[:, 4],   'b-')
     plt.ylabel(r'$\phi$')
     plt.xlabel(xlabel)
     
     
     plt.twinx()
-    plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+    plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
     plt.ylabel(r'$\delta_r$')   
 
 
@@ -214,13 +218,13 @@ if adi:
     ylabel = r'$\dot u \prime$'
 else:
     ylabel = r'$\dot u \quad m\times s^{-2}$'
-plt.plot(acelHis[:, 0],  acelHis[:, 1],  'b-')
+plt.plot(acelhis[:, 0],  acelhis[:, 1],  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 #####################################
 ###
@@ -241,13 +245,13 @@ if adi:
 else:
     ylabel = r'$\dot v \quad m\times s^{-2}$'
 
-plt.plot(acelHis[:, 0],  acelHis[:, 2],  'b-')
+plt.plot(acelhis[:, 0],  acelhis[:, 2],  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -268,13 +272,13 @@ else:
     ylabel = r'$\dot r \quad m\times s^{-2}$'
 
 
-plt.plot(acelHis[:, 0],  acelHis[:, 6]*(180/sp.pi),  'b-')
+plt.plot(acelhis[:, 0],  acelhis[:, 6]*(180/sp.pi),  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -290,13 +294,13 @@ if GrausDeLib == 4:
     else:
         ylabel = r'$\dot p \quad m\times s^{-2}$'
 
-    plt.plot(acelHis[:, 0],  acelHis[:, 4]*(180/sp.pi),  'b-')
+    plt.plot(acelhis[:, 0],  acelhis[:, 4]*(180/sp.pi),  'b-')
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     
     plt.twinx()
-    plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+    plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
     plt.ylabel(r'$\delta_r$')
 
 
@@ -330,13 +334,13 @@ else:
     ylabel = r'$F_x \quad N$'
 
 
-plt.plot(forHis[:, 0],  forHis[:, 1]*ForEs,  'b-')
+plt.plot(forhis[:, 0],  forhis[:, 1]*ForEs,  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 #####################################
 ###
@@ -354,13 +358,13 @@ if adi:
 else:
     ylabel = r'$F_y \quad N $'
     
-plt.plot(forHis[:, 0],  forHis[:, 2]*ForEs,  'b-')
+plt.plot(forhis[:, 0],  forhis[:, 2]*ForEs,  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -379,13 +383,13 @@ if adi:
 else:
     ylabel = r'$N \quad N \times m$'
 
-plt.plot(forHis[:, 0],  forHis[:, 4]*ForEs,  'b-')
+plt.plot(forhis[:, 0],  forhis[:, 4]*ForEs,  'b-')
 plt.ylabel(ylabel)
 plt.xlabel(xlabel)
 
 plt.twinx()
-plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
 plt.ylabel(r'$\delta_r$')
 ### ###################################
 ####
@@ -401,13 +405,13 @@ if GrausDeLib == 4:
     else:
         ylabel = r'$K \quad N \times m$'
 
-    plt.plot(forHis[:, 0],  forHis[:, 3]*ForEs,  'b-')
+    plt.plot(forhis[:, 0],  forhis[:, 3]*ForEs,  'b-')
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     
     plt.twinx()
-    plt.plot(  lemeHis[:, 0],  lemeHis[:, 1]*(180/sp.pi),  'g--')
-    plt.axis([tini,  tmax,  -abs(LemeCom +5),  abs(LemeCom +5) ])
+    plt.plot(  lemehis[:, 0],  lemehis[:, 1]*(180/sp.pi),  'g--')
+    plt.axis([tini,  tmax,  -abs(lemezz +5),  abs(lemezz +5) ])
     plt.ylabel(r'$\delta_r$')
 
 
@@ -422,7 +426,7 @@ else:
 ####       Rota��o da M�quina
 ####
 ######################################   
-plt.plot(propHis[:, 0],  propHis[:, 1],  'o-')#r 
+plt.plot(prophis[:, 0],  prophis[:, 1],  'o-')#r 
 
 plt.ylabel(r'$\ \quad rot \times s^{-1}$ ')
 plt.xlabel(xlabel)
@@ -440,7 +444,7 @@ else:
 ####       Eta 
 ####
 ######################################   
-plt.plot(etaHis[:, 0],  etaHis[:, 1],  '--')#r 
+plt.plot(etahis[:, 0],  etahis[:, 1],  '--')#r 
 
 plt.ylabel(r'$\eta$ ')
 plt.xlabel(xlabel)

@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/tete.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="tete.py"
+   checksum="5ff2e6864ddf50e25c0e12f91bf727c9"
+   last-author="alex"/>
+<delete-changelist
+   name="tete.py"/>
+<committed
+   revision="22"
+   name="tete.py"/>
