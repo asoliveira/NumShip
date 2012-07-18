@@ -71,19 +71,19 @@ class propMarAd(prop):
         
         Eta = self.MostraVelCom() / self.MostraVel()[0]
        
-        if  Eta <= sp.array(-1.):
+        if  Eta < sp.array(-1.):
             a =  self.dic['a4']
             b =  self.dic['b4']
             c =  self.dic['c4']
-        elif sp.array(-1.) < Eta and Eta <= sp.array(0.):
+        elif sp.array(-1.) <= Eta and Eta < sp.array(1.):
             a =  self.dic['a3']
             b =  self.dic['b3']
             c =  self.dic['c3']
-        elif sp.array(0) < Eta and Eta <= sp.array(2):
+        elif sp.array(1) <= Eta and Eta < sp.array(2):
             a =  self.dic['a2']
             b =  self.dic['b2']
             c =  self.dic['c2']  
-        elif sp.array(2) < Eta :
+        elif sp.array(2) <= Eta :
             a =  self.dic['a1']
             b =  self.dic['b1']
             c =  self.dic['c1'] 

@@ -48,7 +48,7 @@ if adi:
 else:
     ylabel = r'$\beta$'
     xlabel = r'$t $'
-plt.plot(betaHis[:, 0], betaHis[:, 1]*(180/sp.pi), 'b-', label = r'$\beta$')
+.plot(betaHis[:, 0], betaHis[:, 1]*(180/sp.pi), 'bo', label = r'$\beta$', linewidth = 1)
 plt.grid(True)
 plt.ylabel(ylabel)
 plt.xlabel(xposlabel)
