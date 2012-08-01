@@ -15,9 +15,9 @@ nome = 'velo-r-zz'
 titulo = ''#'Curva de ZigZag'
 #Qual a cor dos gráficos?
 pc = 'k'
-bc = 'k'
-lc = 'k'
-brlc = 'k'
+bc = 'g'
+lc = 'b'
+brlc = 'y'
 rc = 'k'
 #Estilo de linha
 ps = '-'

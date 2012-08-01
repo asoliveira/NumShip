@@ -10,9 +10,10 @@ formato = 'jpg'
 #Caso seja para salvar, qual é o diretório que devo salvar?
 dircg = 'fig-sen'
 #Caso seja para salvar, qual é o nome do arquivo?
-nome = 'r-zz'
+nome = 'r-velo-u-zz'
 #Qual título colocar no gráficos?
-titulo = ''#'Curva de Giro'
+titulo = ''#'Curva de ZigZag'
+titulo2=''
 #Qual a cor dos gráficos?
 pc = 'k'
 r1c = 'b'
@@ -31,54 +32,62 @@ import matplotlib.pyplot as plt
 
 from libplot import *
         
-poshis = sp.genfromtxt('../entrada/padrao/CurvaZigZag/pos.dat')
-poshis2 = sp.genfromtxt('../entrada/r/saida1.1/CurvaZigZag/pos.dat')
-poshis3 = sp.genfromtxt('../entrada/r/saida1.2/CurvaZigZag/pos.dat')
-poshis4 = sp.genfromtxt('../entrada/r/saida1.3/CurvaZigZag/pos.dat')
+acelhis = sp.genfromtxt('../entrada/padrao/CurvaZigZag/velo.dat')
+acelhis2 = sp.genfromtxt('../entrada/r/saida1.1/CurvaZigZag/velo.dat')
+acelhis3 = sp.genfromtxt('../entrada/r/saida1.2/CurvaZigZag/velo.dat')
+acelhis4 = sp.genfromtxt('../entrada/r/saida1.3/CurvaZigZag/velo.dat')
 
 lemehis = sp.genfromtxt('../entrada/padrao/CurvaZigZag/leme.dat')
 lemehis2 = sp.genfromtxt('../entrada/r/saida1.1/CurvaZigZag/leme.dat')
 lemehis3 = sp.genfromtxt('../entrada/r/saida1.2/CurvaZigZag/leme.dat')
 lemehis4 = sp.genfromtxt('../entrada/r/saida1.3/CurvaZigZag/leme.dat')
 
-axl = [00, 1000, -40, 40]
-
+axl = [0, 1000, 4., 9.]
+axl2 = [0, 1000, -25, 25]#do leme
 #Plotando a Curva de Giro      
 if adi:
-    ylabel = r'$\psi\prime$'
-    xposlabel = r'$t\prime$'
+    ylabel = r'$t\prime$'
+    xacellabel = r'$u\prime$'
 else:
-    ylabel = r'$\psi \quad graus$'    
-    xposlabel = r'$t \quad segundos$'    
+    ylabel = r'$u \quad m/s$'    
+    xacellabel = r'$t \quad segundos$'    
 
 plt.subplot2grid((1,4),(0,0), colspan=3)
 #Padrao
-plt.plot(poshis[:, 0],  poshis[:, 6] * (180/sp.pi),  color = pc, linestyle = ps,
-linewidth = 1, label=ur'padrão')
+plt.plot(acelhis[:, 0],  acelhis[:, 1],  color = pc, linestyle = ps,
+linewidth = 2, label=ur'padrão')
+
+plt.plot(acelhis2[:, 0],  acelhis2[:, 1],  color = r1c,linestyle = r1s,
+linewidth = 2, label=ur'1.1--$r$')
+
+plt.plot(acelhis3[:, 0], acelhis3[:, 1], color = r2c, linestyle = r2s,
+linewidth = 2, label=ur'1.2--$r$')
+
+plt.plot(acelhis4[:, 0], acelhis4[:, 1], color = r3c, linestyle = r3s,
+linewidth = 2, label=ur'1.3--$r$')
+
+plt.title(titulo)
+plt.legend(bbox_to_anchor=(1.1, 1), loc=2, borderaxespad=0.)
+plt.ylabel(ylabel)
+plt.xlabel(xacellabel)
+plt.axis(axl)
+plt.grid(True)
+
+plt.twinx()
 plt.plot(lemehis[:, 0],  lemehis[:, 1] * (180/sp.pi),  color = pc, linestyle = "--",
 linewidth = 1, label=ur'leme--padrão')
-
-plt.plot(poshis2[:, 0],  poshis2[:, 6] * (180/sp.pi),  color = r1c,linestyle = r1s,
-linewidth = 1, label=ur'1.1$r$')
 plt.plot(lemehis2[:, 0],  lemehis2[:, 1] * (180/sp.pi),  color = r1c, linestyle = "--",
 linewidth = 1, label=ur'leme--1.1$r$')
-
-plt.plot(poshis3[:, 0], poshis3[:, 6] * (180/sp.pi), color = r2c, linestyle = r2s, 
-linewidth = 1, label = ur'1.2$r$')
 plt.plot(lemehis3[:, 0],  lemehis3[:, 1] * (180/sp.pi),  color = r2c, linestyle = "--",
 linewidth = 1, label=ur'leme--1.2$r$')
-
-plt.plot(poshis4[:, 0], poshis4[:, 6] * (180/sp.pi), color = r3c, linestyle = r3s, 
-linewidth = 1, label= ur'1.3$r$')
 plt.plot(lemehis4[:, 0],  lemehis4[:, 1] * (180/sp.pi),  color = r3c, linestyle = "--",
 linewidth = 1, label=ur'leme--1.3$r$')
 
-plt.title(titulo)
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.ylabel(ylabel)
-plt.xlabel(xposlabel)
-plt.axis(axl)
-plt.grid(True)
+plt.title(titulo2)
+plt.legend(bbox_to_anchor=(1.1, 0), loc=3, borderaxespad=0.)
+plt.ylabel(r"$\delta_R$")
+plt.axis(axl2)
+plt.grid(False)
 
 if save:
     if not os.path.exists(dircg):
