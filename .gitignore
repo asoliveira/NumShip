@@ -1,6 +1,8 @@
 <<<<<<< HEAD
 *~
 *.eps
+*.jpg
+*.jpge
 *wiki/
 *figuras/
 *saida*/
@@ -11,7 +13,7 @@
 *.egg
 *.egg-info
 dist
-build
+#build
 eggs
 parts
 bin

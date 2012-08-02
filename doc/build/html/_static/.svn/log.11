@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/jquery.js.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="jquery.js"
+   checksum="273e017fd0bef143258516bdee173a1e"
+   last-author="alex"/>
+<delete-changelist
+   name="jquery.js"/>
+<committed
+   revision="22"
+   name="jquery.js"/>

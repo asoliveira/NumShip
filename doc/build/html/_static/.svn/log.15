@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/searchtools.js.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="searchtools.js"
+   checksum="d550841adeedc8ed47c40ee607620937"
+   last-author="alex"/>
+<delete-changelist
+   name="searchtools.js"/>
+<committed
+   revision="22"
+   name="searchtools.js"/>

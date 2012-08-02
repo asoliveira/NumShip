@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/websupport.js.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="websupport.js"
+   checksum="9e61e1e8a7433c56bd7e5a615affcf85"
+   last-author="alex"/>
+<delete-changelist
+   name="websupport.js"/>
+<committed
+   name="websupport.js"
+   revision="22"/>

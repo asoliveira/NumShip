@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/PropMarAd.html.svn-revert"/>
+<modify-entry
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="PropMarAd.html"
+   checksum="b8c2e7fb7e11a9b0bac91eedd0d9dee2"
+   last-author="alex"
+   committed-rev="22"/>
+<delete-changelist
+   name="PropMarAd.html"/>
+<committed
+   revision="22"
+   name="PropMarAd.html"/>

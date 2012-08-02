@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CascoMarAd Module &mdash; NumShip 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="NumShip 1 documentation" href="index.html" />
+    <link rel="up" title="source" href="modules.html" />
+    <link rel="next" title="CascoTris Module" href="CascoTris.html" />
+    <link rel="prev" title="CascoGen Module" href="CascoGen.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="CascoTris.html" title="CascoTris Module"
+             accesskey="N">próximo</a> |</li>
+        <li class="right" >
+          <a href="CascoGen.html" title="CascoGen Module"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="modules.html" accesskey="U">source</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-CascoMarAd">
+<span id="cascomarad-module"></span><h1>CascoMarAd Module<a class="headerlink" href="#module-CascoMarAd" title="Link permanente para este título">¶</a></h1>
+<dl class="class">
+<dt id="CascoMarAd.cascoMarAd">
+<em class="property">class </em><tt class="descclassname">CascoMarAd.</tt><tt class="descname">cascoMarAd</tt><big>(</big><em>DicionarioDerivada</em><big>)</big><a class="reference internal" href="_modules/CascoMarAd.html#cascoMarAd"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoMarAd.cascoMarAd" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="CascoGen.html#CascoGen.casco" title="CascoGen.casco"><tt class="xref py py-class docutils literal"><span class="pre">CascoGen.casco</span></tt></a></p>
+<dl class="method">
+<dt id="CascoMarAd.cascoMarAd.Fx">
+<tt class="descname">Fx</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoMarAd.html#cascoMarAd.Fx"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoMarAd.cascoMarAd.Fx" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a força em surge</p>
+<p>Aqui estão contabilizadas algumas forças relacionadas ao resíduo</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Retorna:</th><td class="field-body"><span class="math">\(X(\beta) + X(r) + X_res\)</span></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoMarAd.cascoMarAd.Fy">
+<tt class="descname">Fy</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoMarAd.html#cascoMarAd.Fy"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoMarAd.cascoMarAd.Fy" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a força de sway</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoMarAd.cascoMarAd.K">
+<tt class="descname">K</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoMarAd.html#cascoMarAd.K"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoMarAd.cascoMarAd.K" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o momento de roll</p>
+<p>O modelo matemático é de 3 graus de liberdade, assim o momento de
+Roll não é calculado. Esta função retorna um array de valor <em>zero</em>
+apenas para suprir alguma compatibilidade do programa</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoMarAd.cascoMarAd.MudaVel">
+<tt class="descname">MudaVel</tt><big>(</big><em>Velocidade</em><big>)</big><a class="reference internal" href="_modules/CascoMarAd.html#cascoMarAd.MudaVel"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoMarAd.cascoMarAd.MudaVel" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a velocidade do casco</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoMarAd.cascoMarAd.N">
+<tt class="descname">N</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoMarAd.html#cascoMarAd.N"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoMarAd.cascoMarAd.N" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o momento de yaw</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Tópico anterior</h4>
+  <p class="topless"><a href="CascoGen.html"
+                        title="capítulo anterior">CascoGen Module</a></p>
+  <h4>Próximo tópico</h4>
+  <p class="topless"><a href="CascoTris.html"
+                        title="próximo capítulo">CascoTris Module</a></p>
+  <h3>Esta Página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/CascoMarAd.txt"
+           rel="nofollow">Exibir Fonte</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Pesquisa rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Digite os termos da busca ou o nome de um módulo, classe ou função.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="CascoTris.html" title="CascoTris Module"
+             >próximo</a> |</li>
+        <li class="right" >
+          <a href="CascoGen.html" title="CascoGen Module"
+             >anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >source</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Alex S. Oliveira.
+      Criado com <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

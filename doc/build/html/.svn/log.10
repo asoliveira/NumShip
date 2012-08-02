@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/LemeTris.html.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="LemeTris.html"
+   checksum="e83a9fcc1538dfe0c1eafcb6de95df3a"
+   last-author="alex"/>
+<delete-changelist
+   name="LemeTris.html"/>
+<committed
+   revision="22"
+   name="LemeTris.html"/>

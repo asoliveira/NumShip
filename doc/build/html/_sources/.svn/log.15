@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/index.txt.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="index.txt"
+   checksum="e3c3e2192a49c5d3b822fc9383993711"
+   last-author="alex"/>
+<delete-changelist
+   name="index.txt"/>
+<committed
+   revision="22"
+   name="index.txt"/>

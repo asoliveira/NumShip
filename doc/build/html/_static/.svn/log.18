@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/underscore.js.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="underscore.js"
+   checksum="95387dd17f819757b4811eebe821c1b5"
+   last-author="alex"/>
+<delete-changelist
+   name="underscore.js"/>
+<committed
+   revision="22"
+   name="underscore.js"/>

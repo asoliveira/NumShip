@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/navio.html.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="navio.html"
+   checksum="47e4e28187d1e82fa45cabd91db0f5f7"
+   last-author="alex"/>
+<delete-changelist
+   name="navio.html"/>
+<committed
+   revision="22"
+   name="navio.html"/>
