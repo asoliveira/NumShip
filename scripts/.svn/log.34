@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/leme-cg-plt.py~.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="leme-cg-plt.py~"
+   checksum="54f89ab58c1cd8c409f80b67a9f03c3a"
+   last-author="alex"/>
+<delete-changelist
+   name="leme-cg-plt.py~"/>
+<committed
+   revision="22"
+   name="leme-cg-plt.py~"/>

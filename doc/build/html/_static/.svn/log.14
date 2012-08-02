@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/pygments.css.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="pygments.css"
+   checksum="d625a0adb949f181bd0d3f1432b0fa7f"
+   last-author="alex"/>
+<delete-changelist
+   name="pygments.css"/>
+<committed
+   revision="22"
+   name="pygments.css"/>

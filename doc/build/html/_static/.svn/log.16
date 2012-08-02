@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/sidebar.js.svn-revert"/>
+<modify-entry
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="sidebar.js"
+   checksum="521d6e31e7d32d55f6d2ad836204eeb7"
+   last-author="alex"
+   committed-rev="22"/>
+<delete-changelist
+   name="sidebar.js"/>
+<committed
+   revision="22"
+   name="sidebar.js"/>

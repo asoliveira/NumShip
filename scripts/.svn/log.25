@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/curvazigzag.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="curvazigzag.py"
+   checksum="4091f324a5ee2543337c39b8209e894e"
+   last-author="alex"/>
+<delete-changelist
+   name="curvazigzag.py"/>
+<committed
+   revision="22"
+   name="curvazigzag.py"/>

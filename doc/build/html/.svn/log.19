@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/modules.html.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="modules.html"
+   checksum="0d158df4102ed81cb93a59e22b3dd55f"
+   last-author="alex"/>
+<delete-changelist
+   name="modules.html"/>
+<committed
+   revision="22"
+   name="modules.html"/>

@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/objects.inv.svn-revert"/>
+<modify-entry
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="objects.inv"
+   checksum="e4252d4980f69fde6833a70f981b5f0e"
+   last-author="alex"
+   committed-rev="22"/>
+<delete-changelist
+   name="objects.inv"/>
+<committed
+   revision="22"
+   name="objects.inv"/>

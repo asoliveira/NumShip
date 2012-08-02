@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/.leia-me.kate-swp.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name=".leia-me.kate-swp"
+   checksum="9cf1b48d82acd44b22e33ed4fc5c0af0"
+   last-author="alex"/>
+<delete-changelist
+   name=".leia-me.kate-swp"/>
+<committed
+   name=".leia-me.kate-swp"
+   revision="22"/>

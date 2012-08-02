@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/SimulaTeste.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="SimulaTeste.py"
+   checksum="c0ce88039dccbe9c15cba059e2917d57"
+   last-author="alex"/>
+<delete-changelist
+   name="SimulaTeste.py"/>
+<committed
+   name="SimulaTeste.py"
+   revision="22"/>

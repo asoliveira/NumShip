@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/inteZigZag.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="inteZigZag.py"
+   checksum="bf1d363478f7dbabf96117639c8bef8a"
+   last-author="alex"/>
+<delete-changelist
+   name="inteZigZag.py"/>
+<committed
+   revision="22"
+   name="inteZigZag.py"/>

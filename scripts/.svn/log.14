@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/relatoriocg.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="relatoriocg.py"
+   checksum="1fc8c35da94d53631524c1633e10927b"
+   last-author="alex"/>
+<delete-changelist
+   name="relatoriocg.py"/>
+<committed
+   revision="22"
+   name="relatoriocg.py"/>

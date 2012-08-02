@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/relatoriozz.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="relatoriozz.py"
+   checksum="db0380d56ac4fbf566358cb1c765cabe"
+   last-author="alex"/>
+<delete-changelist
+   name="relatoriozz.py"/>
+<committed
+   revision="22"
+   name="relatoriozz.py"/>

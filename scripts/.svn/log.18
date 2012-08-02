@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/DinaRT.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="DinaRT.py"
+   checksum="418580d66f4b4e2803c31ee491d71a93"
+   last-author="alex"/>
+<delete-changelist
+   name="DinaRT.py"/>
+<committed
+   revision="22"
+   name="DinaRT.py"/>

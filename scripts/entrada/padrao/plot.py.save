@@ -1,0 +1,29 @@
+a = plt.plot(x[:,2], x[:,1])
+plt.grid(True, 'both', color = 'g', linestyle = '--', linewidth = 1, markersize = 5)
+plt.show(a)a = plt.plot(x[:,2], x[:,1])
+plt.grid(True, 'both', color = 'g', linestyle = '--', linewidth = 1, markersize = 5)
+plt.show(a)# -*- coding: utf-8 -*-
+# <nbformat>2</nbformat>
+
+# <codecell>
+
+import matplotlib.pyplot as plt
+import scipy as sp
+
+# <codecell>
+
+sp 
+
+# <codecell>
+
+x = sp.genfromtxt('CurvaGiro/pos.dat')
+
+#print x[1, :]
+# <codecell>
+
+plt.plot(x[:,2], x[:,1])
+
+# <codecell>
+
+plt.show()
+

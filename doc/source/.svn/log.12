@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/PropGen.rst.svn-revert"/>
+<modify-entry
+   checksum="00055b3db3f9e4c15e3b8d20dca63110"
+   last-author="alex"
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="PropGen.rst"/>
+<delete-changelist
+   name="PropGen.rst"/>
+<committed
+   name="PropGen.rst"
+   revision="22"/>

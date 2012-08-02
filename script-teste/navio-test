@@ -1,0 +1,20 @@
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../source'))
+
+import scipy as sp
+import matplotlib.pyplot as plt
+
+import Es
+import Navio
+
+entrada = ('NavioTeste', '../dados/bemformatado.dat', 'inputtab.dat')
+en = Es.es(entrada)
+nav = Navio.navio(en.lerarqder())
+pa = (1, 1, 1)
+pb = (1, 1, 1)
+pc = (1, 1, 1)
+pd = (1, 1, 1)
+p = (pa, pb, pc, pd)
+
+print nav.simulaTestb(p)[:2,]

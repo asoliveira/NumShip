@@ -1,5 +1,11 @@
 <<<<<<< HEAD
 *~
+*.eps
+*.jpg
+*.jpge
+*wiki/
+*figuras/
+*saida*/
 =======
 *.py[co]
 
@@ -7,7 +13,7 @@
 *.egg
 *.egg-info
 dist
-build
+#build
 eggs
 parts
 bin

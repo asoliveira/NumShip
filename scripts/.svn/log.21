@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/r-cg-plt.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="r-cg-plt.py"
+   checksum="737454fe880ac89b53ca4568b8006fef"
+   last-author="alex"/>
+<delete-changelist
+   name="r-cg-plt.py"/>
+<committed
+   revision="22"
+   name="r-cg-plt.py"/>

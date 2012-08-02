@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/searchindex.js.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="searchindex.js"
+   checksum="e263dfe5d13820a70a8584a4f8bef6cb"
+   last-author="alex"/>
+<delete-changelist
+   name="searchindex.js"/>
+<committed
+   revision="22"
+   name="searchindex.js"/>

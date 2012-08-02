@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/search.html.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="search.html"
+   checksum="5509fff82369a8d9b3088f6fe5131e6e"
+   last-author="alex"/>
+<delete-changelist
+   name="search.html"/>
+<committed
+   name="search.html"
+   revision="22"/>

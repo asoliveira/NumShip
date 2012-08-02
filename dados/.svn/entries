@@ -26,6 +26,62 @@ alex
 
 524cab38-f117-4300-b705-27ac2e01e2ab
 
+bemformatado.dat
+file
+0
+
+
+add
+
+marad_derivada.dat~
+file
+0
+
+
+add
+
+tp_derivada.dat
+file
+0
+
+
+add
+
+config.py~
+file
+0
+
+
+add
+
+marad_derivada.dat
+file
+0
+
+
+add
+
+config.py
+file
+0
+
+
+add
+
+config.pyc
+file
+0
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
 TPinputder.dat
 file
 
@@ -127,4 +183,11 @@ alex
 
 
 1609
+
+mauformatado.dat
+file
+0
+
+
+add
 

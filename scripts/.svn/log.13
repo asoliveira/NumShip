@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/ZigZagSave.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="ZigZagSave.py"
+   checksum="1154e8ed9c278c0789e52e256c2e8b0c"
+   last-author="alex"/>
+<delete-changelist
+   name="ZigZagSave.py"/>
+<committed
+   revision="22"
+   name="ZigZagSave.py"/>

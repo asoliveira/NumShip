@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/up.png.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="up.png"
+   checksum="ecc373278454cc8ecc12d6ca69e55b36"
+   last-author="alex"/>
+<delete-changelist
+   name="up.png"/>
+<committed
+   revision="22"
+   name="up.png"/>

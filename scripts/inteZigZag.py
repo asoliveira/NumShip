@@ -2,91 +2,91 @@
 
 p = (Multbeta,  Multr,  Multl,  Multbrl)
 
-if TipoModelo== 'MARAD':
-    Arq =  './dados/MarAdinputder.dat'
-elif   TipoModelo== 'TP':  
-    Arq =  './dados/TPinputder.dat'
+if TipoModelo == 'MARAD':
+    arq = os.path.abspath('./dados/marad_derivada.dat')
+elif   TipoModelo == 'TP':  
+    arq = os.path.abspath('./dados/tp_derivada.dat')
 
-
-
-In = ('Navioteste', Arq, 'inputtab.dat')
-io = es(entrada = In)
+en = ('Navioteste', arq, 'inputtab.dat')
+io = es(en)
 
 DicionarioDerivadas = io.lerarqder()
-del io,  In,  Arq
+del io,  en,  arq
 
-navio1 = navio(DicionarioDerivadas, Nome = nome,   Tipo = TipoModelo )
+navio1 = navio(DicionarioDerivadas, nome = nome,   tipo = TipoModelo )
 
 #navio1.MudaVel(sp.ones((6,1)))
 #saida, fbeta, fr, fleme, fbetarl, fu = navio1.VetF((3,p))
 
 listaz = navio1.getCurvaZigZag(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
                         tipo= tipoc,  GrausDeLib = GrausDeLib,  
-                        leme = LemeCom, proa = Proa,   RotCom=Rot,  saida = saida)
+                        leme = lemezz, proa = proazz,   rotcom=Rot,  saida =
+saida, arqs = scgarq)
 
 
 
 if  saida == 'txt':
-    os.chdir('./saida/ZigZag')
-    lemeHis = np.genfromtxt('leme.dat')
-    propHis = np.genfromtxt('propulsor.dat')
-    velHis = np.genfromtxt('velo.dat')
-    velinHis = np.genfromtxt('veloiner.dat')
-    etaHis = np.genfromtxt('Eta.dat')
-    forHis = np.genfromtxt('forcas.dat')
-    posHis = np.genfromtxt('pos.dat')
-    acelHis = np.genfromtxt('acel.dat')
+    os.chdir(scgarq)
+    lemehis = np.genfromtxt('leme.dat')
+    prophis = np.genfromtxt('propulsor.dat')
+    velhis = np.genfromtxt('velo.dat')
+    velinhis = np.genfromtxt('veloiner.dat')
+    etahis = np.genfromtxt('eta.dat')
+    forhis = np.genfromtxt('forcas.dat')
+    poshis = np.genfromtxt('pos.dat')
+    acelhis = np.genfromtxt('acel.dat')
     os.chdir('..')    
     os.chdir('..')
 
 else:
-    velHis, posHis,  acelHis, forHis,  velinHis,  lemeHis,  propHis,  etaHis,  listaz =a 
+    velhis, poshis, acelhis, forhis, velinhis, lemehis, prophis, \
+    etahis, listaz = a 
     del a
-dirzz = './figuras/Curva_Zig_Zag/'
-os.makedirs(dirzz)
 
 if adi :
     cont = 0
-    for linha in velHis:
+    for linha in velhis:
         v = sp.sqrt(linha[1]**2 + linha[2]**2)
         rho = DicionarioDerivadas['rho']
         lpp =  DicionarioDerivadas['lpp']
         
-        lemeHis[cont, 0] = lemeHis[cont, 0]*(v/lpp)
-        propHis[cont, 0] = propHis[cont, 0]*(v/lpp)
-        etaHis[cont, 0] = etaHis[cont, 0]*(v/lpp)
+        lemehis[cont, 0] = lemehis[cont, 0]*(v/lpp)
+        prophis[cont, 0] = prophis[cont, 0]*(v/lpp)
+        etahis[cont, 0] = etahis[cont, 0]*(v/lpp)
         
-        propHis[cont, 1] = propHis[cont, 1]*(lpp/v)
+        prophis[cont, 1] = prophis[cont, 1]*(lpp/v)
         
-        for coluna in sp.arange( len(velHis[cont,  :])):
+        for coluna in sp.arange( len(velhis[cont,  :])):
             if coluna == 0:
-                velHis[cont, coluna] = velHis[cont, coluna]*(v/lpp)
+                velhis[cont, coluna] = velhis[cont, coluna]*(v/lpp)
             else:
-                velHis[cont, coluna] = velHis[cont, coluna]*(1/v)
+                velhis[cont, coluna] = velhis[cont, coluna]*(1/v)
                 if coluna > 3:
-                    velHis[cont, coluna] = velHis[cont, coluna]*(lpp)
-        for coluna in sp.arange( len(acelHis[cont,  :])):
+                    velhis[cont, coluna] = velhis[cont, coluna]*(lpp)
+        for coluna in sp.arange( len(acelhis[cont,  :])):
             if coluna == 0:
-                acelHis[cont, coluna] = acelHis[cont, coluna]*(v/lpp)
+                acelhis[cont, coluna] = acelhis[cont, coluna]*(v/lpp)
             else:
-                acelHis[cont, coluna] = acelHis[cont, coluna]*(lpp/v**2)
+                acelhis[cont, coluna] = acelhis[cont, coluna]*(lpp/v**2)
                 if coluna > 3:
-                    acelHis[cont, coluna] = acelHis[cont, coluna]*(lpp)
-        for coluna in sp.arange( len(posHis[cont,  :])):
+                    acelhis[cont, coluna] = acelhis[cont, coluna]*(lpp)
+        for coluna in sp.arange( len(poshis[cont,  :])):
             if coluna == 0:
-                posHis[cont, coluna] = posHis[cont, coluna]*(v/lpp)
+                poshis[cont, coluna] = poshis[cont, coluna]*(v/lpp)
             else:            
-                posHis[cont, coluna] = posHis[cont, coluna]*(1/lpp)
+                poshis[cont, coluna] = poshis[cont, coluna]*(1/lpp)
                 if coluna > 3:
-                    posHis[cont, coluna] = posHis[cont, coluna]*(lpp)
-        for coluna in sp.arange( len(forHis[cont,  :])):
+                    poshis[cont, coluna] = poshis[cont, coluna]*(lpp)
+        for coluna in sp.arange( len(forhis[cont,  :])):
             if coluna == 0:
-                forHis[cont, coluna] = forHis[cont, coluna]*(v/lpp)
+                forhis[cont, coluna] = forhis[cont, coluna]*(v/lpp)
             else:            
                 if coluna==1 or coluna ==2:
-                    forHis[cont, coluna] = forHis[cont, coluna]*(2/(rho*lpp*(v**2)))
+                    forhis[cont, coluna] = forhis[cont,
+coluna]*(2/(rho*lpp*(v**2)))
                 elif coluna > 2:
-                    forHis[cont, coluna] = forHis[cont, coluna]*(2/(rho*((lpp*v)**2)))
+                    forhis[cont, coluna] = forhis[cont,
+coluna]*(2/(rho*((lpp*v)**2)))
         cont += 1 
     for valor in sp.arange(len(listaz)):
         listaz[valor]['ospath'] = listaz[valor]['ospath']*(1/lpp)

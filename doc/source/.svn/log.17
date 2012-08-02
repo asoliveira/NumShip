@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/modules.rst.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="modules.rst"
+   checksum="c70f9a70d15f32caf925e7e076dd9c1d"
+   last-author="alex"/>
+<delete-changelist
+   name="modules.rst"/>
+<committed
+   revision="22"
+   name="modules.rst"/>

@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/conf.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="conf.py"
+   checksum="3b00d86b5d02b3e7086619b3e7ab4fc9"
+   last-author="alex"/>
+<delete-changelist
+   name="conf.py"/>
+<committed
+   revision="22"
+   name="conf.py"/>

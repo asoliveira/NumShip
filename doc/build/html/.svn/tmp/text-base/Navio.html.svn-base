@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Navio Module &mdash; NumShip 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="NumShip 1 documentation" href="index.html" />
+    <link rel="up" title="source" href="modules.html" />
+    <link rel="next" title="Prop Module" href="Prop.html" />
+    <link rel="prev" title="LemeTris Module" href="LemeTris.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="Prop.html" title="Prop Module"
+             accesskey="N">próximo</a> |</li>
+        <li class="right" >
+          <a href="LemeTris.html" title="LemeTris Module"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="modules.html" accesskey="U">source</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-Navio">
+<span id="navio-module"></span><h1>Navio Module<a class="headerlink" href="#module-Navio" title="Link permanente para este título">¶</a></h1>
+<div class="section" id="id1">
+<h2>Navio Module<a class="headerlink" href="#id1" title="Link permanente para este título">¶</a></h2>
+<p>Algumas palavras teste</p>
+<dl class="class">
+<dt id="Navio.inte">
+<em class="property">class </em><tt class="descclassname">Navio.</tt><tt class="descname">inte</tt><a class="reference internal" href="_modules/Navio.html#inte"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.inte" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Classe que realiza a integração no tempo</p>
+<p>:version:0.0
+:author: Alex S. Oliveira</p>
+<dl class="method">
+<dt id="Navio.inte.euler">
+<tt class="descname">euler</tt><big>(</big><em>f</em>, <em>x</em>, <em>t0</em>, <em>dt</em>, <em>par=None</em><big>)</big><a class="reference internal" href="_modules/Navio.html#inte.euler"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.inte.euler" title="Link permanente para esta definição">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Navio.inte.rk4">
+<tt class="descname">rk4</tt><big>(</big><em>function</em>, <em>x</em>, <em>t0</em>, <em>dt</em>, <em>par=None</em><big>)</big><a class="reference internal" href="_modules/Navio.html#inte.rk4"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.inte.rk4" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Integrador runge-kutta</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="Navio.navio">
+<em class="property">class </em><tt class="descclassname">Navio.</tt><tt class="descname">navio</tt><big>(</big><em>dicvar</em>, <em>nome='navioteste'</em>, <em>tipo='MARAD'</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Classe de navios</p>
+<p>&#8220;Construtor do navio</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dicvar</strong> (<em>dict</em>) &#8211; Dicionário de derivadas hidrodinâmicas e parâmetros
+necessários para a construção do navio;</li>
+<li><strong>nome</strong> (<em>str</em>) &#8211; Nome do navio. Não possui relevância(default = &#8216;navioteste&#8217;);</li>
+<li><strong>tipo</strong> (<em>str</em>) &#8211; Tipo de modelo matemático adotado para a construção do navio
+(default = &#8216;MARAD&#8217;);</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="Navio.navio.CalcFx">
+<tt class="descname">CalcFx</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.CalcFx"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.CalcFx" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calcula a força em Surge</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.CalcFy">
+<tt class="descname">CalcFy</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.CalcFy"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.CalcFy" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calcula a força em Sway</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.CalcK">
+<tt class="descname">CalcK</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.CalcK"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.CalcK" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calcula o momento de Roll</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.CalcN">
+<tt class="descname">CalcN</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.CalcN"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.CalcN" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calcula o momento de  Yaw</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.H">
+<tt class="descname">H</tt><big>(</big><em>GrausDeLib=4</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.H"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.H" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Matriz de massa menos matriz de massa adicional.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>GrausDeLib</strong> (<em>int</em>) &#8211; Graus de liberdade.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MatRot">
+<tt class="descname">MatRot</tt><big>(</big><em>p=None</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MatRot"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MatRot" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a matriz de rotação de do referencial solidário para o
+inercial</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraAcel">
+<tt class="descname">MostraAcel</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraAcel"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraAcel" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a aceleração da embarcação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraLeme">
+<tt class="descname">MostraLeme</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraLeme"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraLeme" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o leme em rad da embarcação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraLemeCom">
+<tt class="descname">MostraLemeCom</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraLemeCom"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraLemeCom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna o leme em rad da embarcação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraPos">
+<tt class="descname">MostraPos</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraPos"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraPos" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a posição da embarcação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraRot">
+<tt class="descname">MostraRot</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraRot"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraRot" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a rotação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraRotCom">
+<tt class="descname">MostraRotCom</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraRotCom"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraRotCom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a rotação comandada</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraVel">
+<tt class="descname">MostraVel</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraVel"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraVel" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a Velocidade da embarcação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MostraVelCom">
+<tt class="descname">MostraVelCom</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MostraVelCom"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MostraVelCom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Retorna a velocidade comandada</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MudaLemeCom">
+<tt class="descname">MudaLemeCom</tt><big>(</big><em>leme</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MudaLemeCom"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MudaLemeCom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda o leme comandado da embarcação</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>leme</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MudaPos">
+<tt class="descname">MudaPos</tt><big>(</big><em>posicao</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MudaPos"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MudaPos" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a posição da embarcação</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>posição</strong> &#8211; &#8211; posição (m)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MudaRotCom">
+<tt class="descname">MudaRotCom</tt><big>(</big><em>Rot</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MudaRotCom"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MudaRotCom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a rotação Comandada da embarcação</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MudaVel">
+<tt class="descname">MudaVel</tt><big>(</big><em>velocidade</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MudaVel"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MudaVel" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a velocidade da embarcação</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>velocidade</strong> &#8211; velocidade (m/s)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.MudaVelCom">
+<tt class="descname">MudaVelCom</tt><big>(</big><em>uc</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.MudaVelCom"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.MudaVelCom" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a velocidade comandada</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.VetF">
+<tt class="descname">VetF</tt><big>(</big><em>p=None</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.VetF"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.VetF" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Vetor de forças.</p>
+<p>Retorna o vetor de forças atuantes na embarcação:</p>
+<div class="math">
+\[\begin{split}f (\beta, r, \delta_r) = \left[\begin{array}{c c c c}
+\beta_{x} X(\beta) &amp;r_{x}X(r) &amp;\delta_{R x}X(\delta_R)
+&amp;X_{res} \\
+\beta_{y} Y(\beta) &amp;r_{y}Y(r) &amp;\delta_{R y}Y(\delta_R)
+&amp;Y_{res} \\
+\beta_{n} N(\beta) &amp;r_{n}N(r) &amp;\delta_{R n}N(\delta_R)
+&amp;N_{res}
+\end{array}\right]\end{split}\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><p class="first"><strong>p</strong> (<em>tuple</em>) &#8211; <p>Tupla, onde:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>p[0] (int) &#8211; Termo que determina quantos graus de liberdade</dt>
+<dd><p class="first last">possui o modelo matemático;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>p[1] (tupla) &#8211; Pesos Com os fatores multiplicadores das</dt>
+<dd><blockquote class="first">
+<div><p>forças. Tomando <span class="math">\(p\left[1\right] = 
+\left[p_a \ p_b \ p_c \ p_d\right]\)</span>,então,</p>
+</div></blockquote>
+<div class="math">
+\[\begin{split}&amp;p_a &amp;= \left[ \beta_x \ \beta_y \ \beta_n \right],\\
+&amp;p_b &amp;= \left[ r_x \ r_y \ r_n \right],\\
+&amp;p_c &amp;= \left[ \delta_{Rx} \ \delta_{Ry} \ 
+        \delta_{Rn} \right]
+&amp;p_d &amp;= \left[ res_{Rx} \ res_{Ry} \ 
+        res_{Rn} \right]\end{split}\]</div>
+<p class="last">Cada fator é um int ou float.
+Este termo é opcional onde o valor default é uma
+simulação com um modelo de quatro-4- graus de liberdade 
+e as forças sem nenhum termo multiplicativo.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Uma matriz com as forças que atuam na embarcação.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo de retorno:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first">numpy.ndarray</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example :</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Es</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Navio</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entrada</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;NavioTeste&#39;</span><span class="p">,</span> <span class="s">&#39;../dados/bemformatado.dat&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="s">&#39;inputtab.dat&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">en</span> <span class="o">=</span> <span class="n">Es</span><span class="o">.</span><span class="n">es</span><span class="p">(</span><span class="n">entrada</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nav</span> <span class="o">=</span> <span class="n">Navio</span><span class="o">.</span><span class="n">navio</span><span class="p">(</span><span class="n">en</span><span class="o">.</span><span class="n">lerarqder</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nav</span><span class="o">.</span><span class="n">MudaVelCom</span><span class="p">(</span><span class="n">nav</span><span class="o">.</span><span class="n">uc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nav</span><span class="o">.</span><span class="n">MudaVel</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">nav</span><span class="o">.</span><span class="n">uc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nav</span><span class="o">.</span><span class="n">VetF</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[        0.        ],</span>
+<span class="go">       [    78315.9850437 ],</span>
+<span class="go">       [        0.        ],</span>
+<span class="go">       [-14403055.51605981]])</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pa</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pb</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">pa</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">pc</span><span class="p">,</span> <span class="n">pd</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gl</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">nav</span><span class="o">.</span><span class="n">VetF</span><span class="p">((</span><span class="n">gl</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">[[        0.        ]</span>
+<span class="go"> [    78315.9850437 ]</span>
+<span class="go"> [-14403055.51605981]]</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.f">
+<tt class="descname">f</tt><big>(</big><em>velocidade=None</em>, <em>t=None</em>, <em>p=(4</em>, <em>)</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.f"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.f" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>O p é uma tupla com o valor dos graus de liberdade</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.f2">
+<tt class="descname">f2</tt><big>(</big><em>VetF</em>, <em>H</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.f2"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.f2" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calcula o valor de f(x) na equação <span class="math">\(\dot x = f(x)\)</span> onde x são é 
+o vetor de velocidades no sistema solidário.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>VetF</strong> &#8211; </li>
+<li><strong>H</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.fvein">
+<tt class="descname">fvein</tt><big>(</big><em>x</em>, <em>t</em>, <em>p</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.fvein"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.fvein" title="Link permanente para esta definição">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> &#8211; sp.array(u, v , w)</li>
+<li><strong>t</strong> &#8211; </li>
+<li><strong>p</strong> &#8211; (  roll, pitch, yaw)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.getCurvaGiro">
+<tt class="descname">getCurvaGiro</tt><big>(</big><em>peso=None</em>, <em>met='euler'</em>, <em>t0=0.0</em>, <em>dt=0.5</em>, <em>t=100.0</em>, <em>GrausDeLib=3</em>, <em>tipo='port'</em>, <em>leme=array(20.0)</em>, <em>rotcom=None</em>, <em>velcom=None</em>, <em>vel=None</em>, <em>eta='vel'</em>, <em>posine=None</em>, <em>errotf=array(0.05)</em>, <em>errotd=array(0.05)</em>, <em>errosr=array(0.001)</em>, <em>saida='txt'</em>, <em>arqs='saida'</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.getCurvaGiro"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.getCurvaGiro" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Simula manobras de Curva de Giro.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>GrausDeLib</strong> (<em>int</em>) &#8211; Graus de liberdade de modelo matemático;</li>
+<li><strong>met</strong> (<em>str</em>) &#8211; Método de integração. (default = euler);</li>
+<li><strong>t0</strong> (<em>float;</em>) &#8211; Tempo inicial;</li>
+<li><strong>dt</strong> (<em>float;</em>) &#8211; Passo no tempo;</li>
+<li><strong>t</strong> (<em>float;</em>) &#8211; Tempo final;</li>
+<li><strong>leme</strong> (<em>numpy.ndarray;</em>) &#8211; Ângulo do leme em graus;</li>
+<li><strong>proa</strong> (<em>numpy.ndarray</em>) &#8211; Ângulo de ataque em graus para iniciar a mudança de leme.
+Utilizada na curva de Zig/Zag;</li>
+<li><strong>osa</strong> (<em>numpy.ndarray</em>) &#8211; Ajuste do erro no ângulo de overshoot para iniciar a mudança
+de leme na curva de ZigZag;</li>
+<li><strong>ospath</strong> (<em>numpy.ndarray</em>) &#8211; </li>
+<li><strong>errosr</strong> &#8211; </li>
+<li><strong>errotf</strong> (<em>numpy.ndarray</em>) &#8211; Valor mínima da diferença <span class="math">\(\pi / 2 - \psi\)</span> para
+considerar o valor <cite>transferência</cite> e o do <cite>avanço</cite>;</li>
+<li><strong>errotd</strong> (<em>numpy.ndarray</em>) &#8211; Valor mínima da diferença <span class="math">\(\pi - \psi\)</span> para 
+considerar o valor do <cite>diâmetro tático</cite>;</li>
+<li><strong>saida</strong> &#8211; Tipo de arquivo de saída;</li>
+<li><strong>arqs</strong> (<em>str</em>) &#8211; Nome do arquivo de saída;</li>
+<li><strong>rotcom</strong> (<em>numpy.ndarray</em>) &#8211; Comando de rotação do propulsor[opcional];</li>
+<li><strong>velcom</strong> (<em>numpy.ndarray</em>) &#8211; Comando de velocidade da embarcação[opcional];</li>
+<li><strong>vel</strong> (<em>numpy.ndarray</em>) &#8211; Velocidade da embarcação[opcional];</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Uma tupla (velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
+prophis, etahis, dados, betahis)
+Em cada elemento da tupla a primeira coluna é o passo de tempo e
+as demais são as variáveis:
+* velohis &#8211; histórico de velocidades;
+* poshis &#8211; histórico de posições;
+* acelhis &#8212; histórico de acelerações;
+* fhis &#8211; histórico de forças;
+* veloinerhis &#8211; histórico de velocidades no sistema inercial;
+* lemehis &#8211; histórico do comando de leme.
+Ou simplesmente cria arquivos <cite>txt</cite> no diretório indicado na
+entrada com todos este valores</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo de retorno:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">tuple, file</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.getCurvaZigZag">
+<tt class="descname">getCurvaZigZag</tt><big>(</big><em>peso=None</em>, <em>met='euler'</em>, <em>t0=0.0</em>, <em>dt=0.5</em>, <em>t=100.0</em>, <em>GrausDeLib=3</em>, <em>tipo='port'</em>, <em>leme=array(20.0)</em>, <em>rotcom=None</em>, <em>velcom=None</em>, <em>vel=None</em>, <em>proa=None</em>, <em>eta='vel'</em>, <em>posine=None</em>, <em>osa=array(0.0)</em>, <em>ospath=array(0.0)</em>, <em>erro=array(0.005)</em>, <em>saida='txt'</em>, <em>arqs='./saida/zz'</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.getCurvaZigZag"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.getCurvaZigZag" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Simula manobras de Zig Zag.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>GrausDeLib</strong> (<em>int</em>) &#8211; Graus de liberdade de modelo matemático;</li>
+<li><strong>met</strong> (<em>str</em>) &#8211; Método de integração. (default = euler);</li>
+<li><strong>t0</strong> (<em>float;</em>) &#8211; Tempo inicial;</li>
+<li><strong>dt</strong> (<em>float;</em>) &#8211; Passo no tempo;</li>
+<li><strong>t</strong> (<em>float;</em>) &#8211; Tempo final;</li>
+<li><strong>leme</strong> (<em>numpy.ndarray;</em>) &#8211; Ângulo do leme em graus;</li>
+<li><strong>proa</strong> (<em>numpy.ndarray</em>) &#8211; Ângulo de ataque em graus para iniciar a mudança de leme.
+Utilizada na curva de Zig/Zag;</li>
+<li><strong>osa</strong> (<em>numpy.ndarray</em>) &#8211; Ajuste do erro no ângulo de overshoot para iniciar a mudança
+de leme na curva de ZigZag;</li>
+<li><strong>ospath</strong> (<em>numpy.ndarray</em>) &#8211; </li>
+<li><strong>errosr</strong> &#8211; </li>
+<li><strong>errotf</strong> (<em>numpy.ndarray</em>) &#8211; </li>
+<li><strong>errotd</strong> (<em>numpy.ndarray</em>) &#8211; </li>
+<li><strong>saida</strong> &#8211; Tipo de arquivo de saída;</li>
+<li><strong>arqs</strong> (<em>str</em>) &#8211; Nome do arquivo de saída;</li>
+<li><strong>rotcom</strong> (<em>numpy.ndarray</em>) &#8211; Comando de rotação do propulsor[opcional];</li>
+<li><strong>velcom</strong> (<em>numpy.ndarray</em>) &#8211; Comando de velocidade da embarcação[opcional];</li>
+<li><strong>vel</strong> (<em>numpy.ndarray</em>) &#8211; velocidade da embarcação[opcional];</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">(velohis, poshis, acelhis, fhis, veloinerhis, lemehis,
+prophis, etahis). Caso o valor do parâmetro <em>saida</em> seja &#8216;txt&#8217; 
+retorna estes valores como arquivos de texto no diretório 
+indicado pelo parâmetro <em>arqs</em>. Mesmo nesse caso a função
+retorna uma lista que contém dicionários com parâmetros com
+overshoot da proa <em>&#8216;osa&#8217;</em> e overshoot lateral linear <em>&#8216;ospath&#8217;</em>.
+Em cada elemento da tupla a primeira coluna é o passo de tempo e
+as demais são as variáveis:
+* velohis &#8211; histórico de velocidades;
+* poshis &#8211; histórico de posições;
+* acelhis &#8212; histórico de acelerações;
+* fhis &#8211; histórico de forças;
+* veloinerhis &#8211; histórico de velocidades no sistema inercial;
+* lemehis &#8211; histórico do comando de leme.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo de retorno:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"><p class="first last">tuple</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="Navio.navio.simulaTestb">
+<tt class="descname">simulaTestb</tt><big>(</big><em>p</em>, <em>intervalo=array(5.0)</em>, <em>V=None</em><big>)</big><a class="reference internal" href="_modules/Navio.html#navio.simulaTestb"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#Navio.navio.simulaTestb" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Gera uma tabela de forças variando com o ângulo <span class="math">\(\beta\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>p</strong> &#8211; Mesmo parâmetro utilizado para chamar a função :ref: <cite>VetF</cite>;</li>
+<li><strong>intervalo</strong> (<em>numpy.ndarray</em>) &#8211; Intervalo de variação do ângulo <span class="math">\(\beta\)</span>;</li>
+<li><strong>V</strong> &#8211; Velocidade da embarcação.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Retorna uma matriz com o valor das forças variando de acordo com a
+velocidade.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example :</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Es</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Navio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entrada</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;NavioTeste&#39;</span><span class="p">,</span> <span class="s">&#39;../dados/bemformatado.dat&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="s">&#39;inputtab.dat&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">en</span> <span class="o">=</span> <span class="n">Es</span><span class="o">.</span><span class="n">es</span><span class="p">(</span><span class="n">entrada</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nav</span> <span class="o">=</span> <span class="n">Navio</span><span class="o">.</span><span class="n">navio</span><span class="p">(</span><span class="n">en</span><span class="o">.</span><span class="n">lerarqder</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pa</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pb</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">pa</span><span class="p">,</span> <span class="n">pb</span><span class="p">,</span> <span class="n">pc</span><span class="p">,</span> <span class="n">pd</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">nav</span><span class="o">.</span><span class="n">simulaTestb</span><span class="p">(</span><span class="n">p</span><span class="p">)[:</span><span class="mi">2</span><span class="p">,]</span>
+<span class="go">[[ 0.          0.          0.02576571  0.         -0.01349632]</span>
+<span class="go"> [ 0.08726646  0.00765429  0.46717178  0.          0.20968975]]</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Tabela de Conteúdo</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Navio Module</a><ul>
+<li><a class="reference internal" href="#id1">Navio Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Tópico anterior</h4>
+  <p class="topless"><a href="LemeTris.html"
+                        title="capítulo anterior">LemeTris Module</a></p>
+  <h4>Próximo tópico</h4>
+  <p class="topless"><a href="Prop.html"
+                        title="próximo capítulo">Prop Module</a></p>
+  <h3>Esta Página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/Navio.txt"
+           rel="nofollow">Exibir Fonte</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Pesquisa rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Digite os termos da busca ou o nome de um módulo, classe ou função.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="Prop.html" title="Prop Module"
+             >próximo</a> |</li>
+        <li class="right" >
+          <a href="LemeTris.html" title="LemeTris Module"
+             >anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >source</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Alex S. Oliveira.
+      Criado com <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

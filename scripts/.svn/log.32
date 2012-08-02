@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/brl-cg-plt.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="brl-cg-plt.py"
+   checksum="07515682574e5b0a512ae3b4cc508e81"
+   last-author="alex"/>
+<delete-changelist
+   name="brl-cg-plt.py"/>
+<committed
+   name="brl-cg-plt.py"
+   revision="22"/>

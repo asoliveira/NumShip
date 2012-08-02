@@ -1,0 +1,13 @@
+<rm
+   name=".svn/prop-base/simulaCurvaGiro.py.svn-revert"/>
+<modify-entry
+   committed-rev="22"
+   committed-date="2012-07-10T14:14:27.526127Z"
+   name="simulaCurvaGiro.py"
+   checksum="a82b94aea874bd97c06a39ae689fa335"
+   last-author="alex"/>
+<delete-changelist
+   name="simulaCurvaGiro.py"/>
+<committed
+   revision="22"
+   name="simulaCurvaGiro.py"/>

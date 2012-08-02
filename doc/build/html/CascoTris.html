@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>CascoTris Module &mdash; NumShip 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="NumShip 1 documentation" href="index.html" />
+    <link rel="up" title="source" href="modules.html" />
+    <link rel="next" title="Módulo Es" href="Es.html" />
+    <link rel="prev" title="CascoMarAd Module" href="CascoMarAd.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="Es.html" title="Módulo Es"
+             accesskey="N">próximo</a> |</li>
+        <li class="right" >
+          <a href="CascoMarAd.html" title="CascoMarAd Module"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="modules.html" accesskey="U">source</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-CascoTris">
+<span id="cascotris-module"></span><h1>CascoTris Module<a class="headerlink" href="#module-CascoTris" title="Link permanente para este título">¶</a></h1>
+<dl class="class">
+<dt id="CascoTris.cascoTris">
+<em class="property">class </em><tt class="descclassname">CascoTris.</tt><tt class="descname">cascoTris</tt><big>(</big><em>DicionarioDerivadas</em><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="CascoGen.html#CascoGen.casco" title="CascoGen.casco"><tt class="xref py py-class docutils literal"><span class="pre">CascoGen.casco</span></tt></a></p>
+<p>Subclasse de casco seguindo o modelo do Paper de Tristan Perez</p>
+<p>&#8220;Cria uma instancia do casco com o modelo de <cite>Tristan Perez</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>DicionarioDerivadas</strong> (<em>dic</em>) &#8211; Dicionário com os coeficientes do casco e
+outros dados.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="CascoTris.cascoTris.Fx">
+<tt class="descname">Fx</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.Fx"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.Fx" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Forças em Surge</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.Fy">
+<tt class="descname">Fy</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.Fy"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.Fy" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Forcas em Sway</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.K">
+<tt class="descname">K</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.K"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.K" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Momento de Roll</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.MudaPos">
+<tt class="descname">MudaPos</tt><big>(</big><em>Posicao</em><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.MudaPos"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.MudaPos" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a posição e orientação do casco</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>Posicao</strong> (<em>numpy.ndarray</em>) &#8211; Array de posição e orientação a ser implementada.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.MudaVel">
+<tt class="descname">MudaVel</tt><big>(</big><em>Velocidade</em><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.MudaVel"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.MudaVel" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Muda a velocidade da embarcação</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>Velocidade</strong> (<em>numpy.ndarray</em>) &#8211; Velocidade do casco a ser implementada.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.N">
+<tt class="descname">N</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.N"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.N" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Momento de Yaw</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.filtrar">
+<tt class="descname">filtrar</tt><big>(</big><em>eixo</em><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.filtrar"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.filtrar" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Testa se todos as variáveis necessárias estão no parâmetro
+DicionarioDerivadas.</p>
+<p><em>Ainda não implementada</em></p>
+<p>Com o dicionário passado na criação da classe com valores como 
+{&#8216;xvr&#8217; = 54,...} e testa se todos os valores necessários para a
+implementação da classe foram passados lista= [&#8216;yur&#8217;, &#8216;rtu&#8217;,...] 
+estão em dic caso não estejam devolve a uma lista <em>return</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><strong>eixo</strong> (<em>str.</em>) &#8211; Eixo a ser analisado.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">Tipo de retorno:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="CascoTris.cascoTris.gz">
+<tt class="descname">gz</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/CascoTris.html#cascoTris.gz"><span class="viewcode-link">[código fonte]</span></a><a class="headerlink" href="#CascoTris.cascoTris.gz" title="Link permanente para esta definição">¶</a></dt>
+<dd><p>Calcula a função Gz</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Tópico anterior</h4>
+  <p class="topless"><a href="CascoMarAd.html"
+                        title="capítulo anterior">CascoMarAd Module</a></p>
+  <h4>Próximo tópico</h4>
+  <p class="topless"><a href="Es.html"
+                        title="próximo capítulo">Módulo Es</a></p>
+  <h3>Esta Página</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/CascoTris.txt"
+           rel="nofollow">Exibir Fonte</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Pesquisa rápida</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Ir" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Digite os termos da busca ou o nome de um módulo, classe ou função.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegação</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice Geral"
+             >índice</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Índice de Módulos do Python"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="Es.html" title="Módulo Es"
+             >próximo</a> |</li>
+        <li class="right" >
+          <a href="CascoMarAd.html" title="CascoMarAd Module"
+             >anterior</a> |</li>
+        <li><a href="index.html">NumShip 1 documentation</a> &raquo;</li>
+          <li><a href="modules.html" >source</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Alex S. Oliveira.
+      Criado com <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
