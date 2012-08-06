@@ -42,6 +42,7 @@ class  prop:
         """Muda a posição do casco
         """
         return self.Rot
+        
     def MudaRotCom(self,  Rot):
         """
         Muda a posição do casco
@@ -60,10 +61,13 @@ class  prop:
         self.pos = Posicao
 
 
-    def MudaRot(self,  dt):
-        """
-        """
+    def MudaRot(self, dt):
+        """Muda a rotação da máquina caminhando um passo 'dt' no tempo"""
         
+        self.Rot = self.Rot + (self.RotCom - self.Rot) * \
+                   (1 - sp.exp( - self.dic['lambdaprop'] * dt))
+                   
+
     def MudaRotCom(self,  Rot):
         """
         """        
@@ -73,11 +77,13 @@ class  prop:
         Devolve a força em surge
         """
         return sp.array(0.)
+        
     def Fy(self):
         """
         Devolve a força em sway
         """
         return sp.array(0.)
+        
     def K(self):
         """
         Devolve o momento de roll

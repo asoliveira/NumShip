@@ -31,25 +31,22 @@ class propMarAd(prop):
         self.Rot =  sp.array(self.dic['rotnom'])
         self.RotCom =  sp.array(self.dic['rotnom'])
         self.uc = self.dic['unom']
-        
-    def MudaRot(self, dt):
-        """Muda a rotação da máquina caminhando um passo 'dt' no tempo"""
-        
-        self.Rot = self.Rot + (self.RotCom - self.Rot) * \
-                   (1 - sp.exp( - self.dic['lambdaprop'] * dt))
-                   
-#        Eta = self.MostraVelCom()/self.MostraVel()[0]
-#        self.Rot = self.RotCom/Eta
+       
 
-    def MudaRotCom(self,  Rot):
+    def MudaRotCom (self, Rot):
         """Muda a rotação comandada"""        
         
         self.RotCom = Rot.copy()
         
-    def MudaVelCom(self,  uc):
+    def MudaVelCom (self, uc):
         """Muda a velocidade comandada""" 
         
         self.uc = uc.copy()
+    
+    def MudaRot (self, dt):
+      """Muda a rotação do propulsor"""
+      
+      self.Rot = self.RotCom.copy()
         
     def MostraRot(self):
         """Retorna a rotação da máquina atual"""
