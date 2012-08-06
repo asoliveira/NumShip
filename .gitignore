@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 *~
 *.eps
 *.jpg
 *.jpge
 *.save
-*.pyc
+*.kate-swp
 *wiki/
 *figuras/
 *saida*/
