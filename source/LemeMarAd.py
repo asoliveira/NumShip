@@ -60,6 +60,11 @@ class lemeMarAd(leme):
         
         """
         self.leme = leme.copy()
+        
+    def MudaLeme(self, dt):
+        """Muda o leme avançando um passo 'dt' no tempo"""
+
+        self.leme = self.lemeCom.copy()        
 
     def Fx (self,  rot= None,  eta=None):
         """Retorna  a força em surge.

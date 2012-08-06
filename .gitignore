@@ -4,6 +4,7 @@
 *.jpg
 *.jpge
 *.save
+*.pyc
 *wiki/
 *figuras/
 *saida*/
