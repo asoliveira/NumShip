@@ -3,6 +3,7 @@
 *.eps
 *.jpg
 *.jpge
+*.save
 *wiki/
 *figuras/
 *saida*/
