@@ -4,6 +4,7 @@
 *.jpg
 *.jpge
 *.save
+*.kate-swp
 *wiki/
 *figuras/
 *saida*/
