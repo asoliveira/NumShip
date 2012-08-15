@@ -12,7 +12,9 @@ passo = 0.7
 tmax = 2000
 tini =  0
 metodo = 'euler'
-TipoModelo = 'MARAD'
+#Atualmente disponíveis os tipos
+#MARAD; MARAD-L1; TP
+TipoModelo = 'MARAD-L1'
 GrausDeLib = 3
 #multiplicador da força
 ForEs = 1e0 

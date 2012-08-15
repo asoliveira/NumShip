@@ -107,7 +107,11 @@ class navio:
       self.leme = lemeMarAd(dicvar)
       self.casco = cascoMarAd(dicvar)
       self.prop = propMarAd(dicvar)
-
+    elif tipo == 'MARAD-L1':
+      self.leme = leme1(dicvar)
+      self.casco = cascoMarAd(dicvar)
+      self.prop = propMarAd(dicvar)
+      
   def MostraVel (self):
     """Retorna a Velocidade da embarcação"""
     
@@ -219,7 +223,7 @@ class navio:
     
     cori = m*(v*r + xg*(r**2) -  zg*p*r) 
     
-    if self.tipo == 'MARAD':
+    if (self.tipo == 'MARAD') or ('MARAD' in self.tipo):
         saida = (self.casco.Fx() + self.prop.Fx() +
                 self.leme.Fx(self.MostraRot(),
                 self.MostraVelCom() / self.MostraVel()[0]) + cori) 
@@ -241,7 +245,7 @@ class navio:
     
     cori = -m*u*r
   
-    if self.tipo == 'MARAD':
+    if (self.tipo == 'MARAD') or ('MARAD' in self.tipo):
       saida = (self.casco.Fy() + self.leme.Fy(self.MostraRot()) +
           self.prop.Fy() + cori)
     elif self.tipo == 'TP':
@@ -262,7 +266,7 @@ class navio:
     
     cori = m*zg*u*r
   
-    if self.tipo == 'MARAD':
+    if (self.tipo == 'MARAD') or ('MARAD' in self.tipo):
       saida = (self.casco.K() + self.leme.K(self.MostraRot()) +
           self.prop.K() + cori)
     elif self.tipo == 'TP':
@@ -284,7 +288,7 @@ class navio:
     
     cori = -m*xg*u*r
 
-    if self.tipo == 'MARAD':
+    if (self.tipo == 'MARAD') or ('MARAD' in self.tipo):
       saida = (self.casco.N() + self.leme.N(self.MostraRot()) +
           self.prop.N() + cori)
     elif self.tipo == 'TP':
