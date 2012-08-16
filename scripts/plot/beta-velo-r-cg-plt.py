@@ -6,7 +6,7 @@ adi = False
 #É para salvar as figuras(True|False)?
 save = True
 #Caso seja para salvar, qual é o formato desejado?
-formato = 'jpg'
+formato = 'eps'
 #Caso seja para salvar, qual é o diretório que devo salvar?
 dircg = 'fig-sen'
 #Caso seja para salvar, qual é o nome do arquivo?
@@ -49,16 +49,16 @@ else:
 plt.subplot2grid((1,4),(0,0), colspan=3)
 #Padrao
 plt.plot(velohis[:, 0],  velohis[:, 6] * (180 / sp.pi),  color = pc, 
-linestyle = ps, linewidth = 1, label=ur'padrão')
+linestyle = ps, linewidth = 1, label=ur'$M1$')
 
 plt.plot(velohis2[:, 0],  velohis2[:, 6] * (180 / sp.pi),  color = r1c,
-linestyle= r1s, linewidth = 1, label=ur'1.1beta')
+linestyle= r1s, linewidth = 1, label=ur'$1.1\beta$')
 
 plt.plot(velohis3[:, 0], velohis3[:, 6] * (180 / sp.pi), color = r2c, 
-linewidth = 1, linestyle = r2s, label=ur'1.2beta')
+linewidth = 1, linestyle = r2s, label=ur'$1.2\beta$')
 
 plt.plot(velohis4[:, 0], velohis4[:, 6] * (180 / sp.pi),color = r3c, 
-linestyle = r3s, linewidth = 1, label=ur'1.3beta')
+linestyle = r3s, linewidth = 1, label=ur'$1.3\beta$')
 plt.title(titulo)
 plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 plt.ylabel(ylabel)

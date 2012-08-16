@@ -28,7 +28,7 @@ from LemeGen import *
 class leme1(lemeMarAd):
     """Classe com o modelo matemático de leme do 1"""
 
-      def MudaLeme(self, dt):
+    def MudaLeme(self, dt):
         """Muda o leme avançando um passo 'dt' no tempo"""
 
         self.leme = self.leme + (self.lemeCom - self.leme) * (1 -
