@@ -5,15 +5,6 @@
 #TipoModelo -- Também ficará como o nome de cada gráfico;
 #velHis -- 
 #posHis
-adi = False
-save = True #Salva a figura?
-scgarq = 'saida'
-GrausDeLib = 3
-tini = 0
-tmax = 4000
-lemecg = 35
-ForEs = 1e0
-import os
 
 import scipy as sp
 import numpy as np
@@ -29,18 +20,17 @@ velHis = np.genfromtxt('velo.dat')
 #etaHis = np.genfromtxt('eta.dat')
 #propHis = np.genfromtxt('propulsor.dat')
 
+#pdb.set_trace()
 i = 0
-while posHis[i,6] <= sp.pi/2: i += 1
+while sp.sqrt((posHis[i,6] - posHis[0,6])**2) < (sp.pi/2): i += 1
 
 j = i
-while posHis[j,6] <= sp.pi: j += 1  
+while sp.sqrt((posHis[j,6] - posHis[0,6])**2) < (sp.pi): j += 1
 
 k = j
-while (velHis[k,6] != velHis[k-1,6]) and (velHis[k,2] != velHis[k-1,2]): 
-  k += 1
-w = k
-while (velHis[w,1] != velHis[w-10,1]): w +=1
-  
+while (velHis[k,6] != velHis[k-10,6]): k += 1
+while (velHis[k,1] != velHis[k-10,1]): k +=1
+while (velHis[k,2] != velHis[k-10,2]): k +=1  
 
 print 'Tempo para mudara a proa {0:.2f} \
 {1:.0f}'.format(posHis[i,6]*(180/sp.pi), posHis[i,0])
@@ -51,6 +41,7 @@ print 'Transferência {0:.2f}'.format(posHis[i,2])
 print 'Diâmetro tático {0:.2f}'.format(posHis[j,2])
 print 'Raio da Curva de Giro no Equilíbrio \
 {0:.2f}'.format(sp.sqrt(velHis[k,2]**2 + velHis[k,1]**2)/velHis[k,6])
-print 'u no equilíbrio {0:.2f}'.format(velHis[w,1])
-print 'v no equilíbrio {0:.2f}'.format(velHis[w,2])
-print 'r no equilíbrio {0:.2f}'.format(velHis[w,6])
+print 'u no equilíbrio {0:.2f}'.format(velHis[k,1])
+print 'v no equilíbrio {0:.2f}'.format(velHis[k,2])
+print 'r no equilíbrio {0:.2f}'.format(velHis[k,6])
+print 'Velocidade total {0:.2f}'.format(sp.sqrt(velHis[k,1]**2 + velHis[k,2]**2))

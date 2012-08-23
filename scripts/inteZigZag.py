@@ -2,12 +2,8 @@
 
 p = (Multbeta,  Multr,  Multl,  Multbrl)
 
-if TipoModelo == 'MARAD':
-    arq = os.path.abspath('./dados/marad_derivada.dat')
-elif   TipoModelo == 'TP':  
-    arq = os.path.abspath('./dados/tp_derivada.dat')
-else:
-  arq = os.path.abspath('./dados/derivada.dat')
+#Coloque as derivadas no modelo nomeado pelo arquivo derivada.dat
+arq = os.path.abspath('./dados/derivada.dat')
   
 en = ('Navioteste', arq, 'inputtab.dat')
 io = es(en)

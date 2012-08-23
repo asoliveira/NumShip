@@ -9,12 +9,10 @@ nome = 'B MarAd'
 save = True
 formato = 'jpg'
 passo = 0.7
-tmax = 2000
+tmax = 4000
 tini =  0
 metodo = 'euler'
-#Atualmente disponíveis os tipos
-#MARAD; MARAD-L1; TP
-TipoModelo = 'MARAD-L1'
+TipoModelo = 'MARAD'
 GrausDeLib = 3
 #multiplicador da força
 ForEs = 1e0 

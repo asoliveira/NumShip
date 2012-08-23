@@ -5,14 +5,8 @@ import os
 #Multiplicador para a força
 p = (Multbeta, Multr, Multl, Multbrl)
 
-#Dependenpo do modelo que esteja usando temos que colocar os dados de entrada
-#nos arquivos na pasta dados
-if TipoModelo == 'MARAD':
-    arq = os.path.abspath('./dados/marad_derivada.dat')
-elif   TipoModelo == 'TP':  
-    arq = os.path.abspath('./dados/tp_derivada.dat')
-else:
-  arq = os.path.abspath('./dados/derivada.dat')
+#Coloque as derivadas no modelo nomeado pelo arquivo derivada.dat
+arq = os.path.abspath('./dados/derivada.dat')
 
 entrada = ('Navioteste', arq, 'inputtab.dat')
 io = es(entrada)
