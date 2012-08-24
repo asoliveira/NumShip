@@ -7,7 +7,7 @@ import scipy as sp
 
 nome = 'B MarAd'
 save = True
-formato = 'jpg'
+formato = 'pdf'
 passo = 0.7
 tmax = 4000
 tini =  0
@@ -18,7 +18,7 @@ GrausDeLib = 3
 ForEs = 1e0 
 Overshoot = 35 #em graus
 escala = '0.6'
-Rot = sp.array(1.42)
+Rot = sp.array(1.24)
 #tipo  de curva que será realizada 'starboard' ou 'port'
 tipoc = 'starboard' 
 #leme utilizado na curva de Giro
