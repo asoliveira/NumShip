@@ -9,26 +9,24 @@ adi = False
 save = True #Salva a figura?
 scgarq = 'saida'
 formato = 'pdf'
-TipoModelo = 'marad-cg-'
+TipoModelo = 'marad-zz-'
 GrausDeLib = 3
 tini = 0
-tmax = 900
-lemecg = 35
+tmax = 1000
+lemezz = 20
 ForEs = 1e0
-bini = 0
-bmax = 25
-uini = 2 
+uini = 4 
 umax = 9
-vini = 0
-vmax = -2
-rini = 0
-rmax = 0.8
-duini = 0
-dumax = -0.04
-dvini = 0.005 
-dvmax = -0.035
-drini = -0.005
-drmax = 0.025
+vini = -2
+vmax = 2
+rini = -0.7
+rmax = 0.6
+duini = -0.02
+dumax = 0.01
+dvini = -0.02 
+dvmax = 0.02
+drini = -0.03
+drmax = 0.03
 fuini = -1000000
 fumax = 1000
 fvini = 1000 
@@ -38,7 +36,7 @@ nmax = 1000000
 rotini = 0
 rotmax = 2
 etaini = 1
-etamax = 4
+etamax = 1.8
 
 import os
 
@@ -48,7 +46,6 @@ import matplotlib.pyplot as plt
 import pdb
 
 posHis = np.genfromtxt('pos.dat')
-betaHis = np.genfromtxt('beta.dat')
 velHis = np.genfromtxt('velo.dat')
 lemeHis = np.genfromtxt('leme.dat')
 acelHis = np.genfromtxt('acel.dat')
@@ -62,62 +59,40 @@ try:
 except NameError:
   print 'houve algum problema na criação do diretório ' + dircg
 
-if adi:
-    xlabel = r't'
-    tini = velHis[0, 0]
-    tmax = velHis[-1, 0]
-else:
-    xlabel = r't \ seg'
+xlabel = r't  (segundos)'
 
-#Curva de diro
+#Curva de Zigzag
+fig = plt.figure()
+ax = fig.add_subplot(111)
 
 if adi:
-    ylabel = r'$x\prime$'
-    xposlabel = r'$y\prime$'
+    ylabel = r'$graus$'
+    xposlabel = r'$t\prime$'
 else:
-    ylabel = r'$x \quad m$'    
-    xposlabel = r'$y \quad m$'    
-    plt.plot(posHis[:,2], posHis[:,1], 'b-')    
+    ylabel = r'$graus$'    
+    xposlabel = r'$t \quad (segundos)$'    
+
 plt.grid(True)
 plt.ylabel(ylabel)
 plt.xlabel(xposlabel)
+plt.axis([tini, tmax,-abs(lemezz + 20), abs(lemezz + 20)])
+ax.plot(posHis[:,0], posHis[:,6]*(180/sp.pi), 'b-',
+lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-')
+leg = ax.legend((r'$\psi$', r'$\delta_R$'), loc = 'upper right')
  
 if save:
-    plt.savefig(dircg + TipoModelo +'cg.' + formato, format=formato)
+    plt.savefig(dircg + TipoModelo +'zz.' + formato, format=formato)
     plt.clf()
 else:
     plt.show()
     plt.clf()
 
-##Ângulo de deriva
-
-if adi:
-    ylabel = r'$\beta$'
-    xlabel = r'$t \prime$'
-else:
-    ylabel = r'$\beta$'
-    xlabel = r'$t$'
-
-plt.plot(betaHis[:, 0], betaHis[:, 1]*(180/sp.pi), 'bo', label =
-r'$\beta$')
-plt.grid(True)
-plt.ylabel(r'$\beta(graus)$')
-plt.xlabel('$t(segundos)$')
-plt.axis([tini,tmax,bini,bmax])
-
-if save:
-    plt.savefig(dircg + TipoModelo +'beta.' + formato, format=formato)
-    plt.clf()
-else:
-    plt.show()
-    plt.clf()
-
-##Velocidade em Surge        
+#Velocidade em Surge        
     
 if adi:
-    xlabel = r't'
+    xlabel = r't $\prime$'
 else:
-    xlabel = r't \ seg'
+    xlabel = r't (segundos)'
 
 plt.plot(velHis[:, 0], velHis[:, 1], 'b-', label = r'$u$')
 
@@ -135,7 +110,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-', label =
 r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg + 5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz + 5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 if save:
@@ -163,7 +138,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-', label =
 r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 if save:
@@ -191,7 +166,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-', 
 label = r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg + 5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz + 5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')    
 
 if save:
@@ -219,7 +194,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-', 
 label = r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 if save:
@@ -247,7 +222,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-', 
 label = r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 if save:
     plt.savefig(dircg + TipoModelo +'acel-v.' + formato, format=formato)
@@ -275,7 +250,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g-', 
 label = r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 if save:
@@ -304,7 +279,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g--', label =
 r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 
@@ -331,7 +306,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g--', 
 label = r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 if save:
@@ -359,7 +334,7 @@ plt.twinx()
 plt.plot(lemeHis[:, 0], lemeHis[:, 1]*(180/sp.pi), 'g--', label =
 r'$\delta_R$')
 plt.grid(True)
-plt.axis([tini, tmax, -abs(lemecg +5), abs(lemecg +5) ])
+plt.axis([tini, tmax, -abs(lemezz +5), abs(lemezz +5) ])
 plt.ylabel(r'$\delta_R$')
 
 if save:

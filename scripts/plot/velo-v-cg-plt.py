@@ -6,7 +6,7 @@ adi = False
 #É para salvar as figuras(True|False)?
 save = True
 #Caso seja para salvar, qual é o formato desejado?
-formato = 'jpg'
+formato = 'pdf'
 #Caso seja para salvar, qual é o diretório que devo salvar?
 dircg = 'fig-sen'
 #Caso seja para salvar, qual é o nome do arquivo?
@@ -14,17 +14,17 @@ nome = 'velo-v-cg'
 #Qual título colocar no gráficos?
 titulo = ''#'Curva de Giro'
 #Qual a cor dos gráficos?
-pc = 'k'
-bc = 'k'
-lc = 'k'
-brlc = 'k'
-rc = 'k'
+pc = 'r'
+bc = 'g'
+lc = 'b'
+brlc = 'y'
+rc = 'm'
 #Estilo de linha
 ps = '-'
-bs = '-.'
-rs = '.'
-ls = '+'
-brls = '^'
+bs = '-'
+rs = '-'
+ls = '-'
+brls = '-'
 
 import os
 
@@ -39,7 +39,7 @@ velohis3 = sp.genfromtxt('../entrada/r/saida1.2/CurvaGiro/velo.dat')
 velohis4 = sp.genfromtxt('../entrada/leme/saida1.2/CurvaGiro/velo.dat')
 velohis5 = sp.genfromtxt('../entrada/brl/saida1.2/CurvaGiro/velo.dat')
 
-axl = [0, 800, -2, 0]
+axl = [0, 800, 0, -2]
 
 #Plotando a Curva de Giro      
 if adi:
@@ -52,18 +52,15 @@ else:
 plt.subplot2grid((1,4),(0,0), colspan=3)
 #Padrao
 plt.plot(velohis[:, 0],  velohis[:, 2],  color = pc, linestyle = ps,
-linewidth = 1, label=ur'padrão')
+linewidth = 1, label=ur'$M1$')
 plt.plot(velohis2[:, 0],  velohis2[:, 2],  color = bc,linestyle = bs,
-linewidth = 2, label=ur'1.2beta')
-plt.scatter(somep(velohis3[:, 0], num = 200), somep(velohis3[:, 2], num =
-200), 
-color = rc, marker = rs, s = 8, label=ur'1.2r')
-plt.scatter(somep(velohis4[:, 0], num = 100),  somep(velohis4[:, 2], num =
-100), 
-color = lc, marker = ls, s = 20, label=ur'1.2leme')
-plt.scatter(somep(velohis5[:, 0], num = 100), somep(velohis5[:, 2], num =
-100), 
-color = brlc, marker = brls, s = 14, label=ur'1.2brl')
+linewidth = 1, label=ur'1.2$\beta$')
+plt.plot(velohis3[:, 0], velohis3[:, 2], 
+color = rc, linestyle = rs, label=ur'1.2r')
+plt.plot(velohis4[:, 0], velohis4[:, 2], 
+color = lc, linestyle = ls,  label=ur'1.2$\delta_R$')
+plt.plot(velohis5[:, 0], velohis5[:, 2], 
+color = brlc, linestyle = brls, label=ur'1.2brl')
 plt.title(titulo)
 plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
 plt.ylabel(ylabel)
