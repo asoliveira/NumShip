@@ -83,10 +83,15 @@ class navio:
                    necessários para a construção do navio;
     :param nome: Nome do navio. Não possui relevância(default = 'navioteste');
     :param tipo: Tipo de modelo matemático adotado para a construção do navio
-                 (default = 'MARAD');
+                 (default = 'MARAD')
+                 As opções são:
+                 MARAD
+                 MARAD-L1
+                 MARAD-P
+                 TP;
     :type dicvar: dict
     :type nome: str
-    :type tipo: str
+    :type tipo: str 
 
     """
     
@@ -109,6 +114,10 @@ class navio:
       self.prop = propMarAd(dicvar)
     elif tipo == 'MARAD-L1':
       self.leme = leme1(dicvar)
+      self.casco = cascoMarAd(dicvar)
+      self.prop = propMarAd(dicvar)
+    elif tipo == 'MARAD-P':
+      self.leme = lemep(dicvar)
       self.casco = cascoMarAd(dicvar)
       self.prop = propMarAd(dicvar)
       

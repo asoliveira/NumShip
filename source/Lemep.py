@@ -25,13 +25,21 @@ import numpy  as np
 from LemeMarAd import * 
 from LemeGen import * 
 
-class leme2(lemeMarAd):
-    """Classe com o modelo matemático de leme do 2"""
+class lemep(lemeMarAd):
+    """Classe com o modelo matemático de leme sugerida ma publicação do
+MarAd"""
 
     def MudaLeme(self, dt):
-        """Muda o leme avançando um passo 'dt' no tempo"""
-
-                self.leme = 2.3 * dt - self.lemeCom
+        """Muda o leme com um deflexão na na razão de $2,33^o_{seg}$"""
+          
+        rat = 2.33 #Razão de mudança do leme
+        if abs(self.lemeCom - self.leme) >= (rat * dt):
+            if self.lemeCom > self.leme:
+                self.leme = self.leme + rat * dt
+            else:
+                self.leme = self.leme - rat * dt
+        else:
+            self.leme = self.lemeCom
 
 if __name__ == "__main__":
     import doctest

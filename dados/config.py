@@ -12,6 +12,7 @@ passo = 0.7
 tmax = 4000
 tini =  0
 metodo = 'euler'
+#Os Tipos de modelos de matemáticos disponíveis são (MARAD, MARAD-L1, MARAD-P)
 TipoModelo = 'MARAD'
 GrausDeLib = 3
 #multiplicador da força
