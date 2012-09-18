@@ -4,31 +4,31 @@
 #dircg -- Diretório onde será salvo as gráfico;
 #TipoModelo -- Também ficará como o nome de cada gráfico;
 #velHis -- 
-#veloHis
+#acelHis
 adi = False
 save = True #Salva a figura?
-scgarq = 'saida'
+scgarq = 'plot'
 formato = 'pdf'
-TipoModelo = 'marad-cg-'
+TipoModelo = 'beta-velo-'
 GrausDeLib = 3
 tini = 0
 tmax = 900
 lemecg = 35
-axu = [tini, tmax, 2, 9]
+axu = [tini, tmax, 2., 9]
 axv = [tini, tmax, -2.5, 0]
-axr = [tini, tmax, 0, 0.9]
+axr = [tini, tmax, 0.0, 0.9]
 
 #Quais são as pastas?
-p = ('padrao', 'xddee-0.002', 'xddee-0.005', 'xddee-0.008')
+p = ('padrao', 'beta/beta-10', 'beta/beta-20', 'beta/beta-30')
 #Dentro de cada pasta quais são as pastas comuns?
 dircomum = '/CurvaGiro/'
 #Dentro de cada diretório quais são as arq?
 arq = 'velo.dat',
 #legendas
-ld = (r'$X_{\delta \delta \eta \eta} = 0.0$', 
-r'$X_{\delta \delta \eta \eta} = 0.002$', 
-r'$X_{\delta \delta \eta \eta} = 0.005$',
-r'$X_{\delta \delta \eta \eta} = 0.008$')
+ld = (r'$S1$', 
+r'$10\% \ B$', 
+r'$20\% \ B$',
+r'$30\% \ B$')
 
 
 #import 
@@ -43,31 +43,29 @@ dircg = scgarq + '/figuras/'
 if not os.path.exists(dircg):
   os.makedirs(dircg)
   
-velo = []
+acel = []
 for arg in p:
-  velo.append(arg + dircomum + arq[0])
+  acel.append(arg + dircomum + arq[0])
 
-veloHis = []
-for arg in velo:
-  veloHis.append(np.genfromtxt(arg))
+acelHis = []
+for arg in acel:
+  acelHis.append(np.genfromtxt(arg))
 
 #Curva de giro
 #Velocidade em surge
 fig1 = plt.figure(1)
 ax = fig1.add_subplot(111)
 if adi:
-    ylabel = r'$x\prime$'
-    xlabel = r'$y\prime$'
-else:
-    ylabel = r'$x \quad m$'    
-    xlabel = r'$y \quad m$'    
-
+    xlabel = r'$t\prime$'
+else:   
+    xlabel = r'$t \quad segundos$'    
+    ylabel = r'$u (m/s)$'
 plt.axis(axu)
-for a in range(len(veloHis)):  
-  ax.plot(veloHis[a][:,0], veloHis[a][:,1])
+for a in range(len(acelHis)):  
+  ax.plot(acelHis[a][:,0], acelHis[a][:,1])
 leg = ax.legend(ld, loc = 'upper right')
 plt.grid(True)
-plt.ylabel(r'$u (metros/segundos)$')
+plt.ylabel(ylabel)
 plt.xlabel(xlabel)
  
 if save:
@@ -81,18 +79,18 @@ else:
 fig2 = plt.figure(2)
 ax = fig2.add_subplot(111)
 if adi:
-    ylabel = r'$x\prime$'
-    xlabel = r'$y\prime$'
+    ylabel = r'$v\prime$'
+    xlabel = r'$t\prime$'
 else:
-    ylabel = r'$x \quad m$'    
-    xlabel = r'$y \quad m$'    
+    ylabel = r'$v (m/s)$'    
+    xlabel = r'$t \quad segundos$'    
 
 plt.axis(axv)
-for a in range(len(veloHis)):
-  ax.plot(veloHis[a][:,0], veloHis[a][:,2])
+for a in range(len(acelHis)):
+  ax.plot(acelHis[a][:,0], acelHis[a][:,2])
 leg = ax.legend(ld, loc = 'upper right')
 plt.grid(True)
-plt.ylabel(r'$v (metros/segundos)$')
+plt.ylabel(ylabel)
 plt.xlabel(xlabel)
  
 if save:
@@ -106,17 +104,17 @@ else:
 fig3 = plt.figure(3)
 ax = fig3.add_subplot(111)
 if adi:
-    ylabel = r'$x\prime$'
-    xlabel = r'$y\prime$'
+    ylabel = r'$r\prime$'
+    xlabel = r'$t\prime$'
 else:
-    ylabel = r'$x \quad m$'    
-    xlabel = r'$y \quad m$'    
+    ylabel = r'$r \quad (graus/segundos)$'    
+    xlabel = r'$t \quad segundos$'    
 plt.axis(axr)
-for a in range(len(veloHis)):
-  ax.plot(veloHis[a][:,0], veloHis[a][:,6] * (180/sp.pi))
+for a in range(len(acelHis)):
+  ax.plot(acelHis[a][:,0], acelHis[a][:,6] * (180/sp.pi))
 leg = ax.legend(ld, loc = 'upper right')
 plt.grid(True)
-plt.ylabel(r'$r\quad (graus/segundos)$')
+plt.ylabel(ylabel)
 plt.xlabel(xlabel)
  
 if save:

@@ -7,9 +7,9 @@
 #acelHis
 adi = False
 save = True #Salva a figura?
-szzarq = 'saida'
+szzarq = 'plot'
 formato = 'pdf'
-TipoModelo = 'marad-zz-'
+TipoModelo = 'leme-'
 GrausDeLib = 3
 tini = 0
 tmax = 900
@@ -20,16 +20,16 @@ axr = [tini, tmax, -0.7, 0.7]
 axleme = [tini, tmax, -abs(lemezz + 5), abs(lemezz + 5)] 
 
 #Quais s√£o as pastas?
-p = ('padrao', 'xddee-0.002', 'xddee-0.005', 'xddee-0.008')
+p = ('padrao', 'leme/leme-10', 'leme/leme-20', 'leme/leme-30')
 #Dentro de cada pasta quais s√£o as pastas comuns?
 dircomum = '/CurvaZigZag/'
 #Dentro de cada diret√≥rio quais s√£o as arq?
 arq = ('acel.dat', 'leme.dat')
 #legendas
-ld = (r'$X_{\delta \delta \eta \eta} = 0.0$', 
-r'$X_{\delta \delta \eta \eta} = 0.002$', 
-r'$X_{\delta \delta \eta \eta} = 0.005$',
-r'$X_{\delta \delta \eta \eta} = 0.008$')
+ld = (ur'S1', 
+r'$10 \% D$', 
+r'$20 \% D$',
+r'$30 \% D$')
 
 
 #import 
@@ -38,7 +38,7 @@ import pdb
 import scipy as sp
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib.gridspec as gridspec
 
 dirzz = szzarq + '/figuras/'   
 if not os.path.exists(dirzz):
@@ -57,14 +57,16 @@ for arg in acel:
 for arg in leme:  
   lemeHis.append(np.genfromtxt(arg))
 #Curva de giro
-#Velocidade em surge
+#Aceleracao em surge
 fig1 = plt.figure(1)
-ax = fig1.add_subplot(111)
+gs = gridspec.GridSpec(2, 1, width_ratios=[1,0], height_ratios=[1,4])
+ax = fig1.add_subplot(gs[1]) 
 
 #plt.axis(axu)
 for a in range(len(acelHis)):  
   ax.plot(acelHis[a][:,0], acelHis[a][:,1])
-leg = ax.legend(ld, loc = 'upper right')
+
+l1 = plt.legend(ld, bbox_to_anchor=(.0, 1.1, .45, .2), loc=3, ncol=2, mode="expand", borderaxespad=0.)
 plt.grid(True)
 ax.set_ylabel(r'$\dot u (metros/segundos^2)$')
 ax.set_xlabel(r'$t \quad segundos$')
@@ -73,8 +75,12 @@ ax2 = ax.twinx()
 ax2.set_ylabel(r'$\delta_R \quad (graus)$')
 ax2.axis(axleme)
 
+
 for a in range(len(lemeHis)):  
-  ax2.plot(lemeHis[a][:,0], lemeHis[a][:,1] * (180/sp.pi))
+  ax2.plot(lemeHis[a][:,0], lemeHis[a][:,1] * (180/sp.pi), '--')
+plt.legend(ld, bbox_to_anchor=(.55, 1.1, .45, .2), loc=3, ncol=2,
+mode="expand", borderaxespad=0.)
+plt.gca().add_artist(l1)#N„o est· sendo necess·rio
     
 if save:
     plt.savefig(dirzz + TipoModelo +'acel-u-zz.' + formato, format=formato)
@@ -85,12 +91,13 @@ else:
 
 #Velocidade em sway    
 fig2 = plt.figure(2)
-ax = fig2.add_subplot(111)
+gs = gridspec.GridSpec(2, 1, width_ratios=[1,0], height_ratios=[1,4])
+ax = fig2.add_subplot(gs[1]) 
 
 #plt.axis(axv)
 for a in range(len(acelHis)):  
   ax.plot(acelHis[a][:,0], acelHis[a][:,2])
-leg = ax.legend(ld, loc = 'upper right')
+l1 = plt.legend(ld, bbox_to_anchor=(.0, 1.1, .45, .2), loc=3, ncol=2, mode="expand", borderaxespad=0.)
 plt.grid(True)
 ax.set_ylabel(r'$\dot v (metros/segundos^2)$')
 ax.set_xlabel(r'$t \quad segundos$')
@@ -100,7 +107,10 @@ ax2.set_ylabel(r'$\delta_R \quad (graus)$')
 ax2.axis(axleme)
 
 for a in range(len(lemeHis)):  
-  ax2.plot(lemeHis[a][:,0], lemeHis[a][:,1] * (180/sp.pi))
+  ax2.plot(lemeHis[a][:,0], lemeHis[a][:,1] * (180/sp.pi), '--')
+plt.legend(ld, bbox_to_anchor=(.55, 1.1, .45, .2), loc=3, ncol=2,
+mode="expand", borderaxespad=0.)
+#plt.gca().add_artist(l1)
     
 if save:
     plt.savefig(dirzz + TipoModelo +'acel-v-zz.' + formato, format=formato)
@@ -110,12 +120,13 @@ else:
     plt.clf()    
 #Velocidade do yaw
 fig3 = plt.figure(3)
-ax = fig3.add_subplot(111)
+gs = gridspec.GridSpec(2, 1, width_ratios=[1,0], height_ratios=[1,4])
+ax = fig3.add_subplot(gs[1]) 
 
 #plt.axis(axr)
 for a in range(len(acelHis)):  
   ax.plot(acelHis[a][:,0], acelHis[a][:,6] * (180/sp.pi))
-leg = ax.legend(ld, loc = 'upper right')
+l1 = plt.legend(ld, bbox_to_anchor=(.0, 1.1, .45, .2), loc=3, ncol=2, mode="expand", borderaxespad=0.)
 plt.grid(True)
 ax.set_ylabel(r'$\dot r (graus/segundos^2)$')
 ax.set_xlabel(r'$t \quad segundos$')
@@ -125,8 +136,10 @@ ax2.set_ylabel(r'$\delta_R \quad (graus)$')
 ax2.axis(axleme)
 
 for a in range(len(lemeHis)):  
-  ax2.plot(lemeHis[a][:,0], lemeHis[a][:,1] * (180/sp.pi))
-    
+  ax2.plot(lemeHis[a][:,0], lemeHis[a][:,1] * (180/sp.pi), '--')
+plt.legend(ld, bbox_to_anchor=(.55, 1.1, .45, .2), loc=3, ncol=2,
+mode="expand", borderaxespad=0.)
+#plt.gca().add_artist(l1)    
 if save:
     plt.savefig(dirzz + TipoModelo +'acel-r-zz.' + formato, format=formato)
     plt.clf()

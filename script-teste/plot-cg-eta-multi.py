@@ -7,9 +7,9 @@
 #etaHis
 adi = False
 save = True #Salva a figura?
-scgarq = 'saida'
+scgarq = 'plot'
 formato = 'pdf'
-TipoModelo = 'marad-cg-'
+TipoModelo = 'r-'
 GrausDeLib = 3
 tini = 0
 tmax = 900
@@ -17,16 +17,16 @@ lemecg = 35
 aeta = [tini, tmax, 0, 4]
 
 #Quais são as pastas?
-p = ('padrao', 'xddee-0.002', 'xddee-0.005', 'xddee-0.008')
+p = ('padrao', 'r/r-10', 'r/r-20', 'r/r-30')
 #Dentro de cada pasta quais são as pastas comuns?
 dircomum = '/CurvaGiro/'
 #Dentro de cada diretório quais são as arq?
 arq = 'eta.dat',
 #legendas
-ld = (r'$X_{\delta \delta \eta \eta} = 0.0$', 
-r'$X_{\delta \delta \eta \eta} = 0.002$', 
-r'$X_{\delta \delta \eta \eta} = 0.005$',
-r'$X_{\delta \delta \eta \eta} = 0.008$')
+ld = (ur'S1', 
+r'$10 \% R$', 
+r'$20 \% R$',
+r'$30 \% R$')
 
 
 #import 
@@ -35,7 +35,7 @@ import os
 import scipy as sp
 import numpy as np
 import matplotlib.pyplot as plt
-
+import matplotlib.gridspec as gridspec
 
 dircg = scgarq + '/figuras/'   
 if not os.path.exists(dircg):
@@ -58,7 +58,7 @@ if adi:
   ylabel = r'$\eta \prime$'    
   xetalabel = r'$t \quad \prime$'    
 else:
-  ylabel = r'$\eta (graus)$'    
+  ylabel = r'$\eta$'    
   xetalabel = r'$t \quad (segundos)$'    
 
 plt.axis(aeta)    

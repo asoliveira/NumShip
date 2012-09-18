@@ -7,9 +7,9 @@
 #acelHis
 adi = False
 save = True #Salva a figura?
-scgarq = 'saida'
+scgarq = 'plot'
 formato = 'pdf'
-TipoModelo = 'marad-cg-'
+TipoModelo = 'beta-'
 GrausDeLib = 3
 tini = 0
 tmax = 900
@@ -19,16 +19,16 @@ axv = [tini, tmax, -0.035, 0.005]
 axr = [tini, tmax, -0.003, 0.02]
 
 #Quais são as pastas?
-p = ('padrao', 'xddee-0.002', 'xddee-0.005', 'xddee-0.008')
+p = ('padrao', 'beta/beta-10', 'beta/beta-20', 'beta/beta-30')
 #Dentro de cada pasta quais são as pastas comuns?
 dircomum = '/CurvaGiro/'
 #Dentro de cada diretório quais são as arq?
 arq = 'acel.dat',
 #legendas
-ld = (r'$X_{\delta \delta \eta \eta} = 0.0$', 
-r'$X_{\delta \delta \eta \eta} = 0.002$', 
-r'$X_{\delta \delta \eta \eta} = 0.005$',
-r'$X_{\delta \delta \eta \eta} = 0.008$')
+ld = (r'$S1$', 
+r'$10\% \ B$', 
+r'$20\% \ B$',
+r'$30\% \ B$')
 
 
 #import 
@@ -58,14 +58,14 @@ ax = fig1.add_subplot(111)
 if adi:
     xlabel = r'$t\prime$'
 else:   
-    xlabel = r'$t \quad (segundos)$'    
-
+    xlabel = r'$t \quad segundos$'    
+    ylabel = r'$\dot u (m/s^2)$'
 plt.axis(axu)
 for a in range(len(acelHis)):  
   ax.plot(acelHis[a][:,0], acelHis[a][:,1])
 leg = ax.legend(ld, loc = 'upper right')
 plt.grid(True)
-plt.ylabel(r'$\dot u (metros/segundos^2)$')
+plt.ylabel(ylabel)
 plt.xlabel(xlabel)
  
 if save:
@@ -79,18 +79,18 @@ else:
 fig2 = plt.figure(2)
 ax = fig2.add_subplot(111)
 if adi:
-    ylabel = r'$x\prime$'
-    xlabel = r'$y\prime$'
+    ylabel = r'$v\prime$'
+    xlabel = r'$t\prime$'
 else:
-    ylabel = r'$x \quad m$'    
-    xlabel = r'$y \quad m$'    
+    ylabel = r'$\dot v (m/s^2)$'    
+    xlabel = r'$t \quad segundos$'    
 
 plt.axis(axv)
 for a in range(len(acelHis)):
   ax.plot(acelHis[a][:,0], acelHis[a][:,2])
 leg = ax.legend(ld, loc = 'upper right')
 plt.grid(True)
-plt.ylabel(r'$\dot v (metros/segundos^2)$')
+plt.ylabel(ylabel)
 plt.xlabel(xlabel)
  
 if save:
@@ -104,17 +104,17 @@ else:
 fig3 = plt.figure(3)
 ax = fig3.add_subplot(111)
 if adi:
-    ylabel = r'$x\prime$'
-    xlabel = r'$y\prime$'
+    ylabel = r'$r\prime$'
+    xlabel = r'$t\prime$'
 else:
-    ylabel = r'$x \quad m$'    
-    xlabel = r'$y \quad m$'    
+    ylabel = r'$\dot r\quad (graus/segundos^2)$'    
+    xlabel = r'$t \quad segundos$'    
 plt.axis(axr)
 for a in range(len(acelHis)):
   ax.plot(acelHis[a][:,0], acelHis[a][:,6] * (180/sp.pi))
 leg = ax.legend(ld, loc = 'upper right')
 plt.grid(True)
-plt.ylabel(r'$\dot r\quad (graus/segundos^2)$')
+plt.ylabel(ylabel)
 plt.xlabel(xlabel)
  
 if save:
