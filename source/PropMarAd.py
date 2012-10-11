@@ -27,7 +27,7 @@ class propMarAd(prop):
         
         self.dic = DicionarioDerivadas
         self.vel = sp.zeros((6, 1))
-        self.pos = sp.array((6, 1))
+        self.pos = sp.zeros((6, 1))
         self.Rot =  sp.array(self.dic['rotnom'])
         self.RotCom =  sp.array(self.dic['rotnom'])
         self.uc = self.dic['unom']

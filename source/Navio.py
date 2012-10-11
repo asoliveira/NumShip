@@ -58,8 +58,8 @@ class inte(object):
     Integrador runge-kutta
     """
     k1 = function(x, t0, par)
-    k2 = function(x + 1./2*dt*k1, t0 + 1./2*dt, par)
-    k3 = function(x + 1./2*dt*k2, t0 + 1./2*dt, par)
+    k2 = function(x + (1./2)*dt*k1, t0 + (1./2)*dt, par)
+    k3 = function(x + (1./2)*dt*k2, t0 + (1./2)*dt, par)
     k4 = function(x + dt*k3, t0 + dt, par)
   
     xt = x + 1./6*(k1+ 2.*k2+ 2.*k3+ k4)*dt
