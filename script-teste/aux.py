@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*--
+
+#Script para calcular e plotar a força em y
+
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../source'))
@@ -7,7 +12,7 @@ import matplotlib.pyplot as plt
 
 import Es
 
-entrada = ('NavioTeste', '../dados/bemformatado.dat', 'inputtab.dat')
+entrada = ('NavioTeste', '../dados/derivada.dat', 'inputtab.dat')
 en = Es.es(entrada)
 
 a = en.fydertotab()
