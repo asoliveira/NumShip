@@ -63,24 +63,22 @@ class propMarAd(prop):
         
         return self.uc         
         
-    def Fx (self):
+    def Fx (self, eta=1.):
         """Retorna a força em surge"""
-        
-        Eta = self.MostraVelCom() / self.MostraVel()[0]
-       
-        if  Eta < sp.array(0.):
+              
+        if  eta < sp.array(-1):
             a =  self.dic['a4']
             b =  self.dic['b4']
             c =  self.dic['c4']
-        elif sp.array(0.) <= Eta and Eta < sp.array(1.):
+        elif sp.array(-1) <= eta and eta < sp.array(0):
             a =  self.dic['a3']
             b =  self.dic['b3']
             c =  self.dic['c3']
-        elif sp.array(1) <= Eta and Eta < sp.array(2):
+        elif sp.array(0) <= eta and eta < sp.array(2):
             a =  self.dic['a2']
             b =  self.dic['b2']
             c =  self.dic['c2']  
-        elif sp.array(2) <= Eta :
+        elif sp.array(2) <= eta :
             a =  self.dic['a1']
             b =  self.dic['b1']
             c =  self.dic['c1'] 
@@ -89,16 +87,14 @@ class propMarAd(prop):
         v = self.MostraVel()[1]
         r  = self.MostraVel()[5]
         X = (self.dic['rho'] * (self.dic['lpp'] ** 2) / 2) * (u ** 2) * (a +
-             b * Eta + c * (Eta ** 2)) + (self.dic['rho'] * \
+             b * eta + c * (eta ** 2)) + (self.dic['rho'] * \
              (self.dic['lpp'] ** 2) / 2) * self.dic['xvveta'] * (v ** 2) * \
-             (Eta - 1)
+             (eta - 1)
         
         return X
         
-    def Fy (self):
+    def Fy (self, eta=1):
         """Retorna a força em sway"""
-
-        Eta = self.MostraVelCom() / self.MostraVel()[0]
         
         if self.MostraRot()< sp.array(0.):
             d = self.dic['d*0']
@@ -118,17 +114,15 @@ class propMarAd(prop):
 
         
         Y = (self.dic['rho'] * (self.dic['lpp'] ** 3)/2) * \
-            self.dic['yreta'] * u * r * (Eta-1) + (self.dic['rho'] * \
+            self.dic['yreta'] * u * r * (eta-1) + (self.dic['rho'] * \
             (self.dic['lpp'] ** 2) / 2) * self.dic['yveta'] * u * v * \
-            (Eta - 1) + (self.dic['rho'] * (self.dic['lpp'] ** 2) / 2) * \
+            (eta - 1) + (self.dic['rho'] * (self.dic['lpp'] ** 2) / 2) * \
             self.dic['y*'] * (uz ** 2)
             
         return Y
 
-    def N (self):
+    def N (self, eta=1):
         """Retorna o momento de yaw """
-
-        Eta = self.MostraVelCom() / self.MostraVel()[0]
         
         if self.MostraRot()< sp.array(0.):
             d = self.dic['d*0']
@@ -147,9 +141,9 @@ class propMarAd(prop):
              self.dic['dp'] + f * ((self.MostraRot() * self.dic['dp']) ** 2))
 
         N = (self.dic['rho'] * (self.dic['lpp'] ** 4)/2) * \
-             self.dic['nreta'] * u * r * (Eta-1) + (self.dic['rho'] * \
+             self.dic['nreta'] * u * r * (eta-1) + (self.dic['rho'] * \
              (self.dic['lpp'] ** 3)/2) * self.dic['nveta'] * u * v * \
-             (Eta-1) + (self.dic['rho'] * (self.dic['lpp'] ** 3)/2) * \
+             (eta-1) + (self.dic['rho'] * (self.dic['lpp'] ** 3)/2) * \
              self.dic['n*'] * (uz ** 2)
              
         return N      

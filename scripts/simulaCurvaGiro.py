@@ -18,14 +18,17 @@ from config import * #parâmetros para configurar a simulação
 #data = datetime.datetime.now()
 scgarq = './saida_' + data.strftime(fdata) + '/CurvaGiro'
 
+#Arquivo de derivadas hidrodinâmicas
+arq = os.path.abspath('./dados/'+arq)
+
 print 'Início da simulação da Curva de Giro ...'
 execfile('./scripts/inteCurvaGiro.py',  globals())
 print 'Integração Realizada.\n'
-if plot:
-  execfile('./scripts/plotCurvaGiro.py',  locals())
-  print'Plotagem realizada'
-print'Fazendo o relatório..'
-execfile('./scripts/relatoriocg.py',  locals())
-print'Relatório feito.'
-print 'Simulação e relatório realizados. Dê uma olhada na pasta \
-"saida<data_hora>".\n'
+#if plot:
+  #execfile('./scripts/plotCurvaGiro.py',  locals())
+  #print'Plotagem realizada'
+#print'Fazendo o relatório..'
+#execfile('./scripts/relatoriocg.py',  locals())
+#print'Relatório feito.'
+#print 'Simulação e relatório realizados. Dê uma olhada na pasta \
+#"saida<data_hora>".\n'

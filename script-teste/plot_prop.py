@@ -11,7 +11,10 @@ sys.path.insert(0, os.path.abspath('../dados'))
 from Es import *
 from config import *
 from Navio import navio
+#------------------------------------------------------
 
+#Ajustes de parâmetros para plotagem, caso queira ajustar parâmetros do navio
+#é necessário ir no arquivo de derivadas ou configuração
 #É para salvar o plot save=True
 #ou somente mostrar na tela save=False
 save = False
@@ -22,6 +25,12 @@ formato = 'pdf'
 
 #caminho do arquivo de derivadas
 entrada = '../dados/derivada.dat'
+
+#faixa de valores de eta
+etamax = 2
+etamin = -2
+#------------------------------------------------------
+#Programa
 
 #legendas
 ld = (r'\eta')
@@ -36,7 +45,7 @@ emb = navio(dadosf, tipo = TipoModelo)
 
 eta = []
 fx = []
-etav = sp.linspace(-2, -0.5,100)
+etav = sp.linspace(etamin, etamax,100)
 for etai in etav:
   if eta == 0:
     break

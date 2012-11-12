@@ -2,25 +2,27 @@
 
 import os
 
-#Multiplicador para a força
-p = (Multbeta, Multr, Multl, Multbrl)
+if qtd == 1:
+  shipname = nome
+else:
+  shipname = ''
 
-#Coloque as derivadas no modelo nomeado pelo arquivo derivada.dat
-arq = os.path.abspath('./dados/derivada.dat')
-
-entrada = ('Navioteste', arq, 'inputtab.dat')
+entrada = (shipname, arq, 'inputtab.dat')
 io = es(entrada)
 
 DicionarioDerivadas = io.lerarqder()
 del io, entrada, arq
 
-navio1 = navio(DicionarioDerivadas, nome = nome,  tipo = TipoModelo )
+navio1 = navio(DicionarioDerivadas, nome = shipname,  tipo = TipoModelo)
 
-
+if mul:
+  p = (Multbeta, Multr, Multl, Multbrl)
+else:
+  p = None
+  
 b = navio1.getCurvaGiro(met = metodo, peso = p, t = tmax, t0 = tini, 
                         dt = passo, tipo = tipoc, GrausDeLib = GrausDeLib, 
-                        leme = lemecg, rotcom = Rot, saida = saida, 
-                        arqs = scgarq)
+                        leme = lemecg, rotcom = Rot, arqs = scgarq)
 
 
 if  saida == 'txt':
@@ -89,7 +91,7 @@ if adi :
                     forHis[cont, coluna] = forHis[cont, coluna]*(2/(rho*((lpp*v)**2)))
         cont += 1 
 
-    listacg[0]['transfer'] = listacg[0]['transfer']*(1/lpp)
-    listacg[0]['advance'] = listacg[0]['advance']*(1/lpp)
-    listacg[0]['taticalDiameter'] = listacg[0]['taticalDiameter']*(1/lpp)
+    #listacg[0]['transfer'] = listacg[0]['transfer']*(1/lpp)
+    #listacg[0]['advance'] = listacg[0]['advance']*(1/lpp)
+    #listacg[0]['taticalDiameter'] = listacg[0]['taticalDiameter']*(1/lpp)
     

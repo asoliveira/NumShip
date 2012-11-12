@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 
-p = (Multbeta,  Multr,  Multl,  Multbrl)
+if qtd == 1:
+  shipname = nome
+else:
+  shipname = ''
 
-#Coloque as derivadas no modelo nomeado pelo arquivo derivada.dat
-arq = os.path.abspath('./dados/derivada.dat')
-  
-en = ('Navioteste', arq, 'inputtab.dat')
-io = es(en)
+entrada = (shipname, arq, 'inputtab.dat')
+io = es(entrada)
 
 DicionarioDerivadas = io.lerarqder()
-del io,  en,  arq
+del io,  entrada,  arq
 
-navio1 = navio(DicionarioDerivadas, nome = nome,   tipo = TipoModelo )
+navio1 = navio(DicionarioDerivadas, nome = shipname,  tipo = TipoModelo )
 
-#navio1.MudaVel(sp.ones((6,1)))
-#saida, fbeta, fr, fleme, fbetarl, fu = navio1.VetF((3,p))
-
+if mul:
+  p = (Multbeta, Multr, Multl, Multbrl)
+else:
+  p = None
+  
 listaz = navio1.getCurvaZigZag(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
                         tipo= tipoc,  GrausDeLib = GrausDeLib,  
-                        leme = lemezz, proa = proazz,   rotcom=Rot,  saida =
-saida, arqs = scgarq)
+                        leme = lemezz, proa = proazz,   rotcom=Rot, arqs = scgarq)
 
 
 

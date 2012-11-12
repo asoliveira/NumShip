@@ -75,6 +75,10 @@ class casco:
         """
         
         saida = None
+        
+        #coeficiente para dimensionalizar os termos de massa
+        coefm = (self.dic['rho'] * (self.dic['lpp'] ** 3)) / 2
+        
         if GrausDeLib == 4:
             saida= sp.array([[self.dic['xdotu'], 0, 0, 0 ],
                    [0, self.dic['ydotv'], self.dic['ydotp'],
@@ -90,70 +94,134 @@ class casco:
             saida[2:, 2:] = saida[2:, 2:] * (self.dic['rho'] * 
                             (self.dic['lpp'] ** 5)) / 2    
         elif GrausDeLib == 3:
-            saida= sp.array([[self.dic['xdotu'], 0, 0 ], 
-                    [0, self.dic['ydotv'], self.dic['ydotr']], 
-                    [0, self.dic['ndotv'], self.dic['ndotr']]])  
-            saida[:2, :2] = saida[:2, :2] * (self.dic['rho'] * 
-                            (self.dic['lpp'] ** 3)) / 2
-            saida[1,2] = saida[1,2] * (self.dic['rho'] * (self.dic['lpp'] **
-                        4)) / 2
-            saida[2,1] = saida[2,1] * (self.dic['rho'] * (self.dic['lpp'] **
-                         4)) / 2
-            saida[2, 2] = saida[2, 2] * (self.dic['rho'] * 
-                          (self.dic['lpp'] ** 5)) / 2
+            saida= sp.array([[self.dic['xdotu'] * coefm,
+            0,
+            0,
+            0,
+            0,
+            0],
+            # 
+            [0,
+            self.dic['ydotv'] * coefm,
+            0,
+            0,
+            0,
+            self.dic['ydotr'] * coefm * self.dic['lpp']],
+            ## w, p, q são zerados em 3 graus de liberdade 
+            [0., 0., 0., 0., 0., 0.],
+            [0., 0., 0., 0., 0., 0.],
+            [0., 0., 0., 0., 0., 0.],
+            #
+            [0,
+            self.dic['ndotv'] * coefm * self.dic['lpp'],
+            0,
+            0,
+            0,
+            self.dic['ndotr'] * coefm * self.dic['lpp'] ** 2]])
         
         return saida 
 
-    def M(self,  GrausDeLib = 4):
-        """Retorna um  sp.array de  massa e massa"""
+    def Massa(self,  GrausDeLib = 4):
+        """Retorna a matriz de massa e inercia"""
         
         saida = None
+        
+        #coeficiente para dimensionalizar os termos de massa
+        coefm = (self.dic['rho'] * (self.dic['lpp'] ** 3)) / 2
+        
         if GrausDeLib == 4:
-            saida = sp.array([[self.dic['m'] ,  0., 0., 0. ],
-                              [0., self.dic['m'], -(self.dic['m'] *
-                               self.dic['zg'] / self.dic['lpp']),   
-                               self.dic['m'] * self.dic['xg'] / 
-                               self.dic['lpp']],
-                              [0., -(self.dic['m'] * self.dic['zg'] /
-                               self.dic['lpp']), self.dic['ixx'], 0.],
-                              [0., self.dic['m'] * self.dic['xg'] /
-                               self.dic['lpp'] , 0., self.dic['izz']]])
+            saida = sp.array([[self.dic['m'], 
+            0.,
+            0., 
+            0.
+            ],
+            #
+            [0., 
+            self.dic['m'], 
+            -(self.dic['m'] * self.dic['zg'] / self.dic['lpp']),
+            self.dic['m'] * self.dic['xg'] / self.dic['lpp']],
+            #
+            [0., 
+            -(self.dic['m'] * self.dic['zg'] / self.dic['lpp']),
+            self.dic['ixx'], 
+            0.],
+            #
+            [0., 
+            self.dic['m'] * self.dic['xg'] / self.dic['lpp'] ,
+            0.,
+            self.dic['izz']]
+            ])
+            
             saida[:2, :2] = saida[:2, :2] * \
                             (self.dic['rho'] * (self.dic['lpp'] ** 3)) / 2
+            
             saida[2:,:2]= saida[2:, :2] * \
                           (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
+            
             saida[:2,2:]= saida[:2,2:] * \
                           (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
+            
             saida[2:, 2:] = saida[2:, 2:] * \
                             (self.dic['rho'] * (self.dic['lpp'] ** 5)) / 2
+                            
         elif GrausDeLib == 3:
-            saida = sp.array([[self.dic['m'] ,  0., 0.],
-                             [0., self.dic['m'], self.dic['m'] *
-                              (self.dic['xg'] / self.dic['lpp'])],
-                             [0., self.dic['m'] * (self.dic['xg'] /
-                              self.dic['lpp']), self.dic['izz']]])
-            saida[:2, :2] = saida[:2, :2] * \
-                            (self.dic['rho'] * (self.dic['lpp'] ** 3)) / 2
-            saida[1, 2] = saida[1, 2] * \
-                          (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
-            saida[2, 1] = saida[2, 1] * \
-                          (self.dic['rho'] * (self.dic['lpp'] ** 4)) / 2
-            saida[2, 2] = saida[2, 2] * \
-                          (self.dic['rho'] * (self.dic['lpp'] ** 5)) / 2
-        
+            saida = sp.array([[self.dic['m'] * coefm,
+            0.,
+            0.,
+            0.,
+            0.,
+            0.],
+            #
+            [0.,
+            self.dic['m'] * coefm,
+            0.,
+            0.,
+            0.,
+            self.dic['m'] * self.dic['xg'] * coefm],
+            # w, p, q são zerados em 3 graus de liberdade
+            [0., 0., 0., 0., 0., 0.],
+            [0., 0., 0., 0., 0., 0.],
+            [0., 0., 0., 0., 0., 0.],
+            #
+            [0.,
+            self.dic['m'] * self.dic['xg'] * coefm,
+            0.,
+            0.,
+            0.,
+            self.dic['izz'] * coefm * self.dic['lpp'] ** 2]
+            ])
+                    
         return saida
    
-    def Fx(self):
-        """Devolve a força em Surge"""
+    def fx(self):
+        """Retorna força em Surge"""
         
-    def Fy(self):
-        """Devolve a força em Sway"""
+        return sp.array([0.])
+    
+    def fy(self):
+        """Retorna força em Sway"""
         
+        return sp.array([0.])
+
+    def fz(self):
+        """Retorna força em Heave"""
+        
+        return sp.array([0.])
+    
     def K(self):
-        """Devolve o momento de Roll"""
+        """Retorna o momento de Roll"""
+        
+        return sp.array([0.])
+
+    def fy(self):
+        """Retorna força em Pitch"""
+        
+        return sp.array([0.])              
 
     def N(self):
-        """Devolve o momento de Yaw"""
+        """Retorna o momento de Yaw"""
+        
+        return sp.array([0.])
 
 if __name__ == "__main__":
     import doctest

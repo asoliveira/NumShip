@@ -73,25 +73,40 @@ class  prop:
         """        
         
     def Fx(self):
-        """
-        Devolve a força em surge
-        """
-        return sp.array(0.)
+        """Retorna força em Surge"""
         
+        return sp.array([0.])
+    
     def Fy(self):
-        """
-        Devolve a força em sway
-        """
-        return sp.array(0.)
+        """Retorna força em Sway"""
         
-    def K(self):
-        """
-        Devolve o momento de roll
-        """
-        return sp.array(0.)
+        return sp.array([0.])
+
+    def Fz (self):
+        """Retorna a força no eixo z do sistema solidário
+        
+        O modelo matemático é de 3 graus de liberdade, assim esta força não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
+      
+    def K (self):
+        """Retorna o momento em torno do eixo x
+        
+        O modelo matemático é de 3 graus de liberdade, assim o momento em torno do eixo y não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
+        
+    def M (self):
+        """Retorna o momento em torno do eixo y
+        
+        O modelo matemático é de 3 graus de liberdade, assim o momento em torno do eixo y não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
 
     def N(self):
-        """
-        Devolve o momento de yaw
-        """
-        return sp.array(0.)
+        """Retorna o momento de Yaw"""
+        
+        return sp.array([0.])

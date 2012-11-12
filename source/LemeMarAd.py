@@ -137,7 +137,7 @@ class lemeMarAd(leme):
         
         """
        
-        return sp.array([0.])
+        return sp.array(0.)
     
     def N (self,  rot=None):
         """Retorna  momento de yaw

@@ -74,25 +74,49 @@ class leme:
         
         self.pos = Posicao.copy()
    
-    def fx(self):
+    def Fx(self):
         """Retorna força em Surge"""
         
-        pass
+        return sp.array([0.])
     
-    def fy(self):
+    def Fy(self):
         """Retorna força em Sway"""
         
-        pass
-    
-    def K(self):
-        """Retorna o momento de Roll"""
+        return sp.array([0.])
+
+    def Fz (self):
+        """Retorna a força no eixo z do sistema solidário
         
-        pass
+        O modelo matemático é de 3 graus de liberdade, assim esta força não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
+      
+    def K (self):
+        """Retorna o momento em torno do eixo x
+        
+        O modelo matemático é de 3 graus de liberdade, assim o momento em torno do eixo y não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
+        
+    def M (self):
+        """Retorna o momento em torno do eixo y
+        
+        O modelo matemático é de 3 graus de liberdade, assim o momento em torno do eixo y não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
+
+    def Fy(self):
+        """Retorna força em Pitch"""
+        
+        return sp.array([0.])              
 
     def N(self):
         """Retorna o momento de Yaw"""
         
-        pass
+        return sp.array([0.])
 
 if __name__ == "__main__":
     import doctest

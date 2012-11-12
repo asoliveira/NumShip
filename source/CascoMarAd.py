@@ -39,7 +39,7 @@ class cascoMarAd(casco):
         self.vel = Velocidade.copy()
 
     def Fx (self):
-        r"""Retorna a força em surge
+        r"""Retorna a força no eixo x do sistema solidário
         
         Aqui estão contabilizadas algumas forças relacionadas ao resíduo
         tudo de dimensional.
@@ -56,12 +56,12 @@ class cascoMarAd(casco):
              (self.dic['xrr'] * r ** 2) + (self.dic['rho'] / 2) * \
              (self.dic['lpp'] ** 3) * (self.dic['xvr'] * v * r)  + \
              (self.dic['rho'] / 2) * (self.dic['lpp'] ** 2) * \
-             ((self.dic['xvv']) * v ** 2 )
-
+             (self.dic['xvv'] * (v ** 2 )) 
+             
         return X
     
     def Fy (self):
-        """Retorna a força de sway"""
+        """Retorna a força no eixo y do sistema solidário"""
         
         u = self.MostraVel()[0]
         v = self.MostraVel()[1]
@@ -73,21 +73,36 @@ class cascoMarAd(casco):
             (self.dic['lpp'] ** 3) * (self.dic['yr'] * u * r + \
                                       self.dic['yv|r|'] * v * abs(r)) + \
             (self.dic['rho'] / 2) * (self.dic['lpp'] ** 2) * \
-            (self.dic['yv'] * v * u + self.dic['yv|v|'] * v * abs(v))
+            (self.dic['yv'] * v * u + self.dic['yv|v|'] * v * abs(v)) 
        
         return Y
+        
+    def Fz (self):
+        """Retorna a força no eixo z do sistema solidário
+        
+        O modelo matemático é de 3 graus de liberdade, assim esta força não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
       
     def K (self):
-        """Retorna o momento de roll
+        """Retorna o momento em torno do eixo x
         
-        O modelo matemático é de 3 graus de liberdade, assim o momento de
-        Roll não é calculado. Esta função retorna um array de valor *zero*
+        O modelo matemático é de 3 graus de liberdade, assim o momento em torno do eixo y não é calculado. Esta função retorna um array de valor *zero*
+        apenas para suprir alguma compatibilidade do programa"""
+       
+        return sp.array([0.])
+        
+    def M (self):
+        """Retorna o momento em torno do eixo y
+        
+        O modelo matemático é de 3 graus de liberdade, assim o momento em torno do eixo y não é calculado. Esta função retorna um array de valor *zero*
         apenas para suprir alguma compatibilidade do programa"""
        
         return sp.array([0.])
     
     def N (self):
-        """Retorna o momento de yaw """
+        """Retorna o momento em torno do eixo z """
         
         u = self.MostraVel()[0]
         v = self.MostraVel()[1]
@@ -98,7 +113,7 @@ class cascoMarAd(casco):
             (self.dic['lpp'] ** 4) * (self.dic['nr'] * u * r + \
                                       self.dic['n|v|r'] * r * abs(v)) + \
             (self.dic['rho'] / 2) * (self.dic['lpp'] ** 3) * \
-            (self.dic['nv'] * v * u + self.dic['nv|v|'] * v * abs(v))
+            (self.dic['nv'] * v * u + self.dic['nv|v|'] * v * abs(v)) 
         
         return N
 

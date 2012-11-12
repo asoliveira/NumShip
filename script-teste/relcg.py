@@ -36,11 +36,13 @@ print 'Tempo para mudara a proa {0:.2f} \
 {1:.0f}'.format(posHis[i,6]*(180/sp.pi), posHis[i,0])
 print 'Tempo para mudara a proa {0:.2f} \
  {1:.0f}'.format(posHis[j,6]*(180/sp.pi), posHis[j,0])
-print 'Avanço {0:.2f}'.format(posHis[i,1])
-print 'Transferência {0:.2f}'.format(posHis[i,2])
-print 'Diâmetro tático {0:.2f}'.format(posHis[j,2])
+print 'Avanço {0:.2f}m  {1:.2f}ft'.format(posHis[i,1], posHis[i,1]*3.28)
+print 'Transferência {0:.2f}m  {1:.2f}ft'.format(posHis[i,2], posHis[i,2]*3.28)
+print 'Diâmetro tático {0:.2f}m  {1:.2f}ft'.format(posHis[j,2],
+posHis[j,2]*3.28)
 print 'Raio da Curva de Giro no Equilíbrio \
-{0:.2f}'.format(sp.sqrt(velHis[k,2]**2 + velHis[k,1]**2)/velHis[k,6])
+{0:.2f}m  {1:.2f}ft'.format(r=sp.sqrt(velHis[k,2]**2 +
+velHis[k,1]**2)/velHis[k,6], r*3.28)
 print 'u no equilíbrio {0:.2f}'.format(velHis[k,1])
 print 'v no equilíbrio {0:.2f}'.format(velHis[k,2])
 print 'r no equilíbrio {0:.2f}'.format(velHis[k,6])

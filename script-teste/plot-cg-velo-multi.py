@@ -9,7 +9,7 @@ adi = False
 save = True #Salva a figura?
 scgarq = 'plot'
 formato = 'pdf'
-TipoModelo = 'beta-velo-'
+TipoModelo = 'velo-'
 GrausDeLib = 3
 tini = 0
 tmax = 900
@@ -19,16 +19,24 @@ axv = [tini, tmax, -2.5, 0]
 axr = [tini, tmax, 0.0, 0.9]
 
 #Quais são as pastas?
-p = ('padrao', 'beta/beta-10', 'beta/beta-20', 'beta/beta-30')
+p = ('padrao',
+'saida-xddee/saida-xddee0'
+'saida-xddee/saida-xddee0.002', 
+'saida-xddee/saida-xddee0.005', 
+'saida-xddee/saida-xddee0.008',
+'saida-xddee/saida-xddee-5e-5',
+'saida-xddee/saida-xddee-0.005')
 #Dentro de cada pasta quais são as pastas comuns?
 dircomum = '/CurvaGiro/'
 #Dentro de cada diretório quais são as arq?
 arq = 'velo.dat',
 #legendas
-ld = (r'$S1$', 
-r'$10\% \ B$', 
-r'$20\% \ B$',
-r'$30\% \ B$')
+ld = (r'$x_{\delta_R\delta_R \eta \eta}=0$', 
+r'$x_{\delta_R\delta_R \eta \eta}=2e-3$', 
+r'$x_{\delta_R\delta_R \eta \eta}=5e-3$',
+r'$x_{\delta_R\delta_R \eta \eta}=8e-3$',
+r'$x_{\delta_R\delta_R \eta \eta}=-5e-5$',
+r'$x_{\delta_R\delta_R \eta \eta}=-5e-3$')
 
 
 #import 
@@ -39,7 +47,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-dircg = scgarq + '/figuras/'   
+dircg = scgarq + dircomum
 if not os.path.exists(dircg):
   os.makedirs(dircg)
   
