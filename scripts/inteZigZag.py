@@ -9,7 +9,7 @@ entrada = (shipname, arq, 'inputtab.dat')
 io = es(entrada)
 
 DicionarioDerivadas = io.lerarqder()
-del io,  entrada,  arq
+del io,  entrada,
 
 navio1 = navio(DicionarioDerivadas, nome = shipname,  tipo = TipoModelo )
 
@@ -18,29 +18,29 @@ if mul:
 else:
   p = None
   
-listaz = navio1.getCurvaZigZag(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
-                        tipo= tipoc,  GrausDeLib = GrausDeLib,  
-                        leme = lemezz, proa = proazz,   rotcom=Rot, arqs = scgarq)
+navio1.getCurvaZigZag(met = metodo, peso = p,  t = tmax, t0 = tini,dt=passo,
+tipo= tipoc,  GrausDeLib = GrausDeLib, leme = lemezz, proa = proazz, 
+rotcom=DicionarioDerivadas['rotnom'], arqs = scgarq)
 
-
-
-if  saida == 'txt':
-    os.chdir(scgarq)
-    lemehis = np.genfromtxt('leme.dat')
-    prophis = np.genfromtxt('propulsor.dat')
-    velhis = np.genfromtxt('velo.dat')
-    velinhis = np.genfromtxt('veloiner.dat')
-    etahis = np.genfromtxt('eta.dat')
-    forhis = np.genfromtxt('forcas.dat')
-    poshis = np.genfromtxt('pos.dat')
-    acelhis = np.genfromtxt('acel.dat')
-    os.chdir('..')    
-    os.chdir('..')
-
-else:
-    velhis, poshis, acelhis, forhis, velinhis, lemehis, prophis, \
-    etahis, listaz = a 
-    del a
+os.chdir(scgarq)
+#lemehis = np.genfromtxt('leme.dat')
+#prophis = np.genfromtxt('propulsor.dat')
+#velhis = np.genfromtxt('velo.dat')
+#velinhis = np.genfromtxt('veloiner.dat')
+#etahis = np.genfromtxt('eta.dat')
+#forhis = np.genfromtxt('forcas.dat')
+#poshis = np.genfromtxt('pos.dat')
+#acelhis = np.genfromtxt('acel.dat')
+shutil.copyfile('../../../script-teste/relzz.py', scgarq + '/relzz.py')
+shutil.copyfile(arq, scgarq + '/../' + arqrel)
+shutil.copyfile('../../../dados/config.py', scgarq + '/config.py')
+i = arqrel.split('.')[0] + '_zz.dat'
+caminho = '../../../dados/dados/'
+if os.path.exists(caminho+i):
+  shutil.copyfile(caminho + i, i)
+execfile('relzz.py')
+os.chdir('..')    
+os.chdir('..')
 
 if adi :
     cont = 0

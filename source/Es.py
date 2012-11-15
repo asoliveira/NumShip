@@ -261,7 +261,7 @@ class es (object) :
             array(0.62)
 
         """
-                  
+        
         temp = []
         
         f = self.listararq(separator, comment)
