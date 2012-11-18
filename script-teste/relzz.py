@@ -69,7 +69,7 @@ dici['proa1ex'] = pos[i,6]
 #tempo para mudar a proa na primeira execução
 dici['t1ex'] = pos[i,0]
 
-dici['1reach'] = pos[r,0]
+dici['reach'] = pos[r,0]
 #primeiro overshoot
 dici['o1'] = (abs(pos[o1,6]) * 180/sp.pi) - proazz
 #segundo overshoot
@@ -94,7 +94,7 @@ if salvar:
   {1:.0f}\n'.format(dici['proa1ex']*180/sp.pi, dici['t1ex']))
 
   log.write('Tempo para alcançar o Reach \
-  {0:.2f}\n'.format(dici['1reach']))
+  {0:.2f}\n'.format(dici['reach']))
 
   log.write('Overshoot 1 {0:.2f}\n'.format(dici['o1']))
 
@@ -112,7 +112,7 @@ elif not salvar:
   {1:.0f}\n'.format(dici['proa1ex']*180/sp.pi, dici['t1ex'])
 
   print 'Tempo para alcançar o Reach \
-  {0:.2f}\n'.format(dici['1reach'])
+  {0:.2f}\n'.format(dici['reach'])
 
   print 'Overshoot 1 {0:.2f}\n'.format(dici['o1'])
 

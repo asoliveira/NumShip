@@ -23,24 +23,15 @@ tipo= tipoc,  GrausDeLib = GrausDeLib, leme = lemezz, proa = proazz,
 rotcom=DicionarioDerivadas['rotnom'], arqs = scgarq)
 
 os.chdir(scgarq)
-#lemehis = np.genfromtxt('leme.dat')
-#prophis = np.genfromtxt('propulsor.dat')
-#velhis = np.genfromtxt('velo.dat')
-#velinhis = np.genfromtxt('veloiner.dat')
-#etahis = np.genfromtxt('eta.dat')
-#forhis = np.genfromtxt('forcas.dat')
-#poshis = np.genfromtxt('pos.dat')
-#acelhis = np.genfromtxt('acel.dat')
-shutil.copyfile('../../../script-teste/relzz.py', scgarq + '/relzz.py')
-shutil.copyfile(arq, scgarq + '/../' + arqrel)
-shutil.copyfile('../../../dados/config.py', scgarq + '/config.py')
-i = arqrel.split('.')[0] + '_zz.dat'
-caminho = '../../../dados/dados/'
-if os.path.exists(caminho+i):
-  shutil.copyfile(caminho + i, i)
-execfile('relzz.py')
-os.chdir('..')    
-os.chdir('..')
+lemehis = np.genfromtxt('leme.dat')
+prophis = np.genfromtxt('propulsor.dat')
+velhis = np.genfromtxt('velo.dat')
+velinhis = np.genfromtxt('veloiner.dat')
+etahis = np.genfromtxt('eta.dat')
+forhis = np.genfromtxt('forcas.dat')
+poshis = np.genfromtxt('pos.dat')
+acelhis = np.genfromtxt('acel.dat')
+betahis = np.genfromtxt('beta.dat')
 
 if adi :
     cont = 0

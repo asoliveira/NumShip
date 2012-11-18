@@ -13,6 +13,9 @@ io = es(entrada)
 DicionarioDerivadas = io.lerarqder()
 del io, entrada
 
+#if qtd == 3 or qtd == 4:  
+  #DicionarioDerivadas[derivada] = DicionarioDerivadas[derivada] * i
+  
 navio1 = navio(DicionarioDerivadas, nome = shipname,  tipo = TipoModelo)
 
 if mul:
@@ -25,26 +28,16 @@ tipo = tipoc, GrausDeLib = GrausDeLib, leme = lemecg,
 rotcom = DicionarioDerivadas['rotnom'], arqs = scgarq)
 
 os.chdir(scgarq)
-#lemeHis = np.genfromtxt('leme.dat')
-#propHis = np.genfromtxt('propulsor.dat')
-#velHis = np.genfromtxt('velo.dat')
-#velinHis = np.genfromtxt('veloiner.dat')
-#etaHis = np.genfromtxt('eta.dat')
-#forHis = np.genfromtxt('forcas.dat')
-#posHis = np.genfromtxt('pos.dat')
-#acelHis = np.genfromtxt('acel.dat')
-#betaHis = np.genfromtxt('beta.dat')
-shutil.copyfile('../../../script-teste/relcg.py', scgarq + '/relcg.py')
-shutil.copyfile(arq, scgarq + '/../' + arqrel)
-shutil.copyfile('../../../dados/config.py', scgarq + '/config.py')
-i = arqrel.split('.')[0] + '_cg.dat'
-caminho = '../../../dados/dados/'
-if os.path.exists(caminho+i):
-  shutil.copyfile(caminho + i, i)
-del caminho  
-execfile('relcg.py')
-os.chdir('..')    
-os.chdir('..')
+lemeHis = np.genfromtxt('leme.dat')
+propHis = np.genfromtxt('propulsor.dat')
+velHis = np.genfromtxt('velo.dat')
+velinHis = np.genfromtxt('veloiner.dat')
+etaHis = np.genfromtxt('eta.dat')
+forHis = np.genfromtxt('forcas.dat')
+posHis = np.genfromtxt('pos.dat')
+acelHis = np.genfromtxt('acel.dat')
+betaHis = np.genfromtxt('beta.dat')
+ 
     
 if adi:
   cont = 0
