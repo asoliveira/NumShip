@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+#Navio P 35graus
+#Velocidade inicial
+unom = 4.08,
+
+#comprimento
+lpp = 365.38,#1198.76ft
+
+#avanço metros
+avanco = 1079.78,
+
+#Transferência metros
+trans = 470.94,
+
+#Diâmetro tático metros
+dt = 1264.55,
+
+#velocidade no equilíbrio m/s *0,51
+V = 1.61 ,#2.99knots
+
+#Tempo para mudar a proa 90 graus seg
+t90 = 396.15,
+
+#Tempo para mudar a proa 180 graus seg
+t180 = 913.18,

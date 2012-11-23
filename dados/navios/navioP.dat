@@ -1,0 +1,99 @@
+#
+#
+#	 Modelo de arquivo para entrada das derivadas hidrodinâmicas#
+#		Navio A 	MARAD
+#
+#		1 ft = 0.305 m 
+#
+ 
+#	 Surge 
+xdotu = -8.4e-4,            
+xvr = 6.92e-3,
+xvv = 1.4e-3,            
+xdrdr = -2.62e-3,
+xrr = 0.0,
+xvveta = 9.5e-4,
+xdrdretaetaeta = 0.00, #Este dado não foi encontrado
+ 
+#	 Sway 
+ydotv = -9.23e-3,
+ydotr	 = -2.9e-4,         
+y*	 = 8.6e-5,
+yv = -8.0e-3,            
+yv|v| = -2.22e-2,
+yr =  2.82e-3,
+yr|r| = 2.05e-3,
+yv|r| = -1.63e-2,
+ydr	 = 3.52e-3,
+yreta = 7.9e-4,
+yveta = -1.51e-3,
+
+ 
+#	 Yaw
+ndotv = -1.4e-4,
+ndotr = -5.18e-4,
+n* = -4.5e-5,
+nv = -4.31e-3,            
+nv|v| = 4.14e-3,
+nr = -2.35e-3,
+nr|r| = -4.3e-4,
+n|v|r = -5.15e-3,
+ndr = -1.84e-3,
+nreta = -4.1e-4,
+nveta = 7.87e-4,
+
+#Dados de máquina
+a1 = -1.643e-3,
+b1 = -2.73e-4,
+c1 = 1.361e-3,
+#
+
+a2 = -7.57e-4,
+b2 = -4.91e-4,
+c2 = 1.248e-3,
+
+a3 = -7.57e-4,
+b3 = 3.19e-4,
+c3 = -1.97e-4,
+
+a4 = -5.63e-4,
+b4 = -2.72e1,
+c4 = -9.82e-4,
+
+d0 = 0.29,
+e0 = 0.22,
+f0 = -0.001,
+
+d1 = 0.29,
+e1 = 0.36,
+f1 = 0.067,
+
+d*0 = 0.0,
+e*0 = -0.133,
+f*0 = -0.27,
+
+d*1 = 0.0,
+e*1 = 0.4,
+f*1 = 0.111,
+
+#Tipo de índice eta que será utilizado no cálculo das forças no leme e propulsor eta=velcom/vel[1] eta=rotcom/rot [2]
+eta=1,
+dp = 9.64,	#Diâmetro do propulsor 32.96ft
+lambdaprop = 1,	#Coeficiente de decaimento propulsor
+lambdaleme = 40, #Coeficiente de decaimento leme 
+#
+#
+#
+rho = 1025,
+g = 9.18,
+
+m = 1.422e-2,#3.556e8,
+ixx = 6.3e-5, 
+izz = 8.89e-4,
+lpp = 365.38,#1198.76ft
+b = 0.0, #b =
+xg = 0.0, #dimensional
+zg = 0.0,
+         
+rotnom = 0.6675, # Tab. 40.05RPM(8knots)/ rps RPM(16knots) 
+unom = 4.11 #Velocidade nominal em 4.11 m/s =  8 knot e 8.23 = 16 knot

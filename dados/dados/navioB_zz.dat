@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+
+#Velocidade inicial
+unom = 4.08,
+
+#comprimento
+lpp = 349.87,
+
+#periodo
+t = 991.75,
+
+#primeiro overshoot
+o1 = 13.47,
+
+#segundo overshoot
+o2 = 16.14,
+
+#terceiro overshoot
+o3 = 11.78,
+
+#Tempo para fazer a primeira execução
+t1ex = 142.27,
+
+#Reach
+reach = 507.49,

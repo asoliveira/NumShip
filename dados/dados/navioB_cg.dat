@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+
+#Velocidade inicial
+unom = 4.08,
+
+#avanço metros
+avanco = 931.81,
+
+#Transferência metros
+trans = 385.49,
+
+#Diâmetro tático metros
+dt = 990.15,
+
+#velocidade no equilíbrio m/s *0,51
+V = 1.27,
+
+#Tempo para mudar a proa 90 graus seg
+t90 = 331.04,
+
+#Tempo para mudar a proa 180 graus seg
+t180 = 773.90,

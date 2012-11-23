@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+#Navio C zigzag 20/20
+#Velocidade inicial
+unom = 4.11,
+
+#comprimento
+lpp = 369.04, # lpp = 1210.75 ft
+
+#periodo
+t = 1088.9,
+
+#primeiro overshoot
+o1 = 19.08,
+
+#segundo overshoot
+o2 = 18.54,
+
+#terceiro overshoot
+o3 = 12.99,
+
+#Tempo para fazer a primeira execução
+t1ex = 135.29,
+
+#Reach
+reach = 557.62,
