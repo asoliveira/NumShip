@@ -11,6 +11,9 @@ io = es(entrada)
 DicionarioDerivadas = io.lerarqder()
 del io,  entrada,
 
+if qtd == 3 or qtd == 4:  
+  DicionarioDerivadas[derivada] = DicionarioDerivadas[derivada] * multi
+  
 navio1 = navio(DicionarioDerivadas, nome = shipname,  tipo = TipoModelo )
 
 if mul:

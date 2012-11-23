@@ -645,8 +645,6 @@ class navio:
     # elemento linha 3 coluna 3
     sp.cos(roll) / sp.cos(pitch)]])
     
-    #Rot.shape  = (3, 3)
-    
     trans6g = sp.zeros((6,6))
     for argl in sp.arange(3):
       for argc in sp.arange(3):
@@ -731,7 +729,7 @@ class navio:
     :param p: ((roll, pitch, yaw), (u, v,, w, p, q, r))
     
     """
-    
+
     vetor = sp.array(p[1])
     saida = sp.array(self.MatRot(p[0]) * vetor)
     return saida

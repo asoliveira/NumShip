@@ -45,7 +45,8 @@ dici['avanco'] = pos[i,1]
 dici['t90'] = pos[i,0]
 dici['t180'] = pos[j,0]
 
-arq = open('log.bin','wb') #abrir o arquivo para gravação - o "b" significa que o arquivo é binário
+#abrir o arquivo para gravação - o "b" significa que o arquivo é binário
+arq = open('log.bin','wb') 
 pickle.dump(dici,arq) #Grava uma stream do objeto "dic" para o arquivo.
 arq.close() #fechar o arquivo
 
